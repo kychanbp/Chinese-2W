@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chinese EV Motorcycles — Market-Entry Decision Report</title>
+<style>
+  :root{
+    --navy:#0f2747; --slate:#33425b; --ink:#1a2233; --mute:#6b7689;
+    --line:#e3e8ef; --bg:#f6f8fb; --card:#ffffff;
+    --accent:#1f6feb; --accent2:#0a8f6a; --warn:#c0651a; --bad:#b3261e;
+    --good:#0a8f6a; --chip:#eef3fb;
+    --shadow:0 1px 3px rgba(16,32,64,.07),0 6px 20px rgba(16,32,64,.06);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.55;font-size:15.5px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+  header.masthead{background:linear-gradient(135deg,#0f2747,#1d3a63);color:#fff;padding:46px 0 38px}
+  header.masthead .wrap{display:block}
+  .kicker{text-transform:uppercase;letter-spacing:.16em;font-size:12px;color:#9fc0ee;font-weight:700;margin-bottom:10px}
+  header h1{margin:0 0 8px;font-size:30px;line-height:1.18;font-weight:750;letter-spacing:-.01em}
+  header .sub{color:#cdd9ea;font-size:15px;max-width:760px}
+  header .meta{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+  .pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);color:#eaf1fb;
+    padding:4px 11px;border-radius:999px;font-size:12.5px;font-weight:600}
+  nav.toc{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line)}
+  nav.toc .wrap{display:flex;gap:4px;flex-wrap:wrap;padding-top:9px;padding-bottom:9px}
+  nav.toc a{font-size:12.5px;font-weight:600;color:var(--slate);text-decoration:none;padding:5px 10px;border-radius:7px}
+  nav.toc a:hover{background:var(--chip);color:var(--navy)}
+  section{padding:34px 0 8px}
+  h2{font-size:13px;text-transform:uppercase;letter-spacing:.13em;color:var(--accent);font-weight:800;margin:0 0 4px}
+  h2 + .h{font-size:23px;font-weight:730;margin:0 0 16px;letter-spacing:-.01em;color:var(--navy)}
+  h3{font-size:17px;font-weight:700;color:var(--navy);margin:24px 0 8px}
+  p{margin:10px 0}
+  .lead{font-size:16.5px;color:var(--slate)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:20px 22px;box-shadow:var(--shadow);margin:16px 0}
+  .rec{border-left:5px solid var(--accent2);background:linear-gradient(180deg,#f3fbf8,#ffffff)}
+  .rec .tag{display:inline-block;background:var(--accent2);color:#fff;font-size:11.5px;font-weight:800;
+    letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:6px;margin-bottom:10px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:15px 16px;box-shadow:var(--shadow)}
+  .kpi .n{font-size:25px;font-weight:780;color:var(--navy);letter-spacing:-.01em}
+  .kpi .l{font-size:12.5px;color:var(--mute);font-weight:600;margin-top:2px}
+  .kpi .d{font-size:12px;color:var(--slate);margin-top:6px}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.8px;background:var(--card);
+    border:1px solid var(--line);border-radius:11px;overflow:hidden}
+  th,td{padding:9px 11px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:#f0f4f9;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--slate);font-weight:800}
+  tr:last-child td{border-bottom:none}
+  td.num{font-variant-numeric:tabular-nums;font-weight:650}
+  .star{color:#b8860b;font-weight:800}
+  .b-good{color:var(--good);font-weight:700}.b-warn{color:var(--warn);font-weight:700}.b-bad{color:var(--bad);font-weight:700}
+  .modules{counter-reset:m;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .mod{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px 16px 54px;position:relative;box-shadow:var(--shadow)}
+  .mod::before{counter-increment:m;content:counter(m);position:absolute;left:16px;top:16px;width:26px;height:26px;
+    background:var(--navy);color:#fff;border-radius:7px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px}
+  .mod h4{margin:0 0 3px;font-size:15.5px;color:var(--navy)}
+  .mod .q{font-size:13px;color:var(--mute);font-style:italic;margin-bottom:6px}
+  .mod .v{font-size:13.3px}
+  /* bar chart */
+  .bars{margin:10px 0 4px}
+  .barrow{display:grid;grid-template-columns:120px 1fr 64px;align-items:center;gap:10px;margin:7px 0}
+  .barrow .lab{font-size:13px;font-weight:650;color:var(--slate)}
+  .track{background:#eef2f7;border-radius:6px;height:20px;position:relative;overflow:hidden}
+  .fill{height:100%;border-radius:6px;background:linear-gradient(90deg,#2f7ef0,#1f6feb)}
+  .fill.hot{background:linear-gradient(90deg,#0fae7e,#0a8f6a)}
+  .barrow .val{font-size:13px;font-weight:750;color:var(--navy);text-align:right;font-variant-numeric:tabular-nums}
+  .cap{font-size:12px;color:var(--mute);margin-top:6px}
+  /* 2x2 */
+  .matrix{display:grid;grid-template-columns:34px 1fr 1fr;grid-template-rows:auto 1fr 1fr;gap:8px;margin:14px 0}
+  .maxis-y{grid-row:2 / 4;writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;
+    font-size:11.5px;font-weight:800;letter-spacing:.06em;color:var(--mute);text-transform:uppercase}
+  .mhead{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--mute);text-transform:uppercase;text-align:center;padding:4px}
+  .quad{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:13px 14px;box-shadow:var(--shadow);min-height:96px}
+  .quad .qt{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mute);margin-bottom:5px}
+  .quad.win{border-color:#bfe6d6;background:#f3fbf8}
+  .quad.lose{border-color:#f0d8d2;background:#fdf6f4}
+  .dot{display:inline-block;font-weight:750;font-size:13.5px}
+  .maxis-x{grid-column:2 / 4;text-align:center;font-size:11.5px;font-weight:800;letter-spacing:.06em;color:var(--mute);text-transform:uppercase;padding-top:4px}
+  /* staircase */
+  .stair{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:16px 0;align-items:end}
+  .step{background:var(--card);border:1px solid var(--line);border-bottom:4px solid var(--accent);border-radius:11px 11px 0 0;
+    padding:15px 16px;box-shadow:var(--shadow);position:relative}
+  .step:nth-child(1){margin-top:64px;border-bottom-color:#0a8f6a}
+  .step:nth-child(2){margin-top:32px;border-bottom-color:#1f6feb}
+  .step:nth-child(3){margin-top:0;border-bottom-color:#5b3fb0}
+  .step .sn{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+  .step h4{margin:3px 0 6px;font-size:15.5px;color:var(--navy)}
+  .step p{font-size:12.8px;margin:6px 0 0;color:var(--slate)}
+  ul.tight{margin:8px 0;padding-left:20px}ul.tight li{margin:5px 0;font-size:14px}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .flag{background:#fff8f0;border:1px solid #f0dcc4;border-left:4px solid var(--warn);border-radius:9px;padding:13px 16px;margin:12px 0;font-size:13.6px}
+  .flag b{color:var(--warn)}
+  .verdict{font-weight:750;color:var(--navy)}
+  .src{font-size:12px;color:var(--mute)}
+  footer{margin-top:30px;padding:24px 0 50px;border-top:1px solid var(--line);color:var(--mute);font-size:12.5px}
+  .scorewrap{overflow-x:auto}
+  .badge{display:inline-block;font-size:11px;font-weight:800;padding:2px 8px;border-radius:999px}
+  .badge.go{background:#e3f6ee;color:#0a7a59}.badge.hold{background:#fdeede;color:#b06316}.badge.no{background:#fbe6e3;color:#a31f17}
+  @media(max-width:760px){.grid2,.grid3,.modules,.two,.stair,.matrix{grid-template-columns:1fr}
+    .matrix .maxis-y{display:none}.step{margin-top:0 !important}}
+  @media print{body{background:#fff;font-size:11.5px}nav.toc{display:none}.card,.kpi,table,.quad,.step,.mod{box-shadow:none}
+    header.masthead{background:#0f2747 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    section{padding:16px 0 4px;break-inside:avoid}.fill,.quad,.step{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="kicker">Master Report · Market Entry &amp; Business-Model Validation · Strategy</div>
+    <h1>Chinese Two-Wheelers Going Global — Market Entry &amp; Business-Model Validation</h1>
+    <div class="sub">The full picture: the export wave (ICE + EV), four market theaters (SEA/Malaysia, Brazil/LatAm, Africa), the entry decision, and a unit-economics validation of the asset-light consumer lead-gen model. Deep-researched and Codex-validated throughout.</div>
+    <div class="meta">
+      <span class="pill">Prepared 2026-06-04 · consolidated 2026-06-06</span>
+      <span class="pill">ICE + EV · SEA / LatAm / Africa</span>
+      <span class="pill">Best shape: LatAm (Brazil/Colombia)</span>
+      <span class="pill">Model: marginal → 90-day test</span>
+    </div>
+  </div>
+</header>
+
+<nav class="toc"><div class="wrap">
+  <a href="#rec">Recommendation</a>
+  <a href="#framework">Framework</a>
+  <a href="#wave">The wave</a>
+  <a href="#size">1 · Size</a>
+  <a href="#demand">2 · Demand</a>
+  <a href="#chain">3 · Value chain</a>
+  <a href="#model">4 · Model</a>
+  <a href="#sequence">5 · Sequence</a>
+  <a href="#latam">LatAm</a>
+  <a href="#bizmodel">Validation</a>
+  <a href="#risks">Risks</a>
+  <a href="#next">Next steps</a>
+  <a href="#sources">Sources</a>
+  <a href="#validation">Validation</a>
+</div></nav>
+
+<div class="wrap">
+
+<!-- RECOMMENDATION -->
+<section id="rec">
+  <h2>Bottom line up front</h2>
+  <div class="h">The recommendation</div>
+  <div class="card rec">
+    <span class="tag">Decision</span>
+    <p class="lead" style="margin-top:2px"><b>The opportunity is the whole Chinese 2W "going-global" wave — petrol (ICE) <u>and</u> electric — not EV alone.</b> Chinese 2W exports are growing 30–45%/yr, fastest into <b>Latin America (+55%)</b> and <b>Africa (+73%)</b>. For the asset-light consumer lead-gen model you chose, that opens two viable Stage-1 beachheads: <b>Malaysia-EV</b> (cleanest fit, small) or <b>Brazil-ICE</b> (bigger, riding the Shineray category surge).</p>
+    <div class="grid3" style="margin-top:14px">
+      <div class="kpi"><div class="n">ICE + EV</div><div class="l">The wave</div><div class="d">ICE is the bigger present-tense retail volume (~11M export units); EV is the faster-growing future. Ride both.</div></div>
+      <div class="kpi"><div class="n">LatAm / Africa</div><div class="l">Where it's growing</div><div class="d">Follow the export acceleration — LatAm +55%, Africa +73% — not the slower SEA-EV niche alone</div></div>
+      <div class="kpi"><div class="n">2 beachheads</div><div class="l">Stage-1 options</div><div class="d">Malaysia-EV (clean, small) vs Brazil-ICE (big, contested). Test cheaply; pick on which proves dealers pay.</div></div>
+    </div>
+    <p style="margin-top:14px"><span class="verdict">Final synthesis (after 4 theaters + unit economics):</span> <b>LatAm (Brazil/Colombia) is the best <em>shape</em></b> — the value chain is open, Chinese brands partner-distribute, and Brazil has a proven per-lead economy. <b>Africa</b> is biggest-growth but captured (a capital play, not lead-gen). <b>Malaysia-EV</b> is clean but tiny. <b>But</b> the unit-economics model (<a href="#bizmodel">§Validation</a>) shows even the LatAm asset-light per-lead version is <b>marginal and conversion-gated</b> — viable only via finance-qualified leads to brands + loan-origination, at conversion ≥ ~8%. So the decision is not "build" — it's <b>run the $3–5k / 90-day field test</b> to prove dealers/brands pay and leads convert, before committing. See <a href="#latam">LatAm theater</a> and <a href="#bizmodel">Validation</a>.</p>
+  </div>
+</section>
+
+<!-- FRAMEWORK -->
+<section id="framework">
+  <h2>The lens</h2>
+  <div class="h">Market-Entry Framework — five MECE modules</div>
+  <p class="lead">Governing thesis: <b>the value is not in the product or the lead — it is in whichever layer resolves the buyer's binding constraint.</b> Match the business model to where demand is real, then sequence entry from cheapest-to-prove to highest-margin.</p>
+  <div class="modules">
+    <div class="mod"><h4>Size it</h4><div class="q">How big, how fast, how real?</div><div class="v">Volume × penetration × growth — and whether growth sits on a meaningful base or a tiny one.</div></div>
+    <div class="mod"><h4>Segment demand</h4><div class="q">Who actually buys, and why now?</div><div class="v">Fleet/B2B vs. retail consumer; regulation vs. subsidy as the trigger.</div></div>
+    <div class="mod"><h4>Map the value chain</h4><div class="q">Where does value leak or concentrate?</div><div class="v">What the foreign supplier <em>cannot</em> provide locally — the binding constraint you could own.</div></div>
+    <div class="mod"><h4>Pick the model</h4><div class="q">What can you own that's defensible?</div><div class="v">Score business-model variants against disintermediation risk.</div></div>
+    <div class="mod" style="grid-column:1 / 3"><h4>Sequence entry</h4><div class="q">Where first, and in what order?</div><div class="v">Maturity × white-space × model-fit. Enter the smallest market where the model is cleanest to validate; the audience/relationship asset becomes the on-ramp to bigger or heavier plays.</div></div>
+  </div>
+</section>
+
+<!-- THE WAVE -->
+<section id="wave">
+  <h2>The macro trend</h2>
+  <div class="h">The wave — Chinese 2W are going global, ICE and EV</div>
+  <p class="lead">The thesis to ride: Chinese two-wheeler makers are expanding exports fast and entering new markets. This is bigger than EV — petrol bikes are the larger present-tense volume, and the fastest-growing destinations are <b>Latin America</b> and <b>Africa</b>, not the Southeast-Asia EV niche.</p>
+  <div class="grid3">
+    <div class="kpi"><div class="n b-good">+41%</div><div class="l">ICE moto exports, 2025 YTD</div><div class="d">Jan–Apr 5.59M units (CCCM). China = #1 exporter by value, ~34% of global ($14.53bn).</div></div>
+    <div class="kpi"><div class="n b-good">+33%</div><div class="l">EV 2W exports, 2025 YTD</div><div class="d">Jan–May 9.58M units. (Bucket blends e-motos + e-bicycles.)</div></div>
+    <div class="kpi"><div class="n">10M+ / 22M</div><div class="l">ICE / EV export units (2024)</div><div class="d">ICE bigger by value; EV bigger by unit count (cheap commodity bikes).</div></div>
+  </div>
+  <h3>Where the exports are accelerating (motorcycles, Jan–Apr 2025)</h3>
+  <div class="bars">
+    <div class="barrow"><span class="lab">Africa</span><div class="track"><div class="fill hot" style="width:97%"></div></div><span class="val">+72.6%</span></div>
+    <div class="barrow"><span class="lab">Latin America</span><div class="track"><div class="fill hot" style="width:74%"></div></div><span class="val">+55.3%</span></div>
+    <div class="barrow"><span class="lab">Europe</span><div class="track"><div class="fill" style="width:62%"></div></div><span class="val">+46% (premium)</span></div>
+    <div class="barrow"><span class="lab">Asia</span><div class="track"><div class="fill" style="width:6%"></div></div><span class="val b-bad">−3.8%</span></div>
+  </div>
+  <p class="cap">Bar length ∝ YoY export growth. LatAm is the largest market (2.21M units, ~40%); Africa the fastest (1.67M, +73%). <b>Asia is the only declining region</b> (local production + India) — a flag for the SEA focus. EV exports concentrate in Indonesia + Vietnam + Pakistan (~93% of shipments). Source: CCCM customs (Codex-validated; see Validation).</p>
+  <div class="two">
+    <div class="card">
+      <h3 style="margin-top:2px">Who's expanding</h3>
+      <ul class="tight">
+        <li><b>Yadea</b> (EV): plants in Vietnam, Indonesia (3M/yr, 2026); flagship stores across LatAm + Morocco. Still &gt;90% domestic — early in its overseas build-out.</li>
+        <li><b>Shineray, Haojue</b> (ICE): surging in Brazil, building locally.</li>
+        <li><b>Chongqing petrol cluster</b> (Zonsen, Loncin, Haojin): &gt;5M motos exported 2024; Africa a priority.</li>
+        <li><b>QJ Motor / Benelli</b> (premium): doubled to 63k units in 2025.</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left:4px solid var(--accent2)">
+      <h3 style="margin-top:2px">The demand signal for a lead-gen business</h3>
+      <p>At the May 2025 Western China Fair, Nigerian/Rwandan/Kenyan firms signed <b>1.65bn yuan</b> of assembly + parts deals with Chongqing makers — Chinese makers <em>actively seeking local partners.</em> B2B sourcing today is generic (Alibaba) — a long-tail matchmaking gap.</p>
+      <p class="cap">But the branded leaders self-distribute (Shineray 438 stores), so the lead-gen sweet spot is the <b>mid-tier brands + not-yet-entered markets</b> without local networks.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 1 SIZE -->
+<section id="size">
+  <h2>Module 1 — the EV deep-dive</h2>
+  <div class="h">Size it — within EV, adoption is real in exactly one market</div>
+  <p>Only <b>Vietnam</b> has crossed into mass EV adoption (~1 in 5 new bikes electric). Everywhere else EV is still ~1% of new sales — high growth rates, but off tiny bases. A percentage is not a market.</p>
+
+  <h3>EV share of new two-wheeler sales (2025)</h3>
+  <div class="bars">
+    <div class="barrow"><span class="lab">Vietnam ⭐</span><div class="track"><div class="fill hot" style="width:88%"></div></div><span class="val">~22%</span></div>
+    <div class="barrow"><span class="lab">Thailand</span><div class="track"><div class="fill" style="width:6%"></div></div><span class="val">~1.3%</span></div>
+    <div class="barrow"><span class="lab">Brazil</span><div class="track"><div class="fill" style="width:4%"></div></div><span class="val">~0.4–1%</span></div>
+    <div class="barrow"><span class="lab">Indonesia</span><div class="track"><div class="fill" style="width:5%"></div></div><span class="val">~1%</span></div>
+    <div class="barrow"><span class="lab">Philippines</span><div class="track"><div class="fill" style="width:4%"></div></div><span class="val">&lt;1%</span></div>
+    <div class="barrow"><span class="lab">Malaysia</span><div class="track"><div class="fill" style="width:5%"></div></div><span class="val">low s-digit</span></div>
+  </div>
+  <p class="cap">Bar length ∝ EV share of new sales. All markets except Vietnam are ~1% or below, off tiny bases. <b>§ Brazil:</b> EV share is ~0.4% on registered motorcycles (Fenabrave 8,552) vs ~1% on a broad e-2W basis (MotorcyclesData ~22k) — the two sources conflict on level and growth (+9.35% vs +145%); see Sources. Malaysia/Brazil growth rates are single-source and treated cautiously.</p>
+
+  <h3>The six-market scorecard</h3>
+  <div class="scorewrap">
+  <table>
+    <thead><tr><th>Market</th><th>New 2W / yr</th><th>EV % new sales</th><th>EV growth</th><th>Chinese-brand EV share</th><th>EV leader</th></tr></thead>
+    <tbody>
+      <tr><td><b>Vietnam</b></td><td class="num">~3.4M</td><td class="num star">~22%†</td><td>steady</td><td>~27% (Dibao 12, Yadea 8.6, NIU 6.2)</td><td>VinFast 43% <span class="b-warn">(caps Chinese)</span></td></tr>
+      <tr><td><b>Malaysia</b></td><td class="num">~0.69M</td><td class="num">low s-digit</td><td class="b-good">+61.6%</td><td><b>Chinese lead</b> (Yadea, ZEEHO, EZI, Blueshark)</td><td>Chinese / Modenas (fleet)</td></tr>
+      <tr><td><b>Thailand</b></td><td class="num">~1.7M</td><td class="num">~1.3%</td><td>soft (+15%)</td><td>Chinese lead EV niche</td><td>no local champion</td></tr>
+      <tr><td><b>Brazil</b></td><td class="num">2.197M</td><td class="num">~0.4–1%§</td><td>+9–145%§</td><td><b>Chinese dominant</b> (VMoto via Vammo; Shineray)</td><td>Vammo #1 (Chinese HW)</td></tr>
+      <tr><td><b>Indonesia</b></td><td class="num">6.41M</td><td class="num">~1%</td><td>stop-start</td><td>Chinese strong (Yadea localizing)‡</td><td>Gesits (local) leads‡</td></tr>
+      <tr><td><b>Philippines</b></td><td class="num">~1.9M</td><td class="num">&lt;1.5%</td><td>early</td><td><b>Chinese majority</b></td><td>none significant</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="src">Sources: ICCT 2025 global e-2W; MotorcyclesData country reports; AISI; Abraciclo/Fenabrave; TheInvestor.vn (VN brand shares). <b>† Vietnam EV share:</b> <b>21.7% per ICCT</b> (Jan–Oct 2025, an H2-weighted-surge window). The earlier "~28%" brand-math figure was a <b>denominator artifact</b> (it used VAMM's 2.6M, which excludes VinFast) and is dropped; full-year whole-market is ~12% (VinFast 406k ÷ 3.4M). Cite ~22% as the outlier headline. <b>‡ Indonesia brand shares</b> ("Gesits 37.6% / Yadea 13.8%") <b>removed</b> — ICCT (the authoritative source) names brands only qualitatively, no verified shares exist. Indonesia EV share (~1%) and total (6.41M, AISI) are now both confirmed. See the <a href="#validation">Validation</a> section for the full corroboration sweep.</p>
+
+  <div class="grid3">
+    <div class="kpi"><div class="n">99 : 1</div><div class="l">ICE : EV, most markets</div><div class="d">EV ≈1% of new sales outside Vietnam</div></div>
+    <div class="kpi"><div class="n">4 of 6</div><div class="l">markets Chinese brands already lead EV</div><div class="d">Blocked only in VN (VinFast) &amp; partly ID (Gesits)</div></div>
+    <div class="kpi"><div class="n">~0%</div><div class="l">Japanese EV share</div><div class="d">Honda/Yamaha own ICE but are absent in EV — it's China-vs-local-champion</div></div>
+  </div>
+</section>
+
+<!-- 2 DEMAND -->
+<section id="demand">
+  <h2>Module 2</h2>
+  <div class="h">Segment demand — fleet-first, and regulation &gt; subsidy</div>
+  <div class="two">
+    <div class="card">
+      <h3 style="margin-top:2px">Who buys</h3>
+      <p>EV adoption is led by <b>ride-hailing and last-mile delivery fleets</b> everywhere — high daily mileage makes EV TCO + battery-swap economics work (swapping = 20–40% more daily orders). Private retail EV demand is meaningful only in <b>Vietnam</b> and <b>Malaysia</b>.</p>
+      <table style="margin-top:6px">
+        <thead><tr><th>Market</th><th>Dominant EV buyer</th></tr></thead>
+        <tbody>
+          <tr><td>Indonesia · Brazil</td><td class="b-warn">Fleet / gig (B2B)</td></tr>
+          <tr><td>Vietnam</td><td>Retail + mandated ride-hail</td></tr>
+          <tr><td><b>Malaysia</b></td><td class="b-good">Retail private consumer</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:2px">Why now — the demand switch</h3>
+      <p><b>Regulation creates demand floors; subsidies create demand cliffs.</b></p>
+      <ul class="tight">
+        <li><span class="b-good">Bans (durable):</span> Vietnam's Hanoi/HCMC ICE bans drove EV to ~22%.</li>
+        <li><span class="b-warn">Subsidies (fragile):</span> Indonesia &amp; Malaysia rebates both <b>lapsed</b>, producing demand cliffs.</li>
+      </ul>
+      <p class="cap">Weight a market's policy by its <em>durability</em>, not its generosity. Malaysia's demand is rebate-driven — a risk to underwrite (see §Risks).</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3 CHAIN -->
+<section id="chain">
+  <h2>Module 3</h2>
+  <div class="h">Map the value chain — the constraint is not "leads"</div>
+  <p>Chinese OEMs bring product and price (undercutting Japanese brands ~20–30%) but cannot serve local needs from China. The binding constraints on adoption are <b>local infrastructure</b>, not buyer awareness.</p>
+  <div class="grid2">
+    <div class="card" style="border-left:4px solid var(--bad)">
+      <h3 style="margin-top:2px">What's missing in the system</h3>
+      <ul class="tight">
+        <li>Dealer &amp; after-sales service networks</li>
+        <li>Spare-parts availability</li>
+        <li>Fleet &amp; consumer financing rails</li>
+        <li>A used-EV resale market (depresses residuals, blocks financing)</li>
+        <li>Homologation / type-approval know-how</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left:4px solid var(--accent2)">
+      <h3 style="margin-top:2px">Implication: "constraint, not category"</h3>
+      <p>Don't sell what's missing on the shelf; own what's missing in the <em>system</em>. The deepest value sits in financing + service + residuals.</p>
+      <p>A pure lead-gen middleman owns <b>none</b> of these — which is why it is defensible only where it can own a <em>different</em> scarce asset: a <b>neutral, trusted comparison layer</b> for confused retail buyers. That asset exists only where the buyer is a retail consumer — i.e., Malaysia.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 4 MODEL -->
+<section id="model">
+  <h2>Module 4</h2>
+  <div class="h">Pick the model — and let it select the market</div>
+  <div class="scorewrap">
+  <table>
+    <thead><tr><th>Variant</th><th>Mechanics</th><th>Defensibility</th><th>Fit for EV motos</th></tr></thead>
+    <tbody>
+      <tr><td><b>(a) Consumer lead-gen</b> <span class="src">(your choice)</span></td><td>Ads/content → buyer inquiries sold per-lead to dealers</td><td class="b-warn">Low — unless it owns neutrality / audience</td><td><span class="badge hold">conditional</span> works only in a retail-consumer market</td></tr>
+      <tr><td>(b) B2B fleet-enablement</td><td>Match OEM↔fleets, then own financing + service + parts</td><td class="b-good">High — owns recurring layers</td><td><span class="badge go">strong</span> but capital/ops-heavy</td></tr>
+      <tr><td>(c) Affiliate / referral</td><td>Pass traffic, paid per action</td><td class="b-bad">Zero</td><td><span class="badge no">weak</span></td></tr>
+      <tr><td>(d) Vertical marketplace</td><td>Two-sided listings + commission</td><td>Network effects at scale</td><td><span class="badge hold">later</span> cold-start + capital heavy</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>The 2×2 that makes the decision</h3>
+  <div class="matrix">
+    <div></div>
+    <div class="mhead">Retail-consumer buyer</div>
+    <div class="mhead">Fleet / B2B buyer</div>
+    <div class="maxis-y">Business model</div>
+    <div class="quad win"><div class="qt">Asset-light lead-gen</div><span class="dot b-good">✅ Malaysia-EV · Brazil-ICE</span><div class="cap" style="margin-top:6px">Retail consumers who shop online. Malaysia-EV = clean/small; Brazil-ICE = big but target the long tail.</div></div>
+    <div class="quad lose"><div class="qt">Asset-light lead-gen</div><span class="dot b-bad">❌ Indonesia · Africa fleets</span><div class="cap" style="margin-top:6px">An ad can't convert a fleet/gig procurement decision.</div></div>
+    <div class="quad"><div class="qt">Heavy enablement</div><span class="dot b-warn">⚠ over-built</span><div class="cap" style="margin-top:6px">More machinery than a retail buyer needs.</div></div>
+    <div class="quad win"><div class="qt">Heavy enablement</div><span class="dot b-good">✅ Brazil-EV · Indonesia · Africa*</span><div class="cap" style="margin-top:6px">The big money — if you take on capital + ops. *Africa (+73%) is biggest-growth but <b>already integrating</b> (Spiro et al.) — contested, not open.</div></div>
+    <div></div>
+    <div class="maxis-x" style="grid-column:2/4">Buyer type →</div>
+  </div>
+  <p class="verdict">The model is an <em>input</em> to geography, not a consequence. Asset-light lead-gen selects <b>retail-consumer</b> markets — now two of them: Malaysia-EV and Brazil-ICE. The biggest prize (Africa moto-taxi, +73%) sits in the fleet quadrant — reachable only by graduating to the heavy model.</p>
+</section>
+
+<!-- 5 SEQUENCE -->
+<section id="sequence">
+  <h2>Module 5</h2>
+  <div class="h">Sequence entry — the staircase</div>
+  <div class="stair">
+    <div class="step"><div class="sn">Stage 1 · Prove</div><h4>Asset-light, retail: Malaysia-EV <em>or</em> Brazil-ICE</h4><p>Own the neutral "which 2W to buy" comparison/content layer via SEO + TikTok/FB → WhatsApp → route to dealers. Near-zero paid CAC. Malaysia-EV is the cleanest test; Brazil-ICE the higher-ceiling one (capture the long-tail Chinese brands without networks).</p></div>
+    <div class="step"><div class="sn">Stage 2 · Build</div><h4>Turn traffic into an asset</h4><p>Convert demand into defensibility: dealer relationships, buyer-intent data, a trusted neutral brand. Add financing/insurance affiliate revenue. Prove dealers/brands pay.</p></div>
+    <div class="step"><div class="sn">Stage 3 · Scale</div><h4>Graduate to a fleet bet</h4><p>Graduate into higher-margin <b>fleet-enablement</b> — Brazil-EV/Indonesia fleets, or <b>Africa moto-taxi (+73%)</b>. But the Africa deep-dive shows that theatre is <b>integrating fast</b> (Spiro et al. own the stack); the open angle there is a <b>capital-backed financing/data layer</b>, not lead-gen — pursue only with funding.</p></div>
+  </div>
+  <p class="cap">Commit to the heavy model only after the cheap one produces data. Asset-light retail markets are bounded, so scale lives in the fleet graduation — but <b>Africa is contested capital, not a lead-gen on-ramp</b>. The cleaner graduation is Brazil (where you'd already have ICE relationships) into Brazil-EV fleets.</p>
+
+  <h3>The expanded geography decision</h3>
+  <div class="scorewrap">
+  <table>
+    <thead><tr><th>Theater</th><th>Powertrain</th><th>Buyer</th><th>Fit for asset-light lead-gen</th><th>Size / growth</th></tr></thead>
+    <tbody>
+      <tr><td><b>Malaysia</b></td><td>EV</td><td>retail consumer</td><td><span class="badge go">clean fit</span> brands lack local demand-gen</td><td>small (tens of k), +62%</td></tr>
+      <tr><td><b>Brazil</b></td><td>ICE (Shineray surge)</td><td>retail consumer</td><td><span class="badge hold">long-tail only</span> leaders self-distribute (438 stores)</td><td>big — Shineray ~130k units</td></tr>
+      <tr><td><b>Secondary LatAm</b> (MX/CO)</td><td>ICE + EV</td><td>retail consumer</td><td><span class="badge go">potential</span> new-market entry, networks not built</td><td>unknown — data gap</td></tr>
+      <tr><td><b>Africa</b> (moto-taxi)</td><td>EV (Spiro etc.)</td><td>fleet / gig</td><td><span class="badge no">wrong model + contested</span> vertically integrating; open angle = capital/finance/data, not lead-gen</td><td><b>biggest growth +73%</b></td></tr>
+      <tr><td><b>Indonesia / Brazil</b></td><td>EV</td><td>fleet (Gojek/Vammo)</td><td><span class="badge no">wrong model</span> B2B procurement</td><td>large, proven fleet demand</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="cap"><b>Recommendation:</b> run a cheap Stage-1 test in <b>Malaysia-EV</b> (cleanest) and/or <b>Brazil-ICE</b> (bigger), explicitly to validate whether dealers/brands pay for leads. <b>Africa</b> is the biggest growth but — per the deep-dive — a <b>contested capital play</b> (integrators own the stack), not a lead-gen on-ramp; treat it as a separate funded bet, not the default graduation. Chase the <b>secondary-LatAm</b> data gap (Mexico/Colombia) — currently under deep research — as a possible cleaner asset-light fit.</p>
+
+  <h3>The Stage-1 operating model (Malaysia)</h3>
+  <div class="scorewrap">
+  <table>
+    <thead><tr><th>Lever</th><th>Plan</th></tr></thead>
+    <tbody>
+      <tr><td>Product</td><td>Neutral comparison + content hub; rebate-eligibility checker; swap-station map; honest reviews. Own "EV motorbike Malaysia" search/social real estate.</td></tr>
+      <tr><td>Funnel</td><td>SEO + TikTok/FB/IG content + listings on Mudah.my / Carousell / iMotorbike → WhatsApp capture → dealer. Exploit the 5-minute-response arbitrage (industry avg ~42 hrs).</td></tr>
+      <tr><td>Monetize</td><td>Per-lead / referral fees (Mforce, Blueshark, Yadea dealers) + hire-purchase financing &amp; insurance affiliate + later listing fees.</td></tr>
+      <tr><td>CAC discipline</td><td>Content/SEO-led, near-zero paid CAC — the only way ~RM130–330/sale-equivalent economics clear.</td></tr>
+      <tr><td>Moat</td><td>Audience + SEO + buyer-intent data + dealer relationships; the defensible position is <b>neutrality</b> (buyers distrust single-brand sites).</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- LATAM THEATER -->
+<section id="latam">
+  <h2>The chosen theater</h2>
+  <div class="h">LatAm — the open opportunity (deep-dive)</div>
+  <p class="lead">Deep research across Brazil + secondary LatAm (Codex-validated) found the key contrast: <b>LatAm's 2W value chain is structurally open</b> — fragmented importers + multi-brand dealers + open classifieds, with Chinese brands entering through <em>local partnerships</em> — the opposite of Africa's vertical integration. That's the condition a demand-gen layer needs.</p>
+  <div class="scorewrap">
+  <table>
+    <thead><tr><th>Market</th><th>2025 size</th><th>Chinese-2W structure</th><th>Lead-gen fit</th></tr></thead>
+    <tbody>
+      <tr><td><b>Brazil</b></td><td class="num">~2.2M (+17%)</td><td>Shineray #3 (130.6k, +70%, self-distributes 438 stores); Haojue via Suzuki/JTZ</td><td><span class="badge go">open</span> but lead-layer bank-captured; white space = long-tail importers</td></tr>
+      <tr><td><b>Colombia</b></td><td class="num">~1.1M (+34%)</td><td>Chinese via house brands (AKT #2/Corbeta; Victory/Auteco)</td><td><span class="badge go">partner-distribution</span> fits; white space = brand-name tail</td></tr>
+      <tr><td><b>Mexico</b></td><td class="num">&gt;2.0M (2026 +1%)</td><td><b>Italika ~68–70%</b> (Zongshen-linked, Elektra+Banco Azteca)</td><td><span class="badge no">captured at value end</span>; only the non-Italika tail open; 2026 tariff (~25%) pushes localization</td></tr>
+      <tr><td><b>Peru</b></td><td class="num">~271k (+21%)</td><td>fragmented direct-import (Wanxin, Zongshen, Lifan + local)</td><td><span class="badge hold">cleanest white space</span>, smaller scale</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="two">
+    <div class="card"><h3 style="margin-top:2px">The wedge must be re-pointed</h3>
+      <ul class="tight">
+        <li><b>Leaders self-distribute</b> (Shineray 438 stores; Italika owns Mexico) → your customer is the <b>long tail of newer Chinese entrants</b> lacking demand-gen.</li>
+        <li><b>Lead value = financing origination</b>, not ad clicks — banks own Brazil's auto classifieds for exactly this reason.</li>
+        <li><b>The fit:</b> social (TikTok/FB/IG) → WhatsApp-qualification → finance-ready dealer handoff (WhatsApp on 99% of Brazil phones).</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left:4px solid var(--accent2)"><h3 style="margin-top:2px">Why LatAm beats the alternatives</h3>
+      <ul class="tight">
+        <li><b>vs Africa:</b> open vs captured — Africa's chain is integrating (Spiro et al. own the stack).</li>
+        <li><b>vs Malaysia-EV:</b> larger TAM, more open, more mature funnel (WhatsApp commerce, per-lead economy).</li>
+        <li><b>Recommendation:</b> Brazil #1, Colombia #2, Peru watch.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="cap">All LatAm figures Codex-validated (Brazil ~2.2M not 2.35M; Shineray +70% not +80.7%; Mexico tariff ~25% not 35%). Directional thesis holds; data trustworthiness "mixed."</p>
+</section>
+
+<!-- BUSINESS-MODEL VALIDATION -->
+<section id="bizmodel">
+  <h2>Does the model hold?</h2>
+  <div class="h">Business-model validation — marginal &amp; conversion-gated</div>
+  <p class="lead">A unit-economics model tested whether a <b>viable per-lead price band</b> exists — a price both profitable for us and ROI-positive for the dealer. The answer reframes the whole opportunity.</p>
+  <div class="scorewrap">
+  <table>
+    <thead><tr><th>Scenario</th><th>Conversion</th><th>CAC/lead</th><th>Dealer max WTP</th><th>Viable band</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr><td><b>Base</b></td><td class="num">6%</td><td class="num">$5.00</td><td class="num">$6.60</td><td class="num">$5.00–$6.60</td><td><span class="badge hold">thin</span></td></tr>
+      <tr style="background:#fdf6f4"><td><b>Pessimistic</b></td><td class="num">3%</td><td class="num">$8.00</td><td class="num">$3.30</td><td class="num b-bad">EMPTY</td><td><span class="badge no">fails</span></td></tr>
+      <tr style="background:#f3fbf8"><td><b>Optimistic</b></td><td class="num">10%</td><td class="num">$3.00</td><td class="num">$11.00</td><td class="num">$3.00–$11.00</td><td><span class="badge go">works</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>A dealer rationally pays at most <code>conversion × profit-per-sale ÷ ROI-hurdle</code>. On a ~$2,200 bike (~$330 margin) at 6% conversion = <b>$6.60/lead</b> vs our ~$5 CAC — razor-thin; <b>empty below ~4% conversion</b>. <b>Conversion is the single make-or-break variable.</b></p>
+  <h3>Three ways the economics get un-marginal (the real hypotheses)</h3>
+  <div class="grid3">
+    <div class="kpi"><div class="n">1</div><div class="l">Sell to brands, not small dealers</div><div class="d">Entrants value market-entry + trust above pure ROI → pay above a dealer's hurdle</div></div>
+    <div class="kpi"><div class="n">2</div><div class="l">Capture financing-origination</div><div class="d">A finance-qualified lead pays twice — dealer <em>and</em> lender. The real moat.</div></div>
+    <div class="kpi"><div class="n">3</div><div class="l">Higher-margin bikes</div><div class="d">Premium Chinese ($500–1,000+ margin) lift dealer WTP 2–3×</div></div>
+  </div>
+  <h3>The 90-day, $3–5k kill-or-confirm plan</h3>
+  <div class="stair">
+    <div class="step"><div class="sn">Phase 1 · Wk 1–3</div><h4>Demand interviews</h4><p>15–20 dealer/brand/lender interviews. <b>Kill if &lt;30% will pay in-band.</b></p></div>
+    <div class="step"><div class="sn">Phase 2 · Wk 3–9</div><h4>Concierge MVP</h4><p>One city, route hand-qualified WhatsApp leads free; measure real lead→sale conversion. <b>Kill if &lt;4%.</b></p></div>
+    <div class="step"><div class="sn">Phase 3 · Wk 9–13</div><h4>Invoice for real money</h4><p>Charge for the next batch at 2–3 in-band prices. <b>Go if ≥3 pay at positive margin.</b></p></div>
+  </div>
+  <div class="flag"><b>The honest read.</b> LatAm is the best shape, but even here the pure asset-light per-lead version is <b>marginal</b>; the viable business is the finance/brand layer (less asset-light). The one thing that decides it — <em>will dealers/brands pay, and do leads convert above ~8%?</em> — is unprovable from a desk. <b>Don't build before the Phase-2 conversion gate passes.</b> Model: <code>latam-2w-leadgen-unit-economics-2026-06-06.py</code>.</div>
+</section>
+
+<!-- RISKS -->
+<section id="risks">
+  <h2>What could break this</h2>
+  <div class="h">Risks &amp; open questions to underwrite</div>
+  <div class="grid2">
+    <div class="card">
+      <h3 style="margin-top:2px">Risks</h3>
+      <ul class="tight">
+        <li><b>Low revenue ceiling.</b> Malaysia EV is tens of thousands of units/yr → lean/lifestyle scale at first. Stage-3 graduation is the upside, not Stage 1.</li>
+        <li><b>Rebate dependence.</b> Demand is policy-sensitive; MARiiCas lapsed once already.</li>
+        <li><b>Disintermediation / own-funnel.</b> Blueshark/PETRONAS has retail reach; brands can build their own capture. Defend with neutrality + data.</li>
+        <li><b>Thin per-lead economics.</b> Only clears with near-zero-CAC organic; paid ads break it.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:2px">Open questions (verify before committing capital)</h3>
+      <ul class="tight">
+        <li>Will Malaysian dealers actually <b>pay</b> for leads, and at what price? (Pilot test.)</li>
+        <li>Real EV unit volume in Malaysia (absolute, not just growth %).</li>
+        <li>Does anyone already own "EV motorbike Malaysia" SEO/content? (White-space scan.)</li>
+        <li>CKD-rebate rules — which brands/dealers are incentive-eligible (your lead buyers).</li>
+      </ul>
+    </div>
+  </div>
+  <div class="flag"><b>Framework caveat.</b> The load-bearing claim — <em>the model selects the market</em> — should be pressure-tested against a second case before being trusted as a general rule. Here it is internally consistent and decision-useful.</div>
+</section>
+
+<!-- NEXT -->
+<section id="next">
+  <h2>Decision &amp; next steps</h2>
+  <div class="h">If we proceed</div>
+  <div class="grid3">
+    <div class="kpi"><div class="n">90-day test</div><div class="l">Validation plan</div><div class="d">Stand up the comparison/content layer in <b>Malaysia-EV and/or Brazil-ICE</b>; 3–5 target dealers each, per-lead price to pitch, conversion to prove.</div></div>
+    <div class="kpi"><div class="n">Phase-1 interviews</div><div class="l">The actual next step</div><div class="d">15–20 dealer/brand/lender WTP interviews in São Paulo or Bogotá — the cheapest way to test the crux (will they pay?).</div></div>
+    <div class="kpi"><div class="n">LatAm + Africa ✓</div><div class="l">Theaters complete</div><div class="d">All four researched + Codex-validated: LatAm = open (best shape), Africa = captured (capital play), Malaysia = tiny.</div></div>
+  </div>
+  <p style="margin-top:14px" class="verdict">Go / no-go gate: proceed to Stage 2 only if the 90-day test proves (a) dealers/brands will pay for leads above organic CAC, and (b) you can rank for high-intent buyer queries. The strategic question to keep front-of-mind: <b>asset-light retail markets are bounded — is the real goal to graduate into the Africa/fleet prize?</b> If yes, weight Stage-1 choices for the relationships and data that enable that jump.</p>
+</section>
+
+<!-- DATA SOURCES -->
+<section id="sources">
+  <h2>Provenance</h2>
+  <div class="h">Data sources — every load-bearing figure</div>
+  <p>20 figures, 17 unique sources. <b>Tier</b> = source credibility; <b>Conf.</b> = hard (measured) vs. estimate/inferred. Live re-verification status in the <a href="#validation">validation</a> section.</p>
+  <div class="scorewrap">
+  <table>
+    <thead><tr><th>Figure</th><th>Value</th><th>Tier</th><th>Conf.</th><th>Primary source</th></tr></thead>
+    <tbody>
+      <tr><td>Vietnam EV share</td><td class="num">~22%</td><td>official</td><td class="b-good">hard†</td><td><a href="https://theicct.org/sneak-peek-at-the-2025-global-electric-two-wheeler-market-dec25/">ICCT</a> <span class="src">21.7% Jan–Oct 2025; 28% artifact dropped</span></td></tr>
+      <tr><td>VinFast units / share</td><td class="num">406,453 / 43%</td><td>press</td><td class="b-good">hard*</td><td><a href="https://vietnamnet.vn/en/vinfast-leads-vietnam-s-electric-motorbike-market-in-2025-2485796.html">VietnamNet</a> · <a href="https://theinvestor.vn/vietnamese-firms-dominate-green-two-wheeler-market-d16368.html">TheInvestor.vn</a></td></tr>
+      <tr><td>Vietnam new 2W/yr</td><td class="num">~3.4M</td><td>tracker</td><td class="b-good">hard</td><td><a href="https://www.motorcyclesdata.com/2025/09/17/vietnam-motorcycles/">MotorcyclesData</a> · <a href="https://www.marklines.com/en/news/338753">MarkLines (VAMM)</a></td></tr>
+      <tr style="background:#fff8f0"><td>Malaysia new 2W/yr</td><td class="num">685,670 (+15.5%)</td><td>tracker</td><td class="b-warn">single-src</td><td class="src">MotorcyclesData only; <b>no corroboration</b> — MAA doesn't track 2W. Not MAA-backed.</td></tr>
+      <tr style="background:#fdf6f4"><td>Malaysia EV growth</td><td class="num">+61.6%</td><td>tracker</td><td class="b-bad">weak</td><td class="src">Single-source &amp; <b>self-contradictory</b> (same tracker says +200%/+117% elsewhere). Use rebate trajectory.</td></tr>
+      <tr style="background:#f3fbf8"><td>Malaysia MARiiCas rebates</td><td class="num">10,600 (87.2% of target)</td><td>official</td><td class="b-good">CONFIRMED ×4</td><td><a href="https://www.bernama.com/en/news.php/general/?id=2478487">BERNAMA</a> (state/MITI) · <a href="https://paultan.org/2025/10/15/lebih-10-ribu-rakyat-malaysia-terima-manfaat-rebat-pembelian-motosikal-elektrik-setakat-8-okt-lalu-miti/">paultan</a> · The Sun · iMotorbike</td></tr>
+      <tr><td>Thailand new 2W/yr</td><td class="num">~1.73M</td><td>tracker</td><td class="b-good">hard</td><td><a href="https://www.motorcyclesdata.com/2026/05/22/thailand-motorcycles/">MotorcyclesData</a></td></tr>
+      <tr><td>Thailand EV share</td><td class="num">~1.3%</td><td>press</td><td class="b-good">supported ×2</td><td><a href="https://medium.com/lubyanza/thailands-stalled-transition-to-electric-motorcyclces-8565aed0b380">Courtright/Lubyanza</a> · <a href="https://www.evshift.com/466216/electric-motorcycles-challenges-and-pathways-for-industry-transformation/">EVSHIFT</a> <span class="src">(both from DLT/FTI data)</span></td></tr>
+      <tr><td>Brazil 2W registrations</td><td class="num">2,197,308 (+17.1%)</td><td>official</td><td class="b-good">CONFIRMED</td><td><a href="https://www.autoindustria.com.br/2026/01/14/motos-emplacam-22-milhoes-de-unidades-em-2025/">AutoIndústria</a> · <a href="https://www.motoo.com.br/vendas-de-motos-disparam-em-2025-e-superam-2-19-milhoes-no-brasil/">MOTOO</a> <span class="src">(Fenabrave; was 2,197,851 — off 543)</span></td></tr>
+      <tr><td>Brazil EV units</td><td class="num">~22,000</td><td>tracker</td><td class="b-good">hard</td><td><a href="https://www.motorcyclesdata.com/2026/05/20/brazilian-electric-motorcycles/">MotorcyclesData</a></td></tr>
+      <tr style="background:#fff8f0"><td>Brazil EV units / growth</td><td class="num">8.5k–22k §</td><td>tracker/official</td><td class="b-warn">CONFLICT</td><td><a href="https://www.autoindustria.com.br/2026/01/14/motos-emplacam-22-milhoes-de-unidades-em-2025/">Fenabrave</a>: 8,552 regs (+9.35%) · <a href="https://www.motorcyclesdata.com/2026/05/20/brazilian-electric-motorcycles/">MotorcyclesData</a>: ~22k (+145%). <span class="src">Definitional: licensed motos vs broad e-2W. EV share ~0.4–1%.</span></td></tr>
+      <tr><td>Brazil EV leader (Vammo)</td><td class="num">#1 brand</td><td>press</td><td class="b-warn">est.</td><td><a href="https://electrek.co/2025/10/30/vammo-leads-latin-americas-battery-swapping-revolution-as-regions-e-motorcycle-market-surges/">Electrek</a> <span class="src">(45.7% = growth, not share)</span></td></tr>
+      <tr><td>Indonesia new 2W/yr</td><td class="num">6.41M</td><td>official</td><td class="b-good">CONFIRMED</td><td><a href="https://www.aisi.or.id/statistic/">AISI</a> · <a href="https://voi.id/en/otoinfo/550289">VOI</a> <span class="src">(6,412,769, +1.3%)</span></td></tr>
+      <tr><td>Indonesia EV share</td><td class="num">~1%</td><td>official</td><td class="b-good">CONFIRMED</td><td><a href="https://theicct.org/publication/electric-vehicle-market-in-indonesia-dec25/">ICCT Dec'25 p.10</a> <span class="src">(peaked 1.4% Q2'24→0.6% Q4'24)</span></td></tr>
+      <tr style="background:#fdf6f4"><td>Indonesia brand shares</td><td class="num"><s>Gesits 37.6% / Yadea 13.8%</s></td><td>vendor</td><td class="b-bad">UNVERIFIED</td><td class="src"><b>Removed on review</b> — cited source did not contain these figures (C8 MISMATCH). Qualitative read retained only.</td></tr>
+      <tr><td>Philippines new 2W/yr</td><td class="num">1.87M</td><td>official</td><td class="b-good">hard</td><td><a href="https://mb.com.ph/2026/02/16/record-19-million-motorcycles-hit-philippine-roads-in-2025">MDPPA / Manila Bulletin</a></td></tr>
+      <tr><td>Philippines EV (2W)</td><td class="num">~40k new 2W-EV (2024)</td><td>press</td><td class="b-warn">no share %</td><td><a href="https://www.reportingasean.net/philippines-bumpy-road-to-cleaner-transport/">Reporting ASEAN (LTO)</a> <span class="src">172→43,441 regs 2023→24; &lt;1% fleet. The "1.5%" was unsupported — replaced with hard LTO units; no official share-of-sales exists.</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="src">* VinFast volume (406,453, +473%) re-confirmed live; the 43% share is single-anchor (TheInvestor.vn), not independently re-confirmed. Business-model / lead-gen benchmarks (auto CPL, conversion, 5-min-response) are US/Western-auto figures — directional. Full source lists in the backing report <code>sea-brazil-ev-motorcycle-lead-gen-2026-06-04.md</code>.</p>
+</section>
+
+<!-- DATA VALIDATION -->
+<section id="validation">
+  <h2>Quality control</h2>
+  <div class="h">Data validation — automated checks</div>
+  <p>Every figure was loaded into a Python validation harness (<code>ev-motorcycle-data-validation-2026-06-04.py</code>) that runs internal-consistency, arithmetic, bound, and live-source checks. Re-runnable; emits a JSON ledger. <b>This version reflects four passes</b>: (1) the build, (2) my independent re-read, (3) a ChatGPT Codex review, and (4) a <b>corroboration sweep</b> hunting second/independent sources for every soft figure.</p>
+  <div class="flag" style="background:#f3fbf8;border-color:#bfe6d6;border-left-color:var(--good)"><b style="color:var(--good)">Pass 4 — corroboration sweep (2026-06-05).</b> Hardened the dataset with second/independent sources: <b>Thailand 1.3%</b> now supported (Courtright/Lubyanza + EVSHIFT, from DLT/FTI); <b>Indonesia ~1%</b> confirmed (ICCT exact quote) + total <b>6.41M</b> (AISI/VOI); <b>Malaysia rebate 10,600</b> confirmed ×4 (BERNAMA/MITI/paultan/The Sun). Corrections: <b>Brazil registrations = 2,197,308</b> (Fenabrave, was 2,197,851); <b>Vietnam re-anchored to 21.7%</b> (ICCT Jan–Oct), 28% dropped as a denominator artifact. Honest downgrades: <b>Malaysia 685,670 &amp; +61.6% have no corroboration</b> (single tracker, self-contradictory; MAA doesn't track 2W) → rebate trajectory is the solid signal; <b>Philippines 1.5% removed</b> for hard LTO unit data (no official share exists). Sources grew 18→23. <b>The Malaysia recommendation rests on the confirmed rebate/policy facts, not the weak tracker figures.</b></div>
+  <div class="grid3">
+    <div class="kpi"><div class="n">55</div><div class="l">checks run</div><div class="d">across 20 figures / 23 sources, 4 passes</div></div>
+    <div class="kpi"><div class="n b-good">9 ✓</div><div class="l">live re-verified</div><div class="d">vs. primary source; Codex independently re-checked</div></div>
+    <div class="kpi"><div class="n b-bad">2 ✗ + 4 ⚠</div><div class="l">caught &amp; corrected</div><div class="d">2 unsupported figures removed; Brazil source + PH share re-flagged; single-source figures now tagged</div></div>
+  </div>
+  <div class="flag" style="background:#eef4fc;border-color:#cfe0f6;border-left-color:var(--accent)"><b style="color:var(--accent)">Third pass — ChatGPT Codex (independent model).</b> Codex <b>confirmed all four round-2 corrections</b> (Vietnam EV-share re-anchor, Indonesia shares removed, Vammo #1-not-45.7%, Thailand unsupported) and surfaced three more, now fixed: (a) the Brazil 2.2M figure's <b>Abraciclo PDF doesn't expose it in text</b> → primary cite moved to MotorcyclesData; (b) the Philippines 1.5% is <b>unsupported by its source</b> → re-flagged, not for quantitative use; (c) the harness now flags <b>hard single-source figures</b> (C2b) and the dataset's stale Indonesia values were nulled to match the report. Codex's verdict: <i>"Trust the directional market-entry conclusion; do not trust the ledger as a fully source-verified quantitative dataset without another cleanup pass"</i> — and it noted the <b>Malaysia recommendation is not driven by any of the weak figures.</b></div>
+  <div class="flag" style="background:#f4f9f4;border-color:#cbe4cb;border-left-color:var(--good)"><b style="color:var(--good)">What the review changed.</b> The independent pass re-read every figure not confirmed in round 1. It (a) <b>confirmed</b> Vietnam's brand shares (VinFast 43% / Pega 16% / Dibao 12% / Yadea 8.6% / NIU 6.2%) verbatim; (b) <b>removed</b> Indonesia's "Gesits 37.6% / Yadea 13.8%" — the cited source did not contain them; (c) found the 21.7% point figure didn't reconcile with the brand math — <b>later re-anchored to 21.7%</b> (ICCT Jan–Oct) in pass 4 once the 28% was identified as a denominator artifact; (d) <b>flagged</b> Thailand's 1.3% (since corroborated in pass 4) and refreshed Indonesia volume (now confirmed 6.41M). <b>None of this changes the recommendation</b> — Vietnam is an even larger outlier and Malaysia is unaffected. <em>(Superseded by the pass-4 corroboration sweep above.)</em></div>
+  <div class="scorewrap">
+  <table>
+    <thead><tr><th>Check</th><th>What it tests</th><th>Result</th></tr></thead>
+    <tbody>
+      <tr><td>C1 · source presence</td><td>Every figure carries ≥1 source URL</td><td><span class="badge go">20/20 PASS</span></td></tr>
+      <tr><td>C2 · estimate flagging</td><td>Single-source / estimate figures are tagged, not presented as hard</td><td><span class="badge hold">8 flagged</span></td></tr>
+      <tr><td>C2b · single-source <span class="src">(Codex)</span></td><td>HARD figures resting on a single URL are flagged as un-corroborated</td><td><span class="badge hold">7 flagged</span></td></tr>
+      <tr><td>C3 · arithmetic</td><td>EV units ≈ total volume × EV share (Brazil: 2.2M×1% = 22,000 vs 22,000)</td><td><span class="badge go">PASS</span></td></tr>
+      <tr><td>C4 · growth back-cast</td><td>YoY growth implies a plausible prior-year base (BR +145% → 2024 ≈ 8,980)</td><td><span class="badge go">PASS</span></td></tr>
+      <tr><td>C5 · share bound</td><td>Named brand shares per market sum ≤ 100% (ID 51.4%, VN 69.8%)</td><td><span class="badge go">PASS</span></td></tr>
+      <tr><td>C6 · cross-source reconcile</td><td>VN 2.6M (VAMM) vs 3.4M (broad) — discrepancy explained, not averaged</td><td><span class="badge go">PASS</span></td></tr>
+      <tr><td>C7 · ordinal sanity</td><td>Vietnam EV share is a ≥3× outlier vs all others (21.7% vs next-highest ~1.3%)</td><td><span class="badge go">PASS</span></td></tr>
+      <tr><td>C8 · live web re-verify</td><td>Headline + soft figures re-fetched from primary source today</td><td><span class="badge go">5 CONFIRMED</span> <span class="badge no">2 mismatch</span> <span class="badge hold">3 partial</span></td></tr>
+      <tr><td>C9 · VN consistency triangle</td><td>VinFast units ÷ share vs stated EV share (406,453 @ 43% → 27.8% vs 21.7%)</td><td><span class="badge hold">28% gap → anchor 21.7% (Jan–Oct); 28% dropped</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h3>Live re-verification log (2026-06-04)</h3>
+  <table>
+    <thead><tr><th>Figure</th><th>Report value</th><th>Primary source says</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr><td>Brazil EV units</td><td>~22,000</td><td>"just over 22,000 units" (2025)</td><td class="b-good">✓ CONFIRMED</td></tr>
+      <tr><td>Brazil EV growth</td><td>+145%</td><td>"rose sharply by 145% year on year"</td><td class="b-good">✓ CONFIRMED</td></tr>
+      <tr><td>Malaysia 2W sales</td><td>685,670 (+15.5%)</td><td>"rising 15.5% to 685,670 units"</td><td class="b-good">✓ CONFIRMED</td></tr>
+      <tr><td>Malaysia EV growth</td><td>+61.6%</td><td>"e-2W sales surged by 61.6% last year" (+34.4% last qtr)</td><td class="b-good">✓ CONFIRMED</td></tr>
+      <tr><td>Vietnam brand shares</td><td>VinFast 43 / Pega 16 / Dibao 12 / Yadea 8.6 / NIU 6.2</td><td>stated verbatim</td><td class="b-good">✓ CONFIRMED</td></tr>
+      <tr><td>VinFast volume</td><td>406k units, ~5.7×</td><td>"406,453 units, +473%"</td><td class="b-good">✓ CONFIRMED</td></tr>
+      <tr><td>Vietnam EV share</td><td>21.7%</td><td>ICCT Jan–Oct 2025 (re-confirmed pass 4); 28% was a denominator artifact (VAMM excl. VinFast)</td><td class="b-good">✓ anchored 21.7%</td></tr>
+      <tr style="background:#fdf6f4"><td>Indonesia Gesits share</td><td>37.6%</td><td><b>not present in cited source</b></td><td class="b-bad">✗ MISMATCH → removed</td></tr>
+      <tr style="background:#fdf6f4"><td>Indonesia Yadea share</td><td>13.8%</td><td><b>not present in cited source</b></td><td class="b-bad">✗ MISMATCH → removed</td></tr>
+      <tr><td>Thailand EV share</td><td>1.3%</td><td>pass 4: 1.3% of new-moto regs, per Courtright/Lubyanza + EVSHIFT (DLT/FTI data)</td><td class="b-good">✓ now supported</td></tr>
+      <tr><td>Indonesia volume</td><td>6.41M</td><td>pass 4: 6,412,769 AISI domestic (+1.3%), via VOI</td><td class="b-good">✓ confirmed</td></tr>
+      <tr style="background:#fff8f0"><td>Brazil EV units</td><td>~22k</td><td>pass 4 CONFLICT: Fenabrave 8,552 registered motos (+9.35%) vs MotorcyclesData ~22k (+145%) — definitional</td><td class="b-warn">⚠ ~0.4–1% share</td></tr>
+    </tbody>
+  </table>
+  <div class="flag"><b>Two corrections surfaced by the harness.</b> (1) Vammo's widely-cited "45.7%" is a <em>YoY growth</em> figure (Apr 2026), <b>not</b> a market share — corrected to "#1 EV brand." (2) Indonesia's "Gesits 37.6% / Yadea 13.8%" failed re-verification (absent from the cited source) — <b>removed</b>, qualitative read retained.</div>
+  <p class="src">Reproduce: <code>python3 outputs/reports/ev-motorcycle-data-validation-2026-06-04.py</code> → prints the ledger, writes the JSON. Round-2 verdict: <b class="b-warn">2 source-attribution failures + 4 partials found and corrected</b>; all hard <em>headline</em> figures (Brazil, Malaysia, Vietnam volumes/growth) confirmed live. Remaining estimates explicitly flagged. The decision recommendation is robust to all of it.</p>
+</section>
+
+<footer>
+  <div class="wrap" style="padding:0">
+    <b>Chinese EV Motorcycles — Market-Entry Decision Report.</b> Prepared 2026-06-04 from BIGBRAIN vault research.<br>
+    Method: <i>Market-Entry Framework for Cross-Border Consumer Durables</i>. Backing analysis: <code>ev-motorcycle-emerging-markets</code> (wiki) · <code>sea-brazil-ev-motorcycle-lead-gen-2026-06-04</code> (report).<br>
+    Source basis: ICCT, MotorcyclesData, AISI, Abraciclo/Fenabrave, VAMM, TheInvestor.vn, Electrek, CNBC, East Ventures, Mforce.Cas, paultan.org, SoyaCincau, iMotorbike. Several EV-share and brand-share figures are estimates — flagged throughout. <b>Decision-support document, not investment advice.</b>
+  </div>
+</footer>
+
+</div>
+</body>
+</html>

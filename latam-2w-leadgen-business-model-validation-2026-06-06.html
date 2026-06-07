@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chinese-2W LatAm Lead-Gen — Business-Model Validation</title>
+<style>
+  :root{
+    --navy:#0f2747;--slate:#33425b;--ink:#1a2233;--mute:#6b7689;--line:#e3e8ef;--bg:#f6f8fb;--card:#fff;
+    --accent:#1f6feb;--accent2:#0a8f6a;--warn:#c0651a;--bad:#b3261e;--good:#0a8f6a;--chip:#eef3fb;
+    --shadow:0 1px 3px rgba(16,32,64,.07),0 6px 20px rgba(16,32,64,.06);
+  }
+  *{box-sizing:border-box}html{scroll-behavior:smooth}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.55;font-size:15.5px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+  header.masthead{background:linear-gradient(135deg,#0f2747,#1d3a63);color:#fff;padding:44px 0 36px}
+  .kicker{text-transform:uppercase;letter-spacing:.16em;font-size:12px;color:#9fc0ee;font-weight:700;margin-bottom:10px}
+  header h1{margin:0 0 8px;font-size:29px;line-height:1.18;font-weight:750;letter-spacing:-.01em}
+  header .sub{color:#cdd9ea;font-size:15px;max-width:760px}
+  header .meta{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+  .pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);color:#eaf1fb;padding:4px 11px;border-radius:999px;font-size:12.5px;font-weight:600}
+  nav.toc{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav.toc .wrap{display:flex;gap:4px;flex-wrap:wrap;padding-top:9px;padding-bottom:9px}
+  nav.toc a{font-size:12.5px;font-weight:600;color:var(--slate);text-decoration:none;padding:5px 10px;border-radius:7px}
+  nav.toc a:hover{background:var(--chip);color:var(--navy)}
+  section{padding:32px 0 8px}
+  h2{font-size:13px;text-transform:uppercase;letter-spacing:.13em;color:var(--accent);font-weight:800;margin:0 0 4px}
+  h2 + .h{font-size:23px;font-weight:730;margin:0 0 16px;letter-spacing:-.01em;color:var(--navy)}
+  h3{font-size:16.5px;font-weight:700;color:var(--navy);margin:22px 0 8px}
+  p{margin:10px 0}.lead{font-size:16px;color:var(--slate)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:20px 22px;box-shadow:var(--shadow);margin:16px 0}
+  .rec{border-left:5px solid var(--warn);background:linear-gradient(180deg,#fff8f0,#fff)}
+  .rec .tag{display:inline-block;background:var(--warn);color:#fff;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:6px;margin-bottom:10px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:15px 16px;box-shadow:var(--shadow)}
+  .kpi .n{font-size:24px;font-weight:780;color:var(--navy);letter-spacing:-.01em}
+  .kpi .l{font-size:12.5px;color:var(--mute);font-weight:600;margin-top:2px}
+  .kpi .d{font-size:12px;color:var(--slate);margin-top:6px}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.8px;background:var(--card);border:1px solid var(--line);border-radius:11px;overflow:hidden}
+  th,td{padding:9px 11px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:#f0f4f9;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--slate);font-weight:800}
+  tr:last-child td{border-bottom:none}
+  td.num{font-variant-numeric:tabular-nums;font-weight:650}
+  .b-good{color:var(--good);font-weight:700}.b-warn{color:var(--warn);font-weight:700}.b-bad{color:var(--bad);font-weight:700}
+  .badge{display:inline-block;font-size:11px;font-weight:800;padding:2px 8px;border-radius:999px}
+  .badge.go{background:#e3f6ee;color:#0a7a59}.badge.hold{background:#fdeede;color:#b06316}.badge.no{background:#fbe6e3;color:#a31f17}
+  ul.tight{margin:8px 0;padding-left:20px}ul.tight li{margin:5px 0;font-size:14px}
+  .cap{font-size:12px;color:var(--mute);margin-top:6px}.verdict{font-weight:750;color:var(--navy)}.src{font-size:12px;color:var(--mute)}
+  /* sensitivity bars */
+  .bars{margin:10px 0 4px}
+  .barrow{display:grid;grid-template-columns:64px 1fr 150px;align-items:center;gap:10px;margin:6px 0}
+  .barrow .lab{font-size:13px;font-weight:650;color:var(--slate)}
+  .track{background:#eef2f7;border-radius:6px;height:18px;position:relative;overflow:hidden}
+  .fill{height:100%;border-radius:6px}
+  .barrow .val{font-size:12.5px;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
+  /* staircase */
+  .stair{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:16px 0;align-items:end}
+  .step{background:var(--card);border:1px solid var(--line);border-bottom:4px solid var(--accent);border-radius:11px 11px 0 0;padding:15px 16px;box-shadow:var(--shadow)}
+  .step:nth-child(1){margin-top:48px;border-bottom-color:#0a8f6a}
+  .step:nth-child(2){margin-top:24px;border-bottom-color:#1f6feb}
+  .step:nth-child(3){margin-top:0;border-bottom-color:#5b3fb0}
+  .step .sn{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+  .step h4{margin:3px 0 6px;font-size:15px;color:var(--navy)}.step p{font-size:12.6px;margin:6px 0 0;color:var(--slate)}
+  .flag{background:#fff8f0;border:1px solid #f0dcc4;border-left:4px solid var(--warn);border-radius:9px;padding:13px 16px;margin:12px 0;font-size:13.6px}
+  .flag b{color:var(--warn)}
+  code{background:#eef2f7;border-radius:5px;padding:1px 5px;font-size:12.5px}
+  footer{margin-top:28px;padding:22px 0 48px;border-top:1px solid var(--line);color:var(--mute);font-size:12.5px}
+  @media(max-width:760px){.grid3,.grid2,.stair{grid-template-columns:1fr}.step{margin-top:0!important}}
+  .ctl{margin:0 0 13px}
+  .ctl label{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;font-weight:600;color:var(--slate);margin-bottom:5px}
+  .ctl label b{color:var(--navy);font-variant-numeric:tabular-nums;font-size:14px}
+  .ctl input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:5px;border-radius:5px;background:#dde5ef;outline:none}
+  .ctl input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:17px;height:17px;border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid #fff;box-shadow:0 1px 4px rgba(16,32,64,.25)}
+  .ctl input[type=range]::-moz-range-thumb{width:17px;height:17px;border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid #fff}
+  #calcCard .kpi .n{transition:color .15s}
+  @media print{body{background:#fff;font-size:11.5px}nav.toc{display:none}.card,.kpi,table,.step{box-shadow:none}
+    #calc{display:none}
+    header.masthead{background:#0f2747!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    section{padding:14px 0 4px;break-inside:avoid}.fill,.step,.kpi{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<header class="masthead"><div class="wrap">
+  <div class="kicker">Business-Model Validation · Strategy</div>
+  <h1>Chinese-2W LatAm Lead-Gen — Does the Model Hold?</h1>
+  <div class="sub">A unit-economics stress-test of the asset-light consumer lead-gen business (Brazil / Colombia), plus a $3–5k / 90-day kill-or-confirm plan targeting the unproven crux.</div>
+  <div class="meta">
+    <span class="pill">Prepared 2026-06-06</span>
+    <span class="pill">Verdict: marginal &amp; conversion-gated</span>
+    <span class="pill">Crux: will dealers pay × conversion ≥ ~8%</span>
+    <span class="pill">Model: re-runnable .py</span>
+  </div>
+</div></header>
+
+<nav class="toc"><div class="wrap">
+  <a href="#bluf">Verdict</a>
+  <a href="#econ">Unit economics</a>
+  <a href="#dealer-ue">Dealer UE</a>
+  <a href="#operator-ue">Operator UE</a>
+  <a href="#calc">Live calculator</a>
+  <a href="#makebuy">Make vs buy</a>
+  <a href="#sens">Sensitivity</a>
+  <a href="#repoint">Re-pointed thesis</a>
+  <a href="#stack">Revenue stack</a>
+  <a href="#risk">Assumption stack</a>
+  <a href="#plan">90-day plan</a>
+  <a href="#gates">Go/no-go</a>
+</div></nav>
+
+<div class="wrap">
+
+<section id="bluf">
+  <h2>Bottom line up front</h2>
+  <div class="h">The model is real — but marginal and conversion-gated</div>
+  <div class="card rec">
+    <span class="tag">Verdict</span>
+    <p class="lead" style="margin-top:2px"><b>A viable per-lead price band barely exists at base assumptions, and the simple "sell leads to dealers" version only clears at high conversion + low CAC.</b> A dealer rationally pays at most <code>conversion × profit-per-sale ÷ ROI-hurdle</code> per lead. On a ~$2,200 Chinese commuter (~$330 dealer margin) at 6% conversion that's <b>$6.60/lead</b> — barely above our ~$5 cost to produce one. <b>Below ~4% conversion the band is empty.</b></p>
+    <div class="grid3" style="margin-top:14px">
+      <div class="kpi"><div class="n b-warn">$5.00–$6.60</div><div class="l">Viable band / lead (base)</div><div class="d">Width just $1.60 — a high-volume, thin-margin grind</div></div>
+      <div class="kpi"><div class="n b-bad">~4%</div><div class="l">Conversion floor</div><div class="d">Below this the dealer won't pay more than our cost → band empty → no business</div></div>
+      <div class="kpi"><div class="n">Conversion</div><div class="l">The make-or-break variable</div><div class="d">Not traffic, not content — does a finance-qualified WhatsApp lead actually close at the dealer?</div></div>
+    </div>
+    <p style="margin-top:14px"><span class="verdict">So the naive "charge $9/lead" doesn't survive</span> — at base conversion the dealer won't rationally pay it. The asset-light per-lead-to-small-dealer version is marginal. The business gets healthy only by changing <em>who pays</em> and <em>for what</em> (see <a href="#repoint">Re-pointed thesis</a>).</p>
+  </div>
+</section>
+
+<section id="econ">
+  <h2>The model</h2>
+  <div class="h">Unit economics — does a viable price band exist?</div>
+  <p>The test: is there a per-lead price that is <b>simultaneously</b> (a) profitable for us (price &gt; our CAC) and (b) ROI-positive for the dealer (price ≤ their rational willingness-to-pay)? If that band is empty, execution can't save it.</p>
+  <table>
+    <thead><tr><th>Scenario</th><th>Conversion</th><th>CAC / lead</th><th>Dealer max WTP</th><th>Viable band</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr><td><b>Base</b></td><td class="num">6%</td><td class="num">$5.00</td><td class="num">$6.60</td><td class="num">$5.00–$6.60</td><td><span class="badge hold">thin (~$1–1.6/lead)</span></td></tr>
+      <tr style="background:#fdf6f4"><td><b>Pessimistic</b></td><td class="num">3%</td><td class="num">$8.00</td><td class="num">$3.30</td><td class="num b-bad">EMPTY</td><td><span class="badge no">fails — WTP &lt; CAC</span></td></tr>
+      <tr style="background:#f3fbf8"><td><b>Optimistic</b></td><td class="num">10%</td><td class="num">$3.00</td><td class="num">$11.00</td><td class="num">$3.00–$11.00</td><td><span class="badge go">works (~$6–9/lead)</span></td></tr>
+    </tbody>
+  </table>
+  <p class="cap">Assumptions: $2,200 bike, 15% dealer gross margin (~$330/sale), 3× dealer ROI hurdle, $6k/mo fixed cost. Base case needs ~1,500 qualified leads/mo to break even; pessimistic ~6,000. All figures from the re-runnable model <code>latam-2w-leadgen-unit-economics-2026-06-06.py</code>.</p>
+  <div class="grid3">
+    <div class="kpi"><div class="n">$19.80</div><div class="l">Dealer expected profit / lead (base)</div><div class="d">6% × $330 — of which the dealer keeps ⅔ for ROI, leaving ~$6.60 to pay you</div></div>
+    <div class="kpi"><div class="n">~1,500/mo</div><div class="l">Breakeven qualified leads (base)</div><div class="d">≈ 4,300 raw inquiries &amp; ~90 dealer sales/mo</div></div>
+    <div class="kpi"><div class="n">~$5</div><div class="l">Our CAC / qualified lead</div><div class="d">CTWA leads $1–3 in EM + qualification/ops load. The number to keep low.</div></div>
+  </div>
+</section>
+
+<section id="dealer-ue">
+  <h2>Side 1 — the buyer's books</h2>
+  <div class="h">Dealer view — full unit economics</div>
+  <p>Before anyone pays you, the math has to work for <b>them</b>. A dealer buys leads only if the profit they throw off beats their hurdle rate. Here is the dealer's P&amp;L, built from the bike up (base commuter).</p>
+
+  <div class="grid2">
+    <div class="card" style="margin:0">
+      <h3 style="margin-top:0">Per bike sold</h3>
+      <table style="margin:6px 0 0">
+        <tbody>
+          <tr><td>Retail price to consumer</td><td class="num" style="text-align:right">$2,200</td></tr>
+          <tr><td>Dealer COGS (buys at ~85%)</td><td class="num" style="text-align:right">($1,870)</td></tr>
+          <tr><td><b>Gross profit / sale</b> (15%)</td><td class="num b-good" style="text-align:right"><b>$330</b></td></tr>
+        </tbody>
+      </table>
+      <p class="cap">This $330 is the entire pool the dealer can spend on lead acquisition <em>and still profit</em>. Everything downstream is carved out of it.</p>
+    </div>
+    <div class="card" style="margin:0">
+      <h3 style="margin-top:0">Per lead (at 6% conversion)</h3>
+      <table style="margin:6px 0 0">
+        <tbody>
+          <tr><td>Leads needed per sale (1 ÷ 6%)</td><td class="num" style="text-align:right">16.7</td></tr>
+          <tr><td>Expected gross profit / lead (6% × $330)</td><td class="num" style="text-align:right">$19.80</td></tr>
+          <tr><td>÷ ROI hurdle (wants 3× back)</td><td class="num" style="text-align:right">÷ 3.0</td></tr>
+          <tr><td><b>Max the dealer will pay / lead</b></td><td class="num b-warn" style="text-align:right"><b>$6.60</b></td></tr>
+        </tbody>
+      </table>
+      <p class="cap">A lead is worth $19.80 of <em>expected</em> profit, but the dealer keeps ⅔ as their return — so only <b>$6.60</b> is left to pay you.</p>
+    </div>
+  </div>
+
+  <h3>Dealer P&amp;L at different lead prices</h3>
+  <p>What the dealer actually books per sale as your price moves — and the price at which they walk:</p>
+  <table>
+    <thead><tr><th>Your price / lead</th><th>Lead cost / sale (16.7×)</th><th>Net profit / sale</th><th>Margin kept</th><th>ROI on lead $</th><th>Dealer accepts?</th></tr></thead>
+    <tbody>
+      <tr><td class="num">$4.00</td><td class="num">$66.67</td><td class="num b-good">$263.33</td><td class="num">80%</td><td class="num">5.0×</td><td><span class="badge go">yes — easy</span></td></tr>
+      <tr><td class="num">$6.00</td><td class="num">$100.00</td><td class="num b-good">$230.00</td><td class="num">70%</td><td class="num">3.3×</td><td><span class="badge go">yes</span></td></tr>
+      <tr style="background:#fffaf3"><td class="num">$6.60</td><td class="num">$110.00</td><td class="num b-warn">$220.00</td><td class="num">67%</td><td class="num">3.0×</td><td><span class="badge hold">at the limit</span></td></tr>
+      <tr style="background:#fdf6f4"><td class="num">$9.00</td><td class="num">$150.00</td><td class="num b-bad">$180.00</td><td class="num">55%</td><td class="num">2.2×</td><td><span class="badge no">no — below hurdle</span></td></tr>
+    </tbody>
+  </table>
+  <p class="cap">The dealer is rational, not greedy: even at $9 they still <em>profit</em> $180/sale — they decline because the <b>return on lead spend</b> (2.2×) falls under their 3× hurdle. That is the ceiling on your pricing, and it's set entirely by their conversion and margin, not by your costs.</p>
+</section>
+
+<section id="operator-ue">
+  <h2>Side 2 — your books</h2>
+  <div class="h">Operator (your) view — full unit economics</div>
+  <p>Your business is a <b>lead factory</b>: spend on ads, manufacture qualified leads, sell them. Three layers — what a lead <em>costs</em> to make, what it <em>earns</em>, and whether the monthly P&amp;L clears fixed cost.</p>
+
+  <h3>A · What a qualified lead costs to make (CAC build-up)</h3>
+  <div class="card" style="margin-top:8px">
+    <table style="margin:0">
+      <thead><tr><th>Funnel step</th><th>Rate / cost</th><th>Running cost per qualified lead</th></tr></thead>
+      <tbody>
+        <tr><td>Click-to-WhatsApp ad → raw inquiry</td><td class="num">$1.50 / raw</td><td class="num">$1.50</td></tr>
+        <tr><td>Raw inquiry → genuinely qualified</td><td class="num">35% pass</td><td class="num">$4.29 <span class="cap">($1.50 ÷ 0.35)</span></td></tr>
+        <tr><td>+ Qualification ops (bot + human review, tools)</td><td class="num">+$0.71</td><td class="num">$0.71</td></tr>
+        <tr><td><b>= Fully-loaded CAC / qualified lead</b></td><td></td><td class="num b-warn"><b>$5.00</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="cap">Illustration: $1,000 of ad spend buys ~667 raw WhatsApp inquiries → ~233 qualified leads → CAC ≈ $5.00. The two levers that move CAC most are the <b>raw lead price</b> (CTWA efficiency) and the <b>qualified rate</b> — a drop from 35% to 25% pushes CAC to ~$6.70 and eats the whole margin.</p>
+
+  <h3>B · What a qualified lead earns (the lead pays twice)</h3>
+  <div class="grid2">
+    <div class="kpi"><div class="n">$6.00</div><div class="l">① Dealer fee / lead</div><div class="d">Charged per qualified lead delivered, priced inside the dealer's band ($5–6.60). Capped by Side 1.</div></div>
+    <div class="kpi"><div class="n b-good">+$1.90</div><div class="l">② Financing origination / lead</div><div class="d">6% convert × 60% finance × $53 origination fee (3% of a ~$1,760 loan). Realized only on financed sales — but it's <em>incremental</em> and uncapped by the dealer's hurdle.</div></div>
+  </div>
+  <p class="cap">Stream ② is the whole game. It's why banks own Brazil's auto classifieds: the same lead monetizes again at the lender. A third stream — a <b>brand retainer</b> ($1–2k/mo for demand-gen) — sits on top as fixed revenue and isn't even in these per-lead figures.</p>
+
+  <h3>C · Contribution margin &amp; monthly P&amp;L</h3>
+  <table>
+    <thead><tr><th>Revenue model</th><th>Revenue / lead</th><th>− CAC</th><th>CM / lead</th><th>Breakeven volume</th><th>Profit @ 2,500 leads/mo</th></tr></thead>
+    <tbody>
+      <tr style="background:#fdf6f4"><td><b>Dealer fee only</b></td><td class="num">$6.00</td><td class="num">$5.00</td><td class="num b-bad">$1.00</td><td class="num">6,000 leads/mo<br><span class="cap">(~360 sales/mo — implausible)</span></td><td class="num b-bad">−$3,500</td></tr>
+      <tr style="background:#f3fbf8"><td><b>Dealer + financing</b></td><td class="num">$7.90</td><td class="num">$5.00</td><td class="num b-good">$2.90</td><td class="num">2,068 leads/mo<br><span class="cap">(~124 sales/mo)</span></td><td class="num b-good">+$1,252</td></tr>
+    </tbody>
+  </table>
+  <p class="cap">Fixed cost $6,000/mo (lean 2–3 person LatAm ops + tools + content). <b>The dealer-only model loses money at any realistic volume; adding the financing stream flips it positive at a reachable scale.</b> CM/lead nearly triples ($1.00 → $2.90), and breakeven falls from a fantasy 360 sales/mo to a plausible ~124. <b>Note:</b> these figures assume every lead sells and no dealer self-serve competition — the <a href="#makebuy">Make vs buy</a> section and live calculator add the real-world haircut (dealer's own CAC ceiling + ~50% organic), which turns this base case marginally negative until conversion or margin rises.</p>
+
+  <h3>D · The version that's actually healthy — premium bike + dual stream</h3>
+  <div class="card" style="background:linear-gradient(180deg,#f3fbf8,#fff);border-left:5px solid var(--good)">
+    <div class="grid3">
+      <div class="kpi" style="box-shadow:none"><div class="n b-good">$7.52</div><div class="l">CM / lead</div><div class="d">$3,500 bike, 18% margin ($630/sale); dealer WTP $12.60, you charge $10 + $3.02 financing, CAC $5.50</div></div>
+      <div class="kpi" style="box-shadow:none"><div class="n">~800</div><div class="l">Breakeven leads/mo</div><div class="d">≈ 48 sales/mo — very reachable for one city</div></div>
+      <div class="kpi" style="box-shadow:none"><div class="n b-good">+$5,286</div><div class="l">Profit @ 1,500 leads/mo</div><div class="d">~$63k/yr from a single lean operation — and it scales with cities/brands</div></div>
+    </div>
+  </div>
+  <p class="cap">Same machine, richer inputs: a higher-margin bike lifts the dealer's WTP <em>and</em> the loan size (bigger origination fee). This is the re-pointed thesis in numbers — premium Chinese models + financing capture is where the economics stop being marginal.</p>
+</section>
+
+<section id="normalized">
+  <h2>Why absolute price matters</h2>
+  <div class="h">Normalized view — % of retail, and the price floor</div>
+  <p>The dealer side is <b>unit-independent</b>: a dealer's max willingness-to-pay is a fixed <em>fraction</em> of the bike's price — <code>conversion × margin ÷ ROI = 0.30% of retail</code> at base ratios, so per-lead revenue scales linearly with the bike. <b>But your CAC (~$5) and fixed cost ($6k/mo) are absolute dollars that don't scale</b> — so there's a <b>minimum bike price</b> below which 0.30% of it can't even cover the $5 it costs to make the lead, and the dealer-only band is empty.</p>
+  <div class="flag" style="background:#eef4fc;border-color:#cfe0f6;border-left-color:var(--accent)">
+    <b style="color:var(--accent)">The price floor.</b> Dealer-only viable only when <code>0.30% × price &gt; $5</code> → <b>price &gt; ~$1,667</b>. Financing origination is <em>also</em> price-proportional (% of loan), lifting price-scaled revenue to ~0.39% → floor drops to <b>~$1,294</b>. Below these, no per-lead price works for both sides. <b>The model structurally favours pricier / higher-margin bikes.</b>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <svg viewBox="0 0 760 332" width="100%" style="max-width:760px;font-family:-apple-system,Segoe UI,sans-serif" role="img" aria-label="Dealer willingness-to-pay vs bike price"><rect x="64.0" y="219.0" width="648.0" height="67.0" fill="#fbeceb"/><text x="72.0" y="235.0" font-size="11" fill="#a31f17" font-weight="700">per-lead loss zone — revenue &lt; $5 CAC</text><line x1="64.0" y1="286.0" x2="712.0" y2="286.0" stroke="#eef2f7"/><text x="56.0" y="290.0" font-size="11" fill="#6b7689" text-anchor="end">$0</text><line x1="64.0" y1="219.0" x2="712.0" y2="219.0" stroke="#eef2f7"/><text x="56.0" y="223.0" font-size="11" fill="#6b7689" text-anchor="end">$5</text><line x1="64.0" y1="152.0" x2="712.0" y2="152.0" stroke="#eef2f7"/><text x="56.0" y="156.0" font-size="11" fill="#6b7689" text-anchor="end">$10</text><line x1="64.0" y1="85.0" x2="712.0" y2="85.0" stroke="#eef2f7"/><text x="56.0" y="89.0" font-size="11" fill="#6b7689" text-anchor="end">$15</text><line x1="64.0" y1="18.0" x2="712.0" y2="18.0" stroke="#eef2f7"/><text x="56.0" y="22.0" font-size="11" fill="#6b7689" text-anchor="end">$20</text><line x1="64.0" y1="18.0" x2="64.0" y2="286.0" stroke="#f3f6fa"/><text x="64.0" y="304.0" font-size="11" fill="#6b7689" text-anchor="middle">$0</text><line x1="193.6" y1="18.0" x2="193.6" y2="286.0" stroke="#f3f6fa"/><text x="193.6" y="304.0" font-size="11" fill="#6b7689" text-anchor="middle">$1,000</text><line x1="323.2" y1="18.0" x2="323.2" y2="286.0" stroke="#f3f6fa"/><text x="323.2" y="304.0" font-size="11" fill="#6b7689" text-anchor="middle">$2,000</text><line x1="452.8" y1="18.0" x2="452.8" y2="286.0" stroke="#f3f6fa"/><text x="452.8" y="304.0" font-size="11" fill="#6b7689" text-anchor="middle">$3,000</text><line x1="582.4" y1="18.0" x2="582.4" y2="286.0" stroke="#f3f6fa"/><text x="582.4" y="304.0" font-size="11" fill="#6b7689" text-anchor="middle">$4,000</text><line x1="712.0" y1="18.0" x2="712.0" y2="286.0" stroke="#f3f6fa"/><text x="712.0" y="304.0" font-size="11" fill="#6b7689" text-anchor="middle">$5,000</text><line x1="64.0" y1="18.0" x2="64.0" y2="286.0" stroke="#cfd8e3"/><line x1="64.0" y1="286.0" x2="712.0" y2="286.0" stroke="#cfd8e3"/><line x1="64.0" y1="219.0" x2="712.0" y2="219.0" stroke="#b3261e" stroke-width="2" stroke-dasharray="6 4"/><text x="708.0" y="212.0" font-size="11.5" fill="#b3261e" font-weight="700" text-anchor="end">$5 CAC (fixed)</text><line x1="64.0" y1="286.0" x2="712.0" y2="27.1" stroke="#0a8f6a" stroke-width="2.5"/><text x="605.7" y="63.6" font-size="11.5" fill="#0a8f6a" font-weight="700">dealer + financing (0.39%)</text><line x1="64.0" y1="286.0" x2="712.0" y2="85.0" stroke="#c0651a" stroke-width="2.5"/><text x="605.7" y="134.0" font-size="11.5" fill="#c0651a" font-weight="700">dealer-only WTP (0.30%)</text><line x1="231.7" y1="219.0" x2="231.7" y2="286.0" stroke="#0a8f6a" stroke-width="1.3" stroke-dasharray="3 3"/><circle cx="231.7" cy="219.0" r="4.5" fill="#0a8f6a"/><text x="231.7" y="318.0" font-size="11" fill="#0a8f6a" font-weight="800" text-anchor="middle">$1,294</text><line x1="280.0" y1="219.0" x2="280.0" y2="286.0" stroke="#c0651a" stroke-width="1.3" stroke-dasharray="3 3"/><circle cx="280.0" cy="219.0" r="4.5" fill="#c0651a"/><text x="280.0" y="318.0" font-size="11" fill="#c0651a" font-weight="800" text-anchor="middle">$1,667</text><line x1="349.1" y1="18.0" x2="349.1" y2="286.0" stroke="#1f6feb" stroke-width="1.3" stroke-dasharray="2 3"/><circle cx="349.1" cy="197.6" r="4" fill="#1f6feb"/><text x="355.1" y="31.0" font-size="11" fill="#1f6feb" font-weight="800">base $2,200 → $6.60</text><text x="388.0" y="330" font-size="11.5" fill="#33425b" text-anchor="middle" font-weight="600">bike retail price (USD)</text><text x="15" y="152.0" font-size="11.5" fill="#33425b" text-anchor="middle" font-weight="600" transform="rotate(-90 15 152.0)">revenue per lead</text></svg>
+    <p class="cap" style="margin-top:10px">Both revenue lines start at $0 and rise with bike price; the $5 CAC is flat. Where each line crosses CAC is its <b>break-even bike price</b> (dots): $1,667 dealer-only, $1,294 with financing. Left of those, revenue/lead sits in the red loss zone. The $2,200 base is just past the dealer-only floor — viable but thin.</p>
+  </div>
+  <h3>Dealer WTP as a fraction of retail</h3>
+  <table>
+    <thead><tr><th>Bike price</th><th>Dealer WTP (0.30%)</th><th>Dealer-only viable?</th><th>+ financing (0.39%)</th><th>Viable w/ financing?</th></tr></thead>
+    <tbody><tr><td class="num">$1,000</td><td class="num">$3.00</td><td class="num b-bad">no</td><td class="num">$3.86</td><td class="num b-bad">no</td></tr><tr><td class="num">$1,294</td><td class="num">$3.88</td><td class="num b-bad">no</td><td class="num">$5.00</td><td class="num b-good">yes</td></tr><tr><td class="num">$1,667</td><td class="num">$5.00</td><td class="num b-good">yes</td><td class="num">$6.44</td><td class="num b-good">yes</td></tr><tr><td class="num">$2,200</td><td class="num">$6.60</td><td class="num b-good">yes</td><td class="num">$8.50</td><td class="num b-good">yes</td></tr><tr><td class="num">$3,500</td><td class="num">$10.50</td><td class="num b-good">yes</td><td class="num">$13.52</td><td class="num b-good">yes</td></tr><tr><td class="num">$5,000</td><td class="num">$15.00</td><td class="num b-good">yes</td><td class="num">$19.32</td><td class="num b-good">yes</td></tr></tbody>
+  </table>
+  <p class="cap">"Viable" = revenue per lead exceeds the ~$5 CAC. A $1,000 commuter clears neither; $2,200 clears both; premium bikes clear with room — the quantified case for skewing the catalogue upmarket. Base 6% conversion, 15% margin, 3× hurdle.</p>
+</section>
+
+<section id="calc">
+  <h2>Play with it</h2>
+  <div class="h">Live calculator — move the assumptions</div>
+  <p>Drag the inputs and watch both sides recompute. The ceiling on your price is now <code>min(dealer's ROI limit, dealer's own self-serve CAC)</code> — and a chunk of dealer demand is filled free (organic), so not every lead monetizes. Defaults are set to the <b>researched LatAm values</b> (dealer self-serve ~$8, organic ~50%). <span class="cap">(Runs locally in your browser; if your viewer doesn't run JavaScript, the static scenarios above hold.)</span></p>
+  <div class="card" id="calcCard">
+    <div class="grid2" style="gap:22px">
+      <div>
+        <div class="ctl"><label>Bike retail price <b id="o_price">$2,200</b></label><input type="range" id="i_price" min="800" max="5000" step="50" value="2200"></div>
+        <div class="ctl"><label>Dealer gross margin <b id="o_margin">15%</b></label><input type="range" id="i_margin" min="8" max="25" step="1" value="15"></div>
+        <div class="ctl"><label>Lead → sale conversion <b id="o_conv">6%</b></label><input type="range" id="i_conv" min="1" max="15" step="0.5" value="6"></div>
+        <div class="ctl"><label>Dealer ROI hurdle <b id="o_roi">3.0×</b></label><input type="range" id="i_roi" min="1.5" max="5" step="0.5" value="3"></div>
+        <div class="ctl"><label>Your price / lead <b id="o_pl">$6.00</b></label><input type="range" id="i_pl" min="2" max="15" step="0.5" value="6"></div>
+        <div class="ctl"><label>Dealer's own CAC (self-serve ads) <b id="o_acac">$8.00</b></label><input type="range" id="i_acac" min="3" max="14" step="0.5" value="8"></div>
+      </div>
+      <div>
+        <div class="ctl"><label>Your CAC / qualified lead <b id="o_cac">$5.00</b></label><input type="range" id="i_cac" min="2" max="10" step="0.25" value="5"></div>
+        <div class="ctl"><label>Finance attach rate <b id="o_fin">60%</b></label><input type="range" id="i_fin" min="0" max="90" step="5" value="60"></div>
+        <div class="ctl"><label>Origination fee (% of loan) <b id="o_orig">3%</b></label><input type="range" id="i_orig" min="0" max="6" step="0.5" value="3"></div>
+        <div class="ctl"><label>Fixed cost / mo <b id="o_fixed">$6,000</b></label><input type="range" id="i_fixed" min="2000" max="15000" step="500" value="6000"></div>
+        <div class="ctl"><label>Volume (qualified leads / mo) <b id="o_vol">2,500</b></label><input type="range" id="i_vol" min="200" max="8000" step="100" value="2500"></div>
+        <div class="ctl"><label>Dealer demand filled organically <b id="o_org">50%</b></label><input type="range" id="i_org" min="0" max="80" step="5" value="50"></div>
+      </div>
+    </div>
+    <div class="grid3" style="margin-top:18px">
+      <div class="kpi"><div class="n" id="r_wtp">$6.60</div><div class="l">Dealer max price / lead</div><div class="d" id="r_band">binds on: ROI limit (ROI $6.60 vs self-serve $8.00)</div></div>
+      <div class="kpi"><div class="n" id="r_cm">−$0.10</div><div class="l">Your CM / lead (organic-adj. + financing)</div><div class="d" id="r_cmd">dealer-fee only: −$2.00 · raw arbitrage $3.00</div></div>
+      <div class="kpi"><div class="n" id="r_prof">−$6,248</div><div class="l">Monthly profit</div><div class="d" id="r_be">Breakeven: never (CM≤0)</div></div>
+    </div>
+    <div class="flag" id="r_flag" style="margin-bottom:0"><b>Status:</b> <span id="r_status">at researched defaults (dealer self-serve $8, 50% organic, 6% conversion) the model loses ~$0.10/lead — revenue $4.90 &lt; $5 CAC. Raise conversion (fast-WhatsApp ~20%), cut organic, or go higher-margin to flip it positive.</span></div>
+  </div>
+</section>
+
+<section id="makebuy">
+  <h2>The real ceiling</h2>
+  <div class="h">Make vs buy — what a dealer's own customer acquisition actually costs</div>
+  <p>The dealer's ROI hurdle is only the <em>theoretical</em> price ceiling. The <b>binding</b> ceiling is what it costs them to get the same buyer themselves — because they'll never pay you more than their own <b>make</b> cost. So <code>price ≤ min(ROI limit, dealer's own CAC)</code>, and only for the leads their free <b>organic</b> channels don't already supply. A 4-agent research sweep put real numbers on it:</p>
+  <table>
+    <thead><tr><th>Dealer's acquisition channel</th><th>Cost (USD, LatAm 2024–25)</th><th>Conf.</th><th>What it means for you</th></tr></thead>
+    <tbody>
+      <tr><td><b>Self-serve Meta click-to-WhatsApp</b> (qualified lead)</td><td class="num">$4–7 (pro) · ~$8 amateur</td><td>med</td><td>The real price ceiling. <b>≈ your own ~$5 CAC.</b></td></tr>
+      <tr><td>Online marketplace (Webmotors, iCarros, Mercado Libre, TuCarro)</td><td class="num">$4–8 / lead<br><span class="cap">(quality poor — ~5% convertible)</span></td><td>med</td><td>Their visible reference price; low quality is your opening.</td></tr>
+      <tr><td><b>Organic</b> — walk-in / referral / repeat</td><td class="num b-good">~$0 · ~50% of sales</td><td>low-med</td><td>Halves your addressable demand; you sell the <em>incremental</em>.</td></tr>
+      <tr><td>Implied cost <em>per sale</em> (moto)</td><td class="num">~$100–350</td><td>low</td><td>Sanity-check on per-lead × conversion.</td></tr>
+      <tr style="background:#f3fbf8"><td><b>Speed-to-lead conversion</b> (Brazil WhatsApp, &lt;1 min reply)</td><td class="num b-good">~20%</td><td>med-high</td><td><b>The upside.</b> Decays to ~1% at 24 h — sub-minute response is the operational moat.</td></tr>
+    </tbody>
+  </table>
+  <div class="flag" style="background:#fdf6f4;border-color:#e6c4bd;border-left-color:var(--bad)">
+    <b style="color:var(--bad)">The arbitrage-compression problem.</b> You and the dealer buy from the <b>same Meta auction</b>, so your raw lead cost ≈ their raw lead cost (~$5 each). The pure per-lead spread is therefore <b>near zero</b>. The business only exists three ways: <b>(1)</b> beat an <em>amateur</em> dealer's cost (they run ads badly → ~$8–10, you hit ~$5 → a real ~$3–5 arbitrage); <b>(2)</b> win on <b>speed-to-lead conversion</b> (fast WhatsApp ~20% vs their slow ~6%); <b>(3)</b> the <b>finance-qualification + origination</b> layer they can't replicate. Strip those and there is no margin.
+  </div>
+  <div class="grid2">
+    <div class="kpi"><div class="n">Who pays you</div><div class="l">Demand-gen-starved dealers &amp; new Chinese brands</div><div class="d">Bad at their own ads, short on organic — the long-tail entrants the market research already pointed to. Dealers strong on walk-in/referral or competent at ads will never pay. <b>Use this as a pitch filter.</b></div></div>
+    <div class="kpi"><div class="n">Who doesn't</div><div class="l">Established dealers with organic flow or in-house marketing</div><div class="d">Their make-cost is at or below your CAC → no deal. Don't waste cycles pitching them.</div></div>
+  </div>
+  <p class="cap"><b>Sources (4-agent sweep, 2026-06-07):</b> Meta/CTWA &amp; Google benchmarks (AdAmigo, WordStream/LocaliQ, AsisteClick, Statista); marketplace dealer pricing (Webmotors, iCarros, Mercado Libre MX, TuCarro CO); dealer acquisition mix (Hrizn, DemandLocal, AutoForce, Think-with-Google Gearshift); lead-gen &amp; finance-origination (lead-vendor pricing, Brazil <em>correspondente bancário</em> commission norms, Intelia WhatsApp-conversion data). Figures are directional — country×moto×CTWA cells are thin; treat as ranges, validate in Phase 1.</p>
+</section>
+
+<section id="sens">
+  <h2>The crux, isolated</h2>
+  <div class="h">Sensitivity — dealer willingness-to-pay vs conversion</div>
+  <p>Holding everything else at base, here is the most a rational dealer will pay per lead as conversion varies. The dashed line is our ~$5 CAC: <b>below it, the band is empty.</b></p>
+  <div class="bars">
+    <div class="barrow"><span class="lab">1%</span><div class="track"><div class="fill" style="width:10%;background:#d94c3d"></div></div><span class="val">$1.10 · empty</span></div>
+    <div class="barrow"><span class="lab">2%</span><div class="track"><div class="fill" style="width:20%;background:#d94c3d"></div></div><span class="val">$2.20 · empty</span></div>
+    <div class="barrow"><span class="lab">3%</span><div class="track"><div class="fill" style="width:30%;background:#d94c3d"></div></div><span class="val">$3.30 · empty</span></div>
+    <div class="barrow"><span class="lab">4%</span><div class="track"><div class="fill" style="width:40%;background:#e0982f"></div></div><span class="val">$4.40 · ≈breakeven</span></div>
+    <div class="barrow"><span class="lab">6%</span><div class="track"><div class="fill" style="width:60%;background:#e0982f"></div></div><span class="val">$6.60 · thin</span></div>
+    <div class="barrow"><span class="lab">8%</span><div class="track"><div class="fill" style="width:80%;background:#2f9e6f"></div></div><span class="val">$8.80 · workable</span></div>
+    <div class="barrow"><span class="lab">10%</span><div class="track"><div class="fill hot" style="width:100%;background:#0a8f6a"></div></div><span class="val">$11.00 · healthy</span></div>
+  </div>
+  <p class="cap">Bar = dealer max willingness-to-pay/lead at each conversion rate. Our CAC ≈ $5. The model is unviable below ~4–5% conversion and only comfortable at ~8–10%. <b>This single number decides the business.</b></p>
+</section>
+
+<section id="repoint">
+  <h2>What the model forces</h2>
+  <div class="h">Re-pointed thesis — three ways the economics get un-marginal</div>
+  <p>The thin band on "cheap leads → small dealer → cheap bike" points to higher-value variants. These become the real hypotheses to test:</p>
+  <div class="grid3">
+    <div class="kpi"><div class="n">1</div><div class="l">Sell to BRANDS, not small dealers</div><div class="d">A new Chinese entrant values market-entry + brand-building + trust <em>above</em> pure per-lead ROI — so it can pay above a dealer's ROI hurdle. Matches the "long-tail entrants need demand-gen" finding.</div></div>
+    <div class="kpi"><div class="n">2</div><div class="l">Capture the financing-origination fee</div><div class="d">A finance-qualified lead pays <b>twice</b> — dealer <em>and</em> lender/insurer. This is why banks own Brazil's auto classifieds. The highest-value layer and the real moat.</div></div>
+    <div class="kpi"><div class="n">3</div><div class="l">Skew to higher-margin bikes</div><div class="d">Premium Chinese (CFMoto, QJ/Benelli) carry $500–1,000+ dealer margin vs ~$330 — lifting WTP 2–3× and widening the band.</div></div>
+  </div>
+  <div class="flag" style="background:#eef4fc;border-color:#cfe0f6;border-left-color:var(--accent)"><b style="color:var(--accent)">Re-pointed thesis.</b> Not "cheap leads for cheap-bike dealers" (marginal) — but <b>finance-qualified leads sold to demand-gen-hungry Chinese brands, monetized again on loan origination, skewed to higher-margin models.</b> Slightly less asset-light, but where the economics actually clear.</div>
+</section>
+
+<section id="stack">
+  <h2>Why the model works</h2>
+  <div class="h">The revenue stack — one buyer, three payers</div>
+  <p>The model holds because a single acquired buyer is sold — in different forms — to <b>three different payers, each buying a different thing</b>. This is <b>aggregator economics</b>: you own the scarce asset (the buyer relationship), and every party in the chain that needs access to that buyer pays you for it. Crucially, only one of the three slices — the dealer fee — is the thin, arbitraged layer the earlier sections worried about; the other two escape it.</p>
+  <div class="card" style="margin-top:6px"><svg viewBox="0 0 760 300" width="100%" style="max-width:760px;font-family:-apple-system,Segoe UI,sans-serif" role="img" aria-label="One buyer, three payers"><defs><marker id="ah" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#8a97a8"/></marker></defs><rect x="20" y="40.0" width="250" height="62" rx="9" fill="#eafaf3" stroke="#0a8f6a"/><text x="34" y="62.0" font-size="13" font-weight="800" fill="#0a8f6a">BRAND</text><text x="34" y="79.0" font-size="11.5" fill="#33425b" font-weight="600">$1–3k / mo retainer + demand data</text><text x="34" y="94.0" font-size="10.5" fill="#6b7689">uncapped — market-entry budget</text><line x1="270" y1="71.0" x2="352" y2="150" stroke="#8a97a8" stroke-width="1.6" marker-end="url(#ah)"/><rect x="20" y="118.0" width="250" height="62" rx="9" fill="#eef4fc" stroke="#1f6feb"/><text x="34" y="140.0" font-size="13" font-weight="800" fill="#1f6feb">DEALER</text><text x="34" y="157.0" font-size="11.5" fill="#33425b" font-weight="600">$4–8 / qualified lead</text><text x="34" y="172.0" font-size="10.5" fill="#6b7689">CAPPED + arbitraged</text><line x1="270" y1="149.0" x2="352" y2="150" stroke="#8a97a8" stroke-width="1.6" marker-end="url(#ah)"/><rect x="20" y="196.0" width="250" height="62" rx="9" fill="#f1ecfb" stroke="#7a4ddb"/><text x="34" y="218.0" font-size="13" font-weight="800" fill="#7a4ddb">LENDER</text><text x="34" y="235.0" font-size="11.5" fill="#33425b" font-weight="600">$45–175 / loan + insurance</text><text x="34" y="250.0" font-size="10.5" fill="#6b7689">uncapped — interest margin</text><line x1="270" y1="227.0" x2="352" y2="150" stroke="#8a97a8" stroke-width="1.6" marker-end="url(#ah)"/><rect x="356" y="104" width="196" height="92" rx="12" fill="#0f2747"/><text x="454" y="134" font-size="13.5" font-weight="800" fill="#fff" text-anchor="middle">1 acquired buyer</text><text x="454" y="153" font-size="11" fill="#9fc0ee" text-anchor="middle">~$5 CAC to create</text><text x="454" y="172" font-size="11" fill="#cdd9ea" text-anchor="middle">your WhatsApp</text><text x="454" y="186" font-size="11" fill="#cdd9ea" text-anchor="middle">relationship</text><line x1="552" y1="150" x2="600" y2="150" stroke="#8a97a8" stroke-width="1.6" marker-end="url(#ah)"/><rect x="604" y="110" width="142" height="80" rx="10" fill="#fff" stroke="#e3e8ef"/><text x="675" y="138" font-size="13" font-weight="800" fill="#0a8f6a" text-anchor="middle">monetized 3×</text><text x="675" y="158" font-size="10.5" fill="#33425b" text-anchor="middle">only the dealer</text><text x="675" y="172" font-size="10.5" fill="#33425b" text-anchor="middle">slice is arbitraged</text></svg></div>
+  <div class="grid3">
+    <div class="kpi" style="border-top:3px solid #0a8f6a"><div class="l" style="color:#0a8f6a;font-size:13px">① BRAND pays for <b>demand</b></div><div class="d" style="margin-top:6px"><b>$1–3k/mo retainer</b> + market-entry package + demand-data product. A new Chinese entrant's goal is <em>market entry &amp; awareness</em>, not per-lead ROI → <b>pays above any hurdle</b>. Stickiest, most predictable revenue; less asset-light but <b>non-arbitraged</b>.</div></div>
+    <div class="kpi" style="border-top:3px solid #1f6feb"><div class="l" style="color:#1f6feb;font-size:13px">② DEALER pays for <b>the buyer</b></div><div class="d" style="margin-top:6px"><b>$4–8 / qualified lead</b>, capped at <code>min(ROI limit, their self-serve CAC)</code>. The <b>thin, arbitraged slice</b> (you both buy the same Meta auction). Role: <b>cover your CAC</b> — not where the profit is.</div></div>
+    <div class="kpi" style="border-top:3px solid #7a4ddb"><div class="l" style="color:#7a4ddb;font-size:13px">③ LENDER pays for <b>the loan</b></div><div class="d" style="margin-top:6px"><b>$45–175 / loan</b> origination (2–5%) + insurance attach (~10–20%). Paid from <em>interest margin</em> → <b>uncapped by the dealer's hurdle</b>. Highest per-transaction margin — <b>the real moat</b> (why banks own the auto classifieds).</div></div>
+  </div>
+  <div class="flag"><b>The catch — financing rivals the dealer.</b> Financing is normally the dealer's F&amp;I profit center, so you can't naively stack stream ③ on top of ②. Capture it by <b>pre-approving the buyer upstream</b> (through your lender partner, <em>before</em> the dealer handoff, so the loan originates on your rail) or by <b>selling the qualified lead straight to a lender</b>. It's easiest exactly where the dealer is <b>weak at F&amp;I</b> — small/new-brand dealers, and thin-file buyers your specialist lender approves when the dealer's bank won't (you <em>create</em> a loan, not steal margin). That's the <b>same ICP</b> as the dealer-fee opportunity.</div>
+  <p class="cap"><b>How it ties to the unit economics:</b> stream ② alone is the marginal/negative base case in the calculator. Stream ③ (financing) is what flips CM positive; stream ① (brand) escapes the ROI-hurdle ceiling entirely. The deepest version is buyer <b>lifetime value</b> — insurance renewals, the next-bike upgrade, refinancing, referrals — which only works if you <em>keep</em> the WhatsApp relationship instead of handing it off. <span class="src">One buyer, three payers, recurring over time: that is the difference between a per-lead grind and a business.</span></p>
+</section>
+
+<section id="risk">
+  <h2>What must be true</h2>
+  <div class="h">The assumption stack, ranked by risk</div>
+  <table>
+    <thead><tr><th>#</th><th>Assumption</th><th>Base</th><th>Confidence</th><th>If wrong →</th></tr></thead>
+    <tbody>
+      <tr><td><b>R1</b></td><td><b>Dealers/brands will PAY per qualified lead</b></td><td>yes</td><td class="b-bad">UNPROVEN (crux)</td><td>no business</td></tr>
+      <tr><td><b>R2</b></td><td><b>Lead→sale conversion ≥ ~8%</b> (finance-qualified WhatsApp)</td><td>6%</td><td class="b-bad">UNPROVEN</td><td>band empty, fails</td></tr>
+      <tr><td>R3</td><td>Qualified-lead CAC ≤ ~$5 (content/CTWA)</td><td>$5</td><td class="b-warn">low-med</td><td>margin gone</td></tr>
+      <tr><td>R4</td><td>Chinese brands lack &amp; value demand-gen (vs self-distribute)</td><td>yes</td><td>med (research-backed)</td><td>no customer</td></tr>
+      <tr><td>R5</td><td>Finance-qualification achievable without owning a lender</td><td>yes</td><td class="b-warn">low</td><td>lose the dual-pay moat</td></tr>
+      <tr><td>R6</td><td>Raw→qualified rate ~35%</td><td>35%</td><td class="b-warn">low</td><td>need more raw volume</td></tr>
+    </tbody>
+  </table>
+  <p class="cap"><b>R1 and R2 are existential and both unprovable from a desk</b> — they need real dealer conversations and real leads. Everything else is secondary. The plan below is built to falsify R1/R2 first and cheaply.</p>
+</section>
+
+<section id="plan">
+  <h2>The test</h2>
+  <div class="h">90-day, $3–5k kill-or-confirm plan</div>
+  <p>Spend on <em>learning</em>, not building. Each phase has a hard kill criterion so a dead idea dies in weeks, not years.</p>
+  <div class="stair">
+    <div class="step"><div class="sn">Phase 1 · Wk 1–3 · tests R1,R4</div><h4>Demand interviews</h4><p>15–20 structured interviews: long-tail Chinese-brand importers, independent multi-brand dealers, 1–2 lenders/consórcio admins. The three questions that extract the <b>real</b> price ceiling (their make-cost, not the ROI hurdle):</p><ul class="tight"><li>"What % of your sales are <b>walk-in / referral</b> vs paid ads vs marketplace?" → your incremental TAM</li><li>"Do you run your <b>own Meta/Google ads</b>? What's your cost per buyer?" → your real price ceiling</li><li>"What do you pay <b>Webmotors / Mercado Libre</b> per lead now?" → market reference</li></ul></div>
+    <div class="step"><div class="sn">Phase 2 · Wk 3–9 · tests R2,R3</div><h4>Concierge MVP / smoke test</h4><p>One city (São Paulo or Bogotá). Neutral comparison page + social; ~$1–2k CTWA ads for ONE brand; hand-qualify over WhatsApp; route free to 3–5 dealers with a tracking handshake. <b>Measure the real lead→sale conversion</b> (call dealers weekly).</p></div>
+    <div class="step"><div class="sn">Phase 3 · Wk 9–13 · tests R1 for real</div><h4>Invoice for real money</h4><p>Go back to dealers/brands who got free leads and <b>charge them</b> — per-lead or per-sale success fee — at 2–3 price points inside the modeled band. Measure free→paid conversion and churn.</p></div>
+  </div>
+  <p class="cap">Total cash at risk ~$3–5k (mostly ad spend + your time). The point is to reach a confident go/no-go on R1+R2 before building any product.</p>
+</section>
+
+<section id="gates">
+  <h2>Decision</h2>
+  <div class="h">Go / no-go gates (hard thresholds)</div>
+  <table>
+    <thead><tr><th>Gate</th><th>Pass if</th><th>Else</th></tr></thead>
+    <tbody>
+      <tr><td><b>G1</b> (end Wk 3)</td><td>≥30% of interviewees will pay &amp; name a price in-band ($5–7+/lead)</td><td>kill, or pivot to financing-origination model</td></tr>
+      <tr><td><b>G2</b> (end Wk 9)</td><td>conversion ≥ 4% (ideally ≥8%) on ≥150 qualified leads</td><td><b>kill</b> — economics don't close</td></tr>
+      <tr><td><b>G3</b> (end Wk 13)</td><td>≥3 paying customers at in-band price, positive contribution margin</td><td>kill, or pivot to brand-paid / dual-pay</td></tr>
+    </tbody>
+  </table>
+  <div class="flag"><b>The honest read.</b> After SEA, Brazil, Africa and LatAm — all deep-researched and Codex-validated — LatAm is the best <em>shape</em>, but even here the pure asset-light per-lead version is <b>marginal</b>. The viable business is the finance/brand layer (less asset-light). And the one thing that decides it — <em>will dealers/brands pay, and do leads convert above ~8%?</em> — is unprovable from a desk. This plan answers it for ~$3–5k in 90 days. <b>Don't build before G2 passes.</b></div>
+</section>
+
+<footer><div class="wrap" style="padding:0">
+  <b>Chinese-2W LatAm Lead-Gen — Business-Model Validation.</b> Prepared 2026-06-06 from BIGBRAIN vault research.<br>
+  Model: <code>outputs/reports/latam-2w-leadgen-unit-economics-2026-06-06.py</code> (re-runnable; edit the <code>A</code> assumptions dict). Backing research: <code>brazil-latam-2w-leadgen</code>, <code>chinese-2w-global-expansion</code>, <code>ev-motorcycle-emerging-markets</code> (all Codex-validated). Figures are illustrative model outputs on flagged assumptions — <b>decision-support, not investment advice.</b>
+</div></footer>
+
+</div>
+<script>
+(function(){
+  var ids=['price','margin','conv','roi','pl','acac','cac','fin','orig','fixed','vol','org'];
+  var el={}; ids.forEach(function(k){el['i_'+k]=document.getElementById('i_'+k);el['o_'+k]=document.getElementById('o_'+k);});
+  function money(x){return (x<0?'-$':'$')+Math.abs(x).toLocaleString('en-US',{maximumFractionDigits:0});}
+  function money2(x){return '$'+x.toFixed(2);}
+  function calc(){
+    var price=+el.i_price.value, margin=+el.i_margin.value/100, conv=+el.i_conv.value/100,
+        roi=+el.i_roi.value, pl=+el.i_pl.value, acac=+el.i_acac.value, cac=+el.i_cac.value,
+        fin=+el.i_fin.value/100, orig=+el.i_orig.value/100, fixed=+el.i_fixed.value,
+        vol=+el.i_vol.value, org=+el.i_org.value/100;
+    // echo inputs
+    el.o_price.textContent=money(price); el.o_margin.textContent=(margin*100).toFixed(0)+'%';
+    el.o_conv.textContent=(conv*100).toFixed(1)+'%'; el.o_roi.textContent=roi.toFixed(1)+'x';
+    el.o_pl.textContent=money2(pl); el.o_acac.textContent=money2(acac); el.o_cac.textContent=money2(cac);
+    el.o_fin.textContent=(fin*100).toFixed(0)+'%'; el.o_orig.textContent=(orig*100).toFixed(1)+'%';
+    el.o_fixed.textContent=money(fixed); el.o_vol.textContent=vol.toLocaleString('en-US');
+    el.o_org.textContent=(org*100).toFixed(0)+'%';
+    // DEALER SIDE: price ceiling = min(ROI limit, dealer's own self-serve CAC)
+    var gp=price*margin, roiLimit=conv*gp/roi, wtp=Math.min(roiLimit,acac);
+    var binds = roiLimit<=acac ? 'ROI limit' : 'dealer self-serve CAC';
+    // OPERATOR SIDE: only (1-org) of leads find a paying dealer; financing realized on actual sales
+    var origFee=price*0.80*orig, finPerLead=conv*fin*origFee;
+    var dealerRev=(1-org)*pl;
+    var cmDealer=dealerRev-cac, cmDual=dealerRev+finPerLead-cac;
+    var beDual=cmDual>0?fixed/cmDual:Infinity;
+    var profDual=vol*cmDual-fixed;
+    var arb=acac-cac;                          // the raw CAC arbitrage vs an amateur dealer
+    // render
+    document.getElementById('r_wtp').textContent=money2(wtp);
+    document.getElementById('r_band').textContent='binds on: '+binds+' (ROI $'+roiLimit.toFixed(2)+' vs self-serve $'+acac.toFixed(2)+')';
+    document.getElementById('r_cm').textContent=money2(cmDual);
+    document.getElementById('r_cmd').textContent='dealer-fee only: '+money2(cmDealer)+'  ·  raw arbitrage $'+arb.toFixed(2);
+    document.getElementById('r_prof').textContent=(profDual>=0?'+':'')+money(profDual);
+    document.getElementById('r_be').textContent= isFinite(beDual)?'Breakeven: '+Math.round(beDual).toLocaleString('en-US')+' leads/mo':'Breakeven: never (CM≤0)';
+    // colors + status
+    var cWtp=document.getElementById('r_wtp'), cCm=document.getElementById('r_cm'), cProf=document.getElementById('r_prof');
+    var priceOk = pl<=wtp;                      // dealer accepts the price
+    cWtp.style.color = priceOk ? 'var(--good)' : 'var(--bad)';
+    cCm.style.color = cmDual>0 ? 'var(--good)' : 'var(--bad)';
+    cProf.style.color = profDual>=0 ? 'var(--good)' : 'var(--bad)';
+    var flag=document.getElementById('r_flag'), st=document.getElementById('r_status');
+    var msg, bg, bd, ok=false;
+    if(acac<=cac){ msg='the dealer self-serves leads for $'+acac.toFixed(2)+' — at or below your $'+cac.toFixed(2)+' CAC. No arbitrage exists; you can only win on the financing layer or by getting cheaper than them.'; bg='#fdf6f4';bd='#e6c4bd';}
+    else if(pl>wtp){ msg='your $'+pl.toFixed(2)+' price is ABOVE the dealer’s max ($'+wtp.toFixed(2)+', set by '+binds+') — they decline. Lower price, or raise conversion to lift the ROI limit.'; bg='#fdf6f4';bd='#e6c4bd';}
+    else if(cmDual<=0){ msg='after the '+(org*100).toFixed(0)+'% organic haircut, revenue per lead ('+money2(dealerRev+finPerLead)+') is below your $'+cac.toFixed(2)+' CAC — losing money on every lead. Need higher conversion, less organic, or higher-margin bikes.'; bg='#fff8f0';bd='#f0dcc4';}
+    else if(profDual<0){ msg='unit margin is positive ('+money2(cmDual)+'/lead) but volume ('+vol.toLocaleString('en-US')+'/mo) is below breakeven ('+Math.round(beDual).toLocaleString('en-US')+') — not yet covering fixed cost.'; bg='#fff8f0';bd='#f0dcc4';}
+    else { msg='profitable — CM '+money2(cmDual)+'/lead clears the '+money(fixed)+'/mo fixed cost. Arbitrage $'+arb.toFixed(2)+'/lead + financing carry it.'; bg='#f1faf5';bd='#bfe6d2';ok=true;}
+    st.textContent=msg; flag.style.background=bg; flag.style.borderColor=bd; flag.style.borderLeftColor= ok ?'var(--good)':'var(--warn)';
+  }
+  ids.forEach(function(k){el['i_'+k].addEventListener('input',calc);});
+  calc();
+})();
+</script>
+</body>
+</html>

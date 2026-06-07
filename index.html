@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chinese-2W LatAm Lead-Gen — Final Decision Memo</title>
+<style>
+  :root{
+    --navy:#0f2747;--slate:#33425b;--ink:#1a2233;--mute:#6b7689;--line:#e3e8ef;--bg:#f6f8fb;--card:#fff;
+    --accent:#1f6feb;--accent2:#0a8f6a;--warn:#c0651a;--bad:#b3261e;--good:#0a8f6a;--chip:#eef3fb;
+    --shadow:0 1px 3px rgba(16,32,64,.07),0 6px 20px rgba(16,32,64,.06);
+  }
+  *{box-sizing:border-box}html{scroll-behavior:smooth}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.55;font-size:15.5px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+  header.masthead{background:linear-gradient(135deg,#0f2747,#1d3a63);color:#fff;padding:44px 0 36px}
+  .kicker{text-transform:uppercase;letter-spacing:.16em;font-size:12px;color:#9fc0ee;font-weight:700;margin-bottom:10px}
+  header h1{margin:0 0 8px;font-size:29px;line-height:1.18;font-weight:750;letter-spacing:-.01em}
+  header .sub{color:#cdd9ea;font-size:15px;max-width:760px}
+  header .meta{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+  .pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);color:#eaf1fb;padding:4px 11px;border-radius:999px;font-size:12.5px;font-weight:600}
+  nav.toc{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav.toc .wrap{display:flex;gap:4px;flex-wrap:wrap;padding-top:9px;padding-bottom:9px}
+  nav.toc a{font-size:12.5px;font-weight:600;color:var(--slate);text-decoration:none;padding:5px 10px;border-radius:7px}
+  nav.toc a:hover{background:var(--chip);color:var(--navy)}
+  section{padding:32px 0 8px}
+  h2{font-size:13px;text-transform:uppercase;letter-spacing:.13em;color:var(--accent);font-weight:800;margin:0 0 4px}
+  h2 + .h{font-size:23px;font-weight:730;margin:0 0 16px;letter-spacing:-.01em;color:var(--navy)}
+  h3{font-size:16.5px;font-weight:700;color:var(--navy);margin:22px 0 8px}
+  p{margin:10px 0}.lead{font-size:16px;color:var(--slate)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:20px 22px;box-shadow:var(--shadow);margin:16px 0}
+  .rec{border-left:5px solid var(--warn);background:linear-gradient(180deg,#fff8f0,#fff)}
+  .rec .tag{display:inline-block;background:var(--warn);color:#fff;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:6px;margin-bottom:10px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:15px 16px;box-shadow:var(--shadow)}
+  .kpi .n{font-size:24px;font-weight:780;color:var(--navy);letter-spacing:-.01em}
+  .kpi .l{font-size:12.5px;color:var(--mute);font-weight:600;margin-top:2px}
+  .kpi .d{font-size:12px;color:var(--slate);margin-top:6px}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.8px;background:var(--card);border:1px solid var(--line);border-radius:11px;overflow:hidden}
+  th,td{padding:9px 11px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:#f0f4f9;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--slate);font-weight:800}
+  tr:last-child td{border-bottom:none}
+  td.num{font-variant-numeric:tabular-nums;font-weight:650}
+  .b-good{color:var(--good);font-weight:700}.b-warn{color:var(--warn);font-weight:700}.b-bad{color:var(--bad);font-weight:700}
+  .badge{display:inline-block;font-size:11px;font-weight:800;padding:2px 8px;border-radius:999px}
+  .badge.go{background:#e3f6ee;color:#0a7a59}.badge.hold{background:#fdeede;color:#b06316}.badge.no{background:#fbe6e3;color:#a31f17}
+  ul.tight{margin:8px 0;padding-left:20px}ul.tight li{margin:5px 0;font-size:14px}
+  .cap{font-size:12px;color:var(--mute);margin-top:6px}.verdict{font-weight:750;color:var(--navy)}.src{font-size:12px;color:var(--mute)}
+  /* sensitivity bars */
+  .bars{margin:10px 0 4px}
+  .barrow{display:grid;grid-template-columns:64px 1fr 150px;align-items:center;gap:10px;margin:6px 0}
+  .barrow .lab{font-size:13px;font-weight:650;color:var(--slate)}
+  .track{background:#eef2f7;border-radius:6px;height:18px;position:relative;overflow:hidden}
+  .fill{height:100%;border-radius:6px}
+  .barrow .val{font-size:12.5px;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
+  /* staircase */
+  .stair{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:16px 0;align-items:end}
+  .step{background:var(--card);border:1px solid var(--line);border-bottom:4px solid var(--accent);border-radius:11px 11px 0 0;padding:15px 16px;box-shadow:var(--shadow)}
+  .step:nth-child(1){margin-top:48px;border-bottom-color:#0a8f6a}
+  .step:nth-child(2){margin-top:24px;border-bottom-color:#1f6feb}
+  .step:nth-child(3){margin-top:0;border-bottom-color:#5b3fb0}
+  .step .sn{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+  .step h4{margin:3px 0 6px;font-size:15px;color:var(--navy)}.step p{font-size:12.6px;margin:6px 0 0;color:var(--slate)}
+  .flag{background:#fff8f0;border:1px solid #f0dcc4;border-left:4px solid var(--warn);border-radius:9px;padding:13px 16px;margin:12px 0;font-size:13.6px}
+  .flag b{color:var(--warn)}
+  code{background:#eef2f7;border-radius:5px;padding:1px 5px;font-size:12.5px}
+  footer{margin-top:28px;padding:22px 0 48px;border-top:1px solid var(--line);color:var(--mute);font-size:12.5px}
+  @media(max-width:760px){.grid3,.grid2,.stair{grid-template-columns:1fr}.step{margin-top:0!important}}
+  .ctl{margin:0 0 13px}
+  .ctl label{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;font-weight:600;color:var(--slate);margin-bottom:5px}
+  .ctl label b{color:var(--navy);font-variant-numeric:tabular-nums;font-size:14px}
+  .ctl input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:5px;border-radius:5px;background:#dde5ef;outline:none}
+  .ctl input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:17px;height:17px;border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid #fff;box-shadow:0 1px 4px rgba(16,32,64,.25)}
+  .ctl input[type=range]::-moz-range-thumb{width:17px;height:17px;border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid #fff}
+  #calcCard .kpi .n{transition:color .15s}
+  @media print{body{background:#fff;font-size:11.5px}nav.toc{display:none}.card,.kpi,table,.step{box-shadow:none}
+    #calc{display:none}
+    header.masthead{background:#0f2747!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    section{padding:14px 0 4px;break-inside:avoid}.fill,.step,.kpi{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+  .chain{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:12px 0}
+  .chain .c{background:var(--chip);border:1px solid #d7e3f6;color:var(--navy);font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:8px}
+  .chain .c.bad{background:#fbe6e3;border-color:#f0ccc6;color:#a31f17}
+  .chain .ar{color:var(--mute);font-weight:800}
+  .linkrow{display:flex;justify-content:space-between;gap:12px;padding:10px 2px;border-bottom:1px solid var(--line);font-size:13.6px}
+  .linkrow:last-child{border:none}
+  .linkrow a{color:var(--accent);font-weight:700;text-decoration:none}
+  .linkrow .what{color:var(--slate)}
+</style>
+</head>
+<body>
+<header class="masthead"><div class="wrap">
+  <div class="kicker">Final Decision Memo · Strategy</div>
+  <h1>Chinese-2W LatAm Lead-Gen — The Decision, in One Read</h1>
+  <div class="sub">The whole analysis distilled to its key arguments and a single decision. Candid read: a <em>real</em> business, but a narrow one — and gated on one number we haven't proven. Detail lives in the linked reports; this is the spine.</div>
+  <div class="meta">
+    <span class="pill">2026-06-07</span>
+    <span class="pill">Verdict: conditional go — run the test</span>
+    <span class="pill">Crux: does a fast-WhatsApp finance-qualified lead convert ≥ ~8%?</span>
+    <span class="pill">Canonical synthesis</span>
+    <span class="pill">Codex-validated 2026-06-07</span>
+  </div>
+</div></header>
+
+<nav class="toc"><div class="wrap">
+  <a href="#bluf">Verdict</a>
+  <a href="#thesis">The bet</a>
+  <a href="#model">The model</a>
+  <a href="#hard">The hard truth</a>
+  <a href="#works">Why it works</a>
+  <a href="#who">Who it's for</a>
+  <a href="#moat">Defensibility</a>
+  <a href="#test">The test</a>
+  <a href="#decision">Decision</a>
+  <a href="#detail">Detail</a>
+</div></nav>
+
+<div class="wrap">
+
+<section id="bluf">
+  <h2>Bottom line up front</h2>
+  <div class="h">A real business — but narrow, and gated on one number</div>
+  <div class="card rec">
+    <span class="tag">Verdict</span>
+    <p class="lead" style="margin-top:2px"><b>LatAm is the best-shaped theater for this idea, but the naive version — sell cheap leads to dealers — is marginal-to-negative once you use real numbers.</b> The business is real <em>only</em> as a three-payer play (dealer + lender + brand), for a deliberately narrow customer, and <em>only</em> if a fast, finance-qualified WhatsApp lead actually converts. That last point is unproven from a desk — so the decision isn't "build" or "drop," it's <b>"run a $3–5k, 90-day test that proves or kills it."</b></p>
+    <div class="grid3" style="margin-top:14px">
+      <div class="kpi"><div class="n b-bad">−$0.10/lead</div><div class="l">Dealer-only base case</div><div class="d">At researched LatAm defaults the pure per-lead model loses money — dealer's own ad cost ≈ yours, and ~50% of demand is organic.</div></div>
+      <div class="kpi"><div class="n b-good">3 payers</div><div class="l">Why it survives</div><div class="d">One acquired buyer monetizes as dealer fee + loan origination + brand retainer. Financing flips it positive; premium + dual → ~+$5,286/mo.</div></div>
+      <div class="kpi"><div class="n">90-day test</div><div class="l">The decision</div><div class="d">~$3–5k to prove the one unproven number — lead→sale conversion — before building anything.</div></div>
+    </div>
+    <p style="margin-top:14px"><span class="verdict">The honest one-liner:</span> the wave is real, the market shape is right, and the monetization stack is clever — but the asset-light dealer-fee story alone doesn't pay, so everything rides on the finance/brand layers and on a conversion rate we must measure in the field.</p>
+  </div>
+</section>
+
+<section id="thesis">
+  <h2>The opportunity</h2>
+  <div class="h">The bet — ride an <em>accelerating</em> wave into its best-shaped market</div>
+  <p><b>Export size alone isn't opportunity — growth is.</b> A big-but-flat number could mean a saturated market; what makes this a bet is that the wave is <b>re-accelerating</b> and the markets under it are <b>growing</b>. China's 2W exports were flat-to-down in 2022–23 (~$11.6B), then jumped to <b>$14.5B / 36.75M units in 2024</b>, and <b>LatAm is the fastest-growing major destination</b> — Mexico #2 worldwide, Venezuela the standout surge (#6, units doubled YoY).</p>
+  <div class="grid3">
+    <div class="kpi"><div class="n b-good">+38%</div><div class="l">China 2W exports — units, 2024 YoY</div><div class="d">Value +25%. Re-accelerated after a flat 2022–23 (~$11.6B) — the wave turned back up, not matured.</div></div>
+    <div class="kpi"><div class="n b-good">~+36%</div><div class="l">LatAm imports — 2024 YoY</div><div class="d">$2.6B → ~$3.5B; China's <b>#1 destination region</b>, fastest-growing major market. <span class="src">(Sources vary: +36% China Customs to ~+40–49% Comtrade.)</span></div></div>
+    <div class="kpi"><div class="n b-good">+17–35%</div><div class="l">Local 2W markets — registrations YoY</div><div class="d">Brazil +17%, Colombia +35%, Peru +21%; Venezuela imports +89%. Demand rising <em>under</em> the inflow.</div></div>
+  </div>
+  <p class="cap">EV is a fast sub-wave (China e-2W exports +28% in 2024; Brazil e-moto registrations +145% off a tiny base) — but the bet is <b>all</b> Chinese 2W, ICE included, where the volume is. <span class="src">Source: UN Comtrade HS 8711, 2023→2024; local registrations Fenabrave / RUNT / Peru AAP.</span></p>
+
+  <h3>Reality check — the big markets are <em>brand-concentrated</em>, not fragmented</h3>
+  <p>An honest correction from a 4-market brand-share research sweep: <b>"fragmented" is wrong for the two biggest markets.</b> The leaders are dominant — you can't displace them and they won't pay you. The opportunity is the <em>challengers</em> and the <em>genuinely fragmented smaller markets</em>.</p>
+  <table>
+    <thead><tr><th>Market</th><th>Top brand</th><th>Top-3</th><th>Structure</th></tr></thead>
+    <tbody>
+      <tr><td><b>Brazil</b></td><td class="num">Honda <b>67%</b></td><td class="num">87%</td><td>Concentrated top, churning tail</td></tr>
+      <tr><td><b>Mexico</b></td><td class="num">Italika <b>~69%</b></td><td class="num">~80%</td><td>Single-brand dominated</td></tr>
+      <tr><td><b>Colombia</b></td><td class="num">Yamaha ~19%</td><td class="num">~48%</td><td>Top-heavy (top-5 ≈ 70%)</td></tr>
+      <tr style="background:#f3fbf8"><td><b>Peru</b></td><td class="num">Honda ~24%</td><td class="num">~42%</td><td class="b-good">Genuinely fragmented</td></tr>
+      <tr style="background:#f3fbf8"><td><b>Argentina / Dom. Rep.</b></td><td class="num">Honda &lt;10% / Honda</td><td class="num">—</td><td class="b-good">Fragmented</td></tr>
+      <tr><td><b>Venezuela</b></td><td class="num">Bera / Empire</td><td class="num">—</td><td>Concentrated, &gt;90% Chinese</td></tr>
+    </tbody>
+  </table>
+  <div class="flag" style="background:#f1faf5;border-color:#bfe6d2;border-left-color:var(--good)"><b style="color:#0a7a59">The good news — and the catch.</b> Challengers are gaining fast, but the filter isn't growth — it's whether they <b>outsource demand-gen</b> or <b>build their own funnel</b>. A 7-market scan shows the breakout, <b>Shineray</b> (Brazil #3, +93%), <b>self-distributes via 438 own stores → not a customer.</b> The strongest entrants build in-house. The real pipeline is the <b>third-party-distributed</b> challengers — and the same names recur across markets:</div>
+  <div class="grid3">
+    <div class="kpi" style="border-top:3px solid #1f6feb"><div class="l" style="font-size:13px">① China-direct cohort</div><div class="d" style="margin-top:5px"><b>CFMoto · Zontes · QJ Motor · Voge · Kove</b> — recur in MX/CO/AR/DR (one pitch, many markets). Mexico's <b>~35% China tariff</b> pressures them → demand-gen tailwind.</div></div>
+    <div class="kpi" style="border-top:3px solid #7a4ddb"><div class="l" style="font-size:13px">② India challengers</div><div class="d" style="margin-top:5px"><b>Bajaj</b> (BR +221% H1), <b>Hero</b> (CO ~+116% record), <b>TVS</b> — foreign brands building local awareness via 3rd-party channels.</div></div>
+    <div class="kpi" style="border-top:3px solid #0a8f6a"><div class="l" style="font-size:13px">③ Small-market house brands</div><div class="d" style="margin-top:5px"><b>JCH · Nexus · Ssenda</b> (Peru, fast-growing house brands), <b>Keller</b> (Argentina), <b>Toro</b> (Venezuela) — Chinese-sourced, retail-distributed, no in-house marketing.</div></div>
+  </div>
+  <p class="cap"><b>Beachhead = the China-direct cohort + India challengers, not "a fragmented big market"</b> (which doesn't exist). <b>Avoid</b> self-distributors (Shineray, Mottu, Royal Enfield) + incumbents (Honda/Italika). <span class="src">The existential open risk to validate first: do these brands actually outsource demand-gen, or replicate Shineray's self-distribution once they scale? (Phase-1 question.)</span></p>
+
+  <h3>Where an intermediary can actually slot in</h3>
+  <p>Brand concentration ≠ funnel capture. Even with Honda/Italika dominant, the question is whether the <em>challenger tail's</em> funnel is open — and it is, in three tiers:</p>
+  <table>
+    <thead><tr><th>Structure</th><th>Where</th><th>Intermediate?</th></tr></thead>
+    <tbody>
+      <tr><td><b>Captured</b> — incumbent owns the funnel</td><td>Mexico value (Italika ~68–70%, Elektra/Banco Azteca); Brazil leaders + bank-owned classifieds (Webmotors)</td><td><span class="badge no">no</span></td></tr>
+      <tr><td><b>Laundered</b> — Chinese behind local house brands</td><td>Argentina, Colombia top-10, Paraguay (Corbeta / Auteco / Kenton)</td><td><span class="badge hold">no — funnel owned</span></td></tr>
+      <tr><td><b>Open</b> — fragmented direct-import, no local funnel</td><td><b>Peru, Dominican Rep., Colombia ranks 11–20, Brazil long-tail importers, Mexico's non-Italika tail</b></td><td><span class="badge go">yes — whitespace</span></td></tr>
+    </tbody>
+  </table>
+  <p>It still beats the alternatives: <b>Africa</b> is <em>captured by vertically-integrated battery-swap operators</em> (Spiro ~60–80k bikes/$365M+, Ampersand, Dodai) who own hardware + financing + the energy network end-to-end → no asset-light room; <b>Malaysia-EV</b> is the <em>cleanest fit but tiny</em> (retail consumers + open classifieds, yet only tens of thousands of EV units/yr and rebate-dependent). So the bet is the LatAm <b>open tail</b> — fragmented, finance-driven, WhatsApp-native — not "LatAm" as a monolith.</p>
+  <div class="chain">
+    <span class="c">accelerating wave</span><span class="ar">→</span>
+    <span class="c">LatAm open <em>tail</em></span><span class="ar">→</span>
+    <span class="c">asset-light lead-gen intermediary</span><span class="ar">→</span>
+    <span class="c">ride a growing inflow without holding inventory</span>
+  </div>
+  <p class="cap">The bet in one line: <b>be the demand-generation layer for trust-light Chinese 2W brands entering the open, growing tail of a WhatsApp-native, finance-driven market</b> — without importing, holding stock, or owning dealerships. <span class="src">Open-vs-captured map is directional — built from named players + trade data, not a measured concentration index.</span></p>
+</section>
+
+<section id="model">
+  <h2>The shape of the thing</h2>
+  <div class="h">The model — an asset-light lead factory</div>
+  <p>A social-to-WhatsApp engine that manufactures <b>finance-ready buyers</b> and hands them to sellers:</p>
+  <div class="chain">
+    <span class="c">TikTok / FB / IG content + ads</span><span class="ar">→</span>
+    <span class="c">click-to-WhatsApp</span><span class="ar">→</span>
+    <span class="c">qualify (intent + financeable)</span><span class="ar">→</span>
+    <span class="c">hand off to dealer / pre-approve a loan</span>
+  </div>
+  <p>WhatsApp is on ~99% of Brazilian phones; click-to-WhatsApp slashes cost-per-lead. It's <b>all Chinese 2W (ICE + EV), not EV-only</b> — the lead-gen wedge doesn't care about the powertrain, it cares about demand-gen-starved sellers and financeable buyers.</p>
+</section>
+
+<section id="hard">
+  <h2>What the numbers actually say</h2>
+  <div class="h">The hard truth — the dealer-only model is marginal</div>
+  <p>Grounded in a 4-agent dealer-CAC research sweep, the per-lead economics are unforgiving. The chain of why:</p>
+  <table>
+    <thead><tr><th>Force</th><th>What it does</th></tr></thead>
+    <tbody>
+      <tr><td><b>Price ceiling = min(ROI limit, dealer's own CAC)</b></td><td>A dealer pays at most what it costs them to get the buyer themselves. That ceiling is just <b>0.30% of the bike price</b> → a hard <b>price floor ~$1,667</b> below which dealer-only can't work.</td></tr>
+      <tr><td><b>Arbitrage compression</b></td><td>You and the dealer buy from the <b>same Meta auction</b> (~$5/lead each) → the pure per-lead spread is near zero.</td></tr>
+      <tr><td><b>Organic ~50%</b></td><td>Half of dealer demand arrives free (walk-in/referral) → halves the addressable, paid-for volume.</td></tr>
+      <tr><td class="b-bad"><b>Result (researched defaults)</b></td><td class="b-bad"><b>−$0.10 / lead, −$6,248 / mo.</b> The cheap-leads-to-cheap-dealers story does not pay.</td></tr>
+    </tbody>
+  </table>
+  <p class="cap">This isn't pessimism — it's what the model returns when you plug in real LatAm ad costs, the dealer's self-serve alternative, and organic share. The naive version fails on arithmetic, not execution. <b>Caveat (Codex-flagged):</b> the per-lead CAC / conversion / organic inputs are <em>directional</em> (vendor/benchmark-level, not audited LatAm-moto data) — treat them as the hypotheses the 90-day test must measure, not as facts. <a href="latam-2w-leadgen-business-model-validation-2026-06-06.html">Full unit economics + live calculator →</a></p>
+</section>
+
+<section id="works">
+  <h2>Why it isn't dead</h2>
+  <div class="h">Why it works — one buyer, three payers</div>
+  <p>The model survives because a single acquired buyer is sold, in different forms, to <b>three different payers</b> — and two of the three are <em>not</em> capped by the dealer's ROI hurdle. This is aggregator economics: you own the scarce asset (the buyer relationship) and tax every party that needs access.</p>
+  <div class="card" style="margin:8px 0"><svg viewBox="0 0 760 300" width="100%" style="max-width:720px;font-family:-apple-system,Segoe UI,sans-serif" role="img" aria-label="One buyer, three payers"><defs><marker id="ah" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#8a97a8"/></marker></defs><rect x="20" y="40.0" width="250" height="62" rx="9" fill="#eafaf3" stroke="#0a8f6a"/><text x="34" y="62.0" font-size="13" font-weight="800" fill="#0a8f6a">BRAND</text><text x="34" y="79.0" font-size="11.5" fill="#33425b" font-weight="600">$1–3k / mo retainer + data</text><text x="34" y="94.0" font-size="10.5" fill="#6b7689">uncapped — market-entry budget</text><line x1="270" y1="71.0" x2="352" y2="150" stroke="#8a97a8" stroke-width="1.6" marker-end="url(#ah)"/><rect x="20" y="118.0" width="250" height="62" rx="9" fill="#eef4fc" stroke="#1f6feb"/><text x="34" y="140.0" font-size="13" font-weight="800" fill="#1f6feb">DEALER</text><text x="34" y="157.0" font-size="11.5" fill="#33425b" font-weight="600">$4–8 / qualified lead</text><text x="34" y="172.0" font-size="10.5" fill="#6b7689">CAPPED + arbitraged</text><line x1="270" y1="149.0" x2="352" y2="150" stroke="#8a97a8" stroke-width="1.6" marker-end="url(#ah)"/><rect x="20" y="196.0" width="250" height="62" rx="9" fill="#f1ecfb" stroke="#7a4ddb"/><text x="34" y="218.0" font-size="13" font-weight="800" fill="#7a4ddb">LENDER</text><text x="34" y="235.0" font-size="11.5" fill="#33425b" font-weight="600">$45–175 / loan + insurance</text><text x="34" y="250.0" font-size="10.5" fill="#6b7689">uncapped — interest margin</text><line x1="270" y1="227.0" x2="352" y2="150" stroke="#8a97a8" stroke-width="1.6" marker-end="url(#ah)"/><rect x="356" y="104" width="196" height="92" rx="12" fill="#0f2747"/><text x="454" y="134" font-size="13.5" font-weight="800" fill="#fff" text-anchor="middle">1 acquired buyer</text><text x="454" y="153" font-size="11" fill="#9fc0ee" text-anchor="middle">~$5 CAC to create</text><text x="454" y="172" font-size="11" fill="#cdd9ea" text-anchor="middle">your WhatsApp</text><text x="454" y="186" font-size="11" fill="#cdd9ea" text-anchor="middle">relationship</text><line x1="552" y1="150" x2="600" y2="150" stroke="#8a97a8" stroke-width="1.6" marker-end="url(#ah)"/><rect x="604" y="110" width="142" height="80" rx="10" fill="#fff" stroke="#e3e8ef"/><text x="675" y="138" font-size="13" font-weight="800" fill="#0a8f6a" text-anchor="middle">monetized 3×</text><text x="675" y="158" font-size="10.5" fill="#33425b" text-anchor="middle">only the dealer</text><text x="675" y="172" font-size="10.5" fill="#33425b" text-anchor="middle">slice is arbitraged</text></svg></div>
+  <div class="grid3">
+    <div class="kpi" style="border-top:3px solid #0a8f6a"><div class="l" style="color:#0a8f6a;font-size:13px">BRAND → demand</div><div class="d" style="margin-top:5px">$1–3k/mo retainer + market-entry + data. New entrants pay above any hurdle (market-entry budget). Stickiest, non-arbitraged.</div></div>
+    <div class="kpi" style="border-top:3px solid #1f6feb"><div class="l" style="color:#1f6feb;font-size:13px">DEALER → the buyer</div><div class="d" style="margin-top:5px">$4–8/lead, capped &amp; arbitraged. Role: cover CAC — not where the profit is.</div></div>
+    <div class="kpi" style="border-top:3px solid #7a4ddb"><div class="l" style="color:#7a4ddb;font-size:13px">LENDER → the loan</div><div class="d" style="margin-top:5px">$45–175/loan origination (2–5%) + insurance. Paid from interest margin → uncapped. The real moat.</div></div>
+  </div>
+  <p class="cap"><b>Financing flips the unit economics positive</b> (dealer-only CM −$0.10 → with financing positive; premium bike + dual stream → <b>~+$5,286/mo</b>). The brand retainer escapes the ceiling entirely. <b>Catch:</b> financing normally belongs to the dealer's F&amp;I desk — capture it by <em>pre-approving the buyer upstream</em>, before the handoff.</p>
+</section>
+
+<section id="who">
+  <h2>The targeting that makes or breaks it</h2>
+  <div class="h">Who it's for — and the constraint that binds</div>
+  <p>The model only works for a <b>deliberately narrow customer</b>, and fails by design for everyone else:</p>
+  <div class="grid2">
+    <div class="kpi"><div class="l b-good" style="font-size:13px">✓ Your ICP</div><div class="d" style="margin-top:5px"><b>Organic-poor, demand-gen-starved, weak-F&amp;I dealers</b> and <b>new Chinese brands</b> with no awareness yet. They have no buyer pull and can't self-serve well → they need you, and you can capture financing they don't.</div></div>
+    <div class="kpi"><div class="l b-bad" style="font-size:13px">✗ Not your customer</div><div class="d" style="margin-top:5px"><b>Strong incumbents</b> (good ads + organic + F&amp;I). Their make-cost ≤ your CAC (won't pay), and their brand pull captures buyers <em>before</em> they enter your funnel.</div></div>
+  </div>
+  <div class="flag" style="background:#eef4fc;border-color:#cfe0f6;border-left-color:var(--accent)"><b style="color:var(--accent)">The binding constraint — buyer interception.</b> The whole model lives on catching the buyer in the open social/WhatsApp channel <em>before</em> a dealer's organic pull does. Where incumbents are strong (Honda/Yamaha walk-ins), the buyer is gone before you can touch them. Your funnel exists only where there's <b>no pull</b> — new brands nobody searches yet, no-brand fragmented dealers, open-channel comparison shoppers.</div>
+</section>
+
+<section id="moat">
+  <h2>What keeps it from being copied</h2>
+  <div class="h">Defensibility — beyond the arbitraged layer</div>
+  <div class="grid2">
+    <div class="kpi"><div class="l" style="font-size:13px">Finance-qualification</div><div class="d" style="margin-top:5px">Collecting income/credit-consent in the WhatsApp flow makes the buyer <b>bankable</b> — the asset a plain lead lacks, and the key to capturing loan origination upstream.</div></div>
+    <div class="kpi"><div class="l" style="font-size:13px">Conversion-data = pricing power</div><div class="d" style="margin-top:5px">You measure conversion (buyer follow-up + finance rail), so you anchor the price. <b>Cross-dealer comparison separates lead quality from closing skill</b> — the dealer can't blame your leads.</div></div>
+    <div class="kpi"><div class="l" style="font-size:13px">Speed-to-lead</div><div class="d" style="margin-top:5px">Sub-minute WhatsApp reply converts ~<b>20%</b> vs ~6% slow (decays to ~1% at 24h). An operational moat a busy dealer can't match.</div></div>
+    <div class="kpi"><div class="l" style="font-size:13px">Organic content / SEO + LTV</div><div class="d" style="margin-top:5px">Owned free traffic compounds; keeping the buyer's WhatsApp relationship unlocks renewals, upgrades, refinance, referrals — the only non-arbitraged, recurring layers.</div></div>
+  </div>
+</section>
+
+<section id="test">
+  <h2>What we still don't know</h2>
+  <div class="h">The crux → a $3–5k, 90-day test</div>
+  <p>Three things decide the business and <b>none can be settled from a desk</b>: (1) does a fast, finance-qualified WhatsApp lead convert <b>≥ ~8% (ideally ~20%)</b>? (2) will dealers/brands actually <b>pay</b>, and how much? (3) can you land a <b>lender pre-approval</b> partnership? The plan is built to falsify these cheaply, fast:</p>
+  <div class="stair">
+    <div class="step"><div class="sn">R1 · Wk 1–3</div><h4>Demand interviews</h4><p>15–20 dealers/brands/lenders. Extract the <em>real</em> price ceiling: "% walk-in vs paid? run your own ads at what cost? pay marketplaces what per lead?"</p></div>
+    <div class="step"><div class="sn">R2 · Wk 3–9</div><h4>Concierge MVP</h4><p>One city, one brand, ~$1–2k ads, hand-qualify over WhatsApp, route to 3–5 dealers. <b>Measure real lead→sale conversion + time-to-close cohorts.</b></p></div>
+    <div class="step"><div class="sn">R3 · Wk 9–13</div><h4>Invoice for real money</h4><p>Charge the dealers/brands who got free leads, at 2–3 price points inside the modeled band. Measure free→paid conversion + a lender pre-approval pilot.</p></div>
+  </div>
+  <p class="cap">Hard kill-gates: <b>G1</b> ≥30% of interviewees name an in-band price; <b>G2</b> conversion ≥4% (ideally ≥8%) on ≥150 leads; <b>G3</b> ≥3 paying customers at a positive contribution margin. <a href="latam-2w-leadgen-business-model-validation-2026-06-06.html#plan">Full 90-day plan + gates →</a></p>
+</section>
+
+<section id="decision">
+  <h2>The call</h2>
+  <div class="h">Recommendation &amp; decision</div>
+  <div class="flag"><b>Conditional go — run the test, don't build yet.</b> The market shape, the wave, and the three-payer monetization are strong enough to justify a cheap, time-boxed experiment — but <b>not</b> to justify building product. The pure asset-light dealer-fee business is marginal; the viable business is the <b>finance + brand</b> play, for the <b>organic-poor / new-brand ICP</b>, with <b>premium-skewed</b> bikes and <b>finance origination captured upstream</b>. The single thing that decides it — does a fast finance-qualified lead convert? — is answerable for ~$3–5k in 90 days. <b>Do not build before G2 passes.</b></div>
+  <div class="grid3">
+    <div class="kpi"><div class="n b-good">Go</div><div class="l">…to the test</div><div class="d">R1 interviews + R2 concierge MVP. Cheap, fast, falsifiable.</div></div>
+    <div class="kpi"><div class="n b-warn">Conditional</div><div class="l">…on the levers</div><div class="d">Finance capture + brand retainer + premium skew + strict ICP targeting. Without these it's a grind.</div></div>
+    <div class="kpi"><div class="n b-bad">Kill</div><div class="l">…if conversion fails</div><div class="d">If finance-qualified leads convert &lt;4% (G2), the economics never close — stop.</div></div>
+  </div>
+</section>
+
+<section id="detail">
+  <h2>Where the detail lives</h2>
+  <div class="h">The supporting evidence base</div>
+  <div class="card" style="margin-top:6px">
+    <div class="linkrow"><span class="what">Deep unit economics + interactive calculator + make-vs-buy + revenue stack</span><a href="latam-2w-leadgen-business-model-validation-2026-06-06.html">validation report →</a></div>
+    <div class="linkrow"><span class="what">Strategic market-entry arc (the wave, framework, four theaters, LatAm pick)</span><a href="ev-motorcycle-market-entry-decision-2026-06-04.html">master decision report →</a></div>
+    <div class="linkrow"><span class="what">Dealer-CAC research (4-agent sweep — the numbers behind the hard truth)</span><a href="latam-2w-dealer-cac-research-2026-06-07.md">dealer-CAC research →</a></div>
+    <div class="linkrow"><span class="what">China 2W export flows by market/region (Comtrade)</span><a href="comtrade-china-2w-dashboard.pdf">Comtrade dashboard (PDF) →</a></div>
+    <div class="linkrow"><span class="what">LatAm consumer-vs-fleet ownership (raw government data)</span><a href="latam-2w-consumer-fleet-dashboard.pdf">consumer-vs-fleet dashboard (PDF) →</a></div>
+    <div class="linkrow"><span class="what">Brand concentration — is the market fragmented? (4-agent sweep)</span><a href="latam-2w-brand-concentration-research-2026-06-07.md">brand-concentration research →</a></div>
+    <div class="linkrow"><span class="what">Challenger leaderboard — the brand-customer pipeline (growth + demand-gen fit)</span><a href="latam-challenger-moto-brands-demand-gen-2026-06-07.md">challenger research →</a></div>
+    <div class="linkrow"><span class="what">Independent fact-check of every figure (ChatGPT Codex)</span><a href="latam-2w-codex-validation-2026-06-07.md">Codex validation ledger →</a></div>
+  </div>
+</section>
+
+<footer><div class="wrap" style="padding:0">
+  <b>Chinese-2W LatAm Lead-Gen — Final Decision Memo.</b> 2026-06-07. Canonical synthesis of the session's analysis; figures are model outputs on flagged, partly-researched assumptions. <b>Decision-support, not investment advice.</b>
+</div></footer>
+
+</div>
+</body>
+</html>
