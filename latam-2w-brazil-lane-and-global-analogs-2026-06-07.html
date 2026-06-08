@@ -1,0 +1,108 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Brazil lane validation + global analogs for the multi-FI moto-loan front-end</title><style>
+  :root{
+    --navy:#0f2747;--slate:#33425b;--ink:#1a2233;--mute:#6b7689;--line:#e3e8ef;--bg:#f6f8fb;--card:#fff;
+    --accent:#1f6feb;--accent2:#0a8f6a;--warn:#c0651a;--bad:#b3261e;--good:#0a8f6a;--chip:#eef3fb;
+    --shadow:0 1px 3px rgba(16,32,64,.07),0 6px 20px rgba(16,32,64,.06);
+  }
+  *{box-sizing:border-box}html{scroll-behavior:smooth}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.55;font-size:15.5px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+  header.masthead{background:linear-gradient(135deg,#0f2747,#1d3a63);color:#fff;padding:44px 0 36px}
+  .kicker{text-transform:uppercase;letter-spacing:.16em;font-size:12px;color:#9fc0ee;font-weight:700;margin-bottom:10px}
+  header h1{margin:0 0 8px;font-size:29px;line-height:1.18;font-weight:750;letter-spacing:-.01em}
+  header .sub{color:#cdd9ea;font-size:15px;max-width:760px}
+  header .meta{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+  .pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);color:#eaf1fb;padding:4px 11px;border-radius:999px;font-size:12.5px;font-weight:600}
+  nav.toc{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav.toc .wrap{display:flex;gap:4px;flex-wrap:wrap;padding-top:9px;padding-bottom:9px}
+  nav.toc a{font-size:12.5px;font-weight:600;color:var(--slate);text-decoration:none;padding:5px 10px;border-radius:7px}
+  nav.toc a:hover{background:var(--chip);color:var(--navy)}
+  section{padding:32px 0 8px}
+  h2{font-size:13px;text-transform:uppercase;letter-spacing:.13em;color:var(--accent);font-weight:800;margin:0 0 4px}
+  h2 + .h{font-size:23px;font-weight:730;margin:0 0 16px;letter-spacing:-.01em;color:var(--navy)}
+  h3{font-size:16.5px;font-weight:700;color:var(--navy);margin:22px 0 8px}
+  p{margin:10px 0}.lead{font-size:16px;color:var(--slate)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:20px 22px;box-shadow:var(--shadow);margin:16px 0}
+  .rec{border-left:5px solid var(--warn);background:linear-gradient(180deg,#fff8f0,#fff)}
+  .rec .tag{display:inline-block;background:var(--warn);color:#fff;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:6px;margin-bottom:10px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:15px 16px;box-shadow:var(--shadow)}
+  .kpi .n{font-size:24px;font-weight:780;color:var(--navy);letter-spacing:-.01em}
+  .kpi .l{font-size:12.5px;color:var(--mute);font-weight:600;margin-top:2px}
+  .kpi .d{font-size:12px;color:var(--slate);margin-top:6px}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.8px;background:var(--card);border:1px solid var(--line);border-radius:11px;overflow:hidden}
+  th,td{padding:9px 11px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:#f0f4f9;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--slate);font-weight:800}
+  tr:last-child td{border-bottom:none}
+  td.num{font-variant-numeric:tabular-nums;font-weight:650}
+  .b-good{color:var(--good);font-weight:700}.b-warn{color:var(--warn);font-weight:700}.b-bad{color:var(--bad);font-weight:700}
+  .badge{display:inline-block;font-size:11px;font-weight:800;padding:2px 8px;border-radius:999px}
+  .badge.go{background:#e3f6ee;color:#0a7a59}.badge.hold{background:#fdeede;color:#b06316}.badge.no{background:#fbe6e3;color:#a31f17}
+  ul.tight{margin:8px 0;padding-left:20px}ul.tight li{margin:5px 0;font-size:14px}
+  .cap{font-size:12px;color:var(--mute);margin-top:6px}.verdict{font-weight:750;color:var(--navy)}.src{font-size:12px;color:var(--mute)}
+  /* sensitivity bars */
+  .bars{margin:10px 0 4px}
+  .barrow{display:grid;grid-template-columns:64px 1fr 150px;align-items:center;gap:10px;margin:6px 0}
+  .barrow .lab{font-size:13px;font-weight:650;color:var(--slate)}
+  .track{background:#eef2f7;border-radius:6px;height:18px;position:relative;overflow:hidden}
+  .fill{height:100%;border-radius:6px}
+  .barrow .val{font-size:12.5px;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
+  /* staircase */
+  .stair{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:16px 0;align-items:end}
+  .step{background:var(--card);border:1px solid var(--line);border-bottom:4px solid var(--accent);border-radius:11px 11px 0 0;padding:15px 16px;box-shadow:var(--shadow)}
+  .step:nth-child(1){margin-top:48px;border-bottom-color:#0a8f6a}
+  .step:nth-child(2){margin-top:24px;border-bottom-color:#1f6feb}
+  .step:nth-child(3){margin-top:0;border-bottom-color:#5b3fb0}
+  .step .sn{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+  .step h4{margin:3px 0 6px;font-size:15px;color:var(--navy)}.step p{font-size:12.6px;margin:6px 0 0;color:var(--slate)}
+  .flag{background:#fff8f0;border:1px solid #f0dcc4;border-left:4px solid var(--warn);border-radius:9px;padding:13px 16px;margin:12px 0;font-size:13.6px}
+  .flag b{color:var(--warn)}
+  code{background:#eef2f7;border-radius:5px;padding:1px 5px;font-size:12.5px}
+  footer{margin-top:28px;padding:22px 0 48px;border-top:1px solid var(--line);color:var(--mute);font-size:12.5px}
+  @media(max-width:760px){.grid3,.grid2,.stair{grid-template-columns:1fr}.step{margin-top:0!important}}
+  .ctl{margin:0 0 13px}
+  .ctl label{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;font-weight:600;color:var(--slate);margin-bottom:5px}
+  .ctl label b{color:var(--navy);font-variant-numeric:tabular-nums;font-size:14px}
+  .ctl input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:5px;border-radius:5px;background:#dde5ef;outline:none}
+  .ctl input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:17px;height:17px;border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid #fff;box-shadow:0 1px 4px rgba(16,32,64,.25)}
+  .ctl input[type=range]::-moz-range-thumb{width:17px;height:17px;border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid #fff}
+  #calcCard .kpi .n{transition:color .15s}
+  @media print{body{background:#fff;font-size:11.5px}nav.toc{display:none}.card,.kpi,table,.step{box-shadow:none}
+    #calc{display:none}
+    header.masthead{background:#0f2747!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    section{padding:14px 0 4px;break-inside:avoid}.fill,.step,.kpi{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+  .chain{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:12px 0}
+  .chain .c{background:var(--chip);border:1px solid #d7e3f6;color:var(--navy);font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:8px}
+  .chain .c.bad{background:#fbe6e3;border-color:#f0ccc6;color:#a31f17}
+  .chain .ar{color:var(--mute);font-weight:800}
+  .linkrow{display:flex;justify-content:space-between;gap:12px;padding:10px 2px;border-bottom:1px solid var(--line);font-size:13.6px}
+  .linkrow:last-child{border:none}
+  .linkrow a{color:var(--accent);font-weight:700;text-decoration:none}
+  .linkrow .what{color:var(--slate)}
+
+  .kpi .d a, table td a, .flag a, p.cap a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(31,111,235,.35)}
+  .kpi .d a:hover, table td a:hover, .flag a:hover, p.cap a:hover{border-bottom-color:var(--accent)}
+.backlink{font-size:13px;font-weight:600;color:var(--accent);text-decoration:none}.md h1{font-size:24px;font-weight:740;color:var(--navy);margin:6px 0 14px}.md h2{font-size:19px;text-transform:none;color:var(--navy);font-weight:730;margin:26px 0 8px;border-top:1px solid var(--line);padding-top:18px}.md h3{font-size:15.5px;color:var(--navy);font-weight:700;margin:18px 0 6px}.md p{margin:10px 0}.md ul,.md ol{margin:8px 0;padding-left:22px}.md li{margin:5px 0;font-size:14.2px}.md code{background:#eef2f7;border-radius:5px;padding:1px 5px;font-size:12.5px}.md a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(31,111,235,.3)}.md hr{border:none;border-top:1px solid var(--line);margin:20px 0}.md blockquote{border-left:3px solid var(--accent);background:var(--chip);margin:12px 0;padding:8px 14px;border-radius:0 8px 8px 0;color:var(--slate)}</style></head><body><header class="masthead"><div class="wrap"><div class="kicker">Research note · Chinese-2W LatAm</div><h1>Brazil lane validation + global analogs for the multi-FI moto-loan front-end</h1><div class="sub">5-agent deep sweep (BR Galgo/integrators · BR competitors/acquisition · BR FI panel · Asia analogs · Africa+US analogs)</div><div class="meta"><span class="pill">2026-06-07</span><span class="pill">5-agent research</span></div></div></header><div class="wrap"><p style="margin-top:20px"><a class="backlink" href="index.html">← Back to the decision memo</a></p><div class="md"><h1>Brazil Lane Validation + Global Analogs (2026-06-07)</h1>
+<p>**Milestone: the strongest validation yet. Brazil is a genuine open lane for a capital-light multi-FI moto-loan-origination front-end, the aggregator shape is right (integration <em>failed</em> there), FI supply is deeply panelable, and global precedents give a precise blueprint. The one remaining unknown is the same one: cheap, defensible buyer acquisition.**</p>
+<h2>Brazil — validated on every axis</h2>
+<table><thead><tr><th>Test</th><th>Result</th></tr></thead><tbody><tr><td>Galgo-free?</td><td>✅ Yes — Galgo only in CL/PE/CO/MX; no BR entity/plan/hiring</td></tr><tr><td>Multi-FI moto-<em>purchase</em> front-end exists?</td><td>✅ No — genuine gap</td></tr><tr><td>Panel multiple FIs?</td><td>✅ Yes, deeply (dealer-led market, open correspondent programs)</td></tr><tr><td>Integrated model viable in BR?</td><td>⚠️ Already failed — Creditas/<strong>Voltz</strong> collapsed (judicial recovery, R$335M debt) → argues for aggregator, not integration</td></tr></tbody></table>
+<p><strong>Competitive structure:</strong> the true multi-lender marketplaces (FinanZero 70+ FIs, Juros Baixos 40+) do moto-as-<em>collateral</em> refi only, <strong>not purchase</strong>. The moto-<em>purchase</em> platforms (Mobiauto→PAN, Webmotors→Santander, iCarros→Itaú, NaPista→BV, Banco Honda captive) are all <strong>single-bank captive</strong> — none compares multiple FIs for the same bike. <strong>Closest integrator threat = Mottu</strong> (owns demand+credit+sale+insurance, but only for captive delivery riders on its own fleet — ~1 strategic pivot from going broad). <strong>Banco PAN</strong> = ~35% moto-finance share but pure FI (owns credit, dealer-dependent for demand; owns Mobiauto). Secondary risk: June-2026 BNDES delivery-rider credit line.</p>
+<p><strong>Market:</strong> ~47% of Honda moto sales financed; moto financing +10–18% in 2025 while cars stalled (motos carry the whole auto-credit market); used motos &gt; new (116k vs 46k financed units) and underserved.</p>
+<p><strong>The crux (unchanged):</strong> the gap is on the <strong>demand side</strong>, not the matching tech (PAN owns the dealer rails). Cheapest defensible acquisition = <strong>NOT Google CPC</strong> (bid up by banks + content farms) but <strong>dealer-embed at independent moto lojas</strong> (neutral multi-FI simulator; pay the lojista the same embedded commission) + <strong>WhatsApp</strong> + <strong>used-moto long-tail SEO</strong>.</p>
+<h2>Brazil FI panel (supply side — deep &amp; open)</h2>
+<p>Launch panel spanning the full risk spectrum, all open programs:</p>
+<ol><li><strong>Omni</strong> — moto <em>specialist</em>, best for thin-file/subprime/autônomos (the true moto buyer). <strong>The anchor.</strong></li><li><strong>Banco PAN</strong> — explicit C/D/E focus, 20k-store lojista program.</li><li><strong>BV</strong> — broad mid-risk auto/moto book, simple online correspondent signup.</li><li><strong>Santander Financiamentos</strong> — prime, 100% LTV, "Seja um Afiliado" referral.</li><li><strong>Consórcio (Servopa / Rodobens)</strong> — for credit-fails (no-interest fallback).</li></ol>
+<p>Commission ~1.2–1.8% of financed (CMN cap 6%); consórcio recurring. <strong>Certification gate:</strong> FEBRABAN FBB-100/130 for CDC correspondents. <strong>Exclude:</strong> Crefisa (collateral refi only — wrong product), Mycon (direct-only), Banco Honda (captive). Creditas = easy API but prime-skewed (keep for higher scores).</p>
+<h2>Global analogs — the blueprint</h2>
+<table><thead><tr><th>Player</th><th>Region</th><th>Model</th><th>Lesson</th></tr></thead><tbody><tr><td><strong>Rupyy</strong> (CarDekho)</td><td>India</td><td>multi-lender (37+) + small NBFC; owns BikeDekho audience</td><td>capital-light scales (+88% YoY) — but 91% used-car; <strong>2W alone too thin</strong></td></tr><tr><td><strong>Paisabazaar</strong></td><td>India</td><td>pure aggregator, multi-lender</td><td>profitable at scale; <strong>RBI unsecured crackdown = regulatory tail risk</strong></td></tr><tr><td><strong>OTO Capital</strong></td><td>India</td><td>balance-sheet 2W</td><td><strong>bled cash (−₹30Cr)</strong> — don't hold the book</td></tr><tr><td><strong>Moxa (Astra)</strong></td><td>Indonesia</td><td>multi-lender super-app</td><td>works but walled-garden (one group)</td></tr><tr><td><strong>Watu / Mogo</strong></td><td>Africa</td><td>balance-sheet integrator</td><td><strong>Watu profit −85% on defaults</strong>; predatory-lending probes = reputation risk</td></tr><tr><td><strong>M-KOPA</strong></td><td>Kenya</td><td>integrator w/ walk-away/refund + Bolt partnership</td><td><strong>trust design + partner-for-demand</strong> is the counter-model</td></tr><tr><td><strong>MAX.ng</strong></td><td>Nigeria</td><td>own ride-app feeds drivers</td><td><strong>owning rider demand → near-zero churn / cheap CAC</strong></td></tr><tr><td><strong>CarsDirect</strong></td><td>US</td><td>pure subprime lead vendor (soft-pull pre-screen)</td><td>the clean capital-light front-end</td></tr><tr><td><strong>RouteOne / Dealertrack</strong></td><td>US</td><td>multi-lender origination rails</td><td>the matching-layer precedent (one app → many lenders)</td></tr><tr><td><strong>Capital One Auto Navigator</strong></td><td>US</td><td>soft-pull prequal marketplace</td><td><strong>closest single analog</strong> — demand-gen + soft-pull + matching UX</td></tr></tbody></table>
+<p><strong>Top lessons (the playbook):</strong></p>
+<ol><li><strong>Be the front-end + matching layer, never the balance sheet</strong> (US split lead-vendor/rails from risk; Watu/OTO/Voltz all bled holding the book).</li><li><strong>Soft-pull pre-qualification is the unlock</strong> (Capital One Navigator) — pre-screen, then fan one app across the FI panel (RouteOne mechanic).</li><li><strong>Attach a basket</strong> — 2W is the wedge; monetize insurance + refi + used + personal loans (Rupyy/Paisabazaar).</li><li><strong>Own/partner-for rider demand</strong> to crush CAC (MAX, M-KOPA×Bolt); don't buy cold leads.</li><li><strong>Trust/transparency = compliance moat</strong> (M-KOPA, not Watu).</li></ol>
+<h2>Bottom line</h2>
+<p>Brazil is the lane; the aggregator shape is validated (integration failed there); FI supply is panelable; the blueprint is precise (capital-light front-end + soft-pull pre-qual + multi-FI matching + attached cross-sell + dealer-embed acquisition + trust positioning). <strong>Remaining unknown = the same crux: can you acquire financeable moto buyers cheaply via dealer-embed/WhatsApp/used-SEO before Mottu pivots or a captive reacts?</strong> Now a concrete Phase-1/2 test, not an open mystery.</p>
+<h2>Caveats</h2>
+<p>Galgo "Brazil-absent" = no public evidence (confirm before betting). Competitor finance-product details (who does <em>purchase</em> vs <em>collateral</em>) are high-confidence; exact FI commission %s are market-norm/secondary. Global analog outcomes are press/secondary. Mottu-pivot risk is judgment.</p>
+<h2>Sources (top)</h2>
+<p>BR: Galgo 4-country footprint (latamfintech, latamlist); Banco PAN ~35% moto share (barte); Voltz collapse (neofeed, exame); Mottu (mottu.com.br); FinanZero/Juros Baixos (collateral-only); Webmotors/Mobiauto/iCarros bank-captive (seudinheiro); moto-finance growth (Garagem360, Agência Brasil); Omni moto specialist (omni.com.br/produtos/financiamento-moto). Global: Rupyy (Inc42), Paisabazaar (PB Fintech), OTO Capital (BusinessToday), Moxa/Astra, Watu (TechCabal −85%), M-KOPA, Tugende (Lendable), MAX.ng, CarsDirect special-finance, RouteOne, Capital One Auto Navigator.</p></div><footer><div class="wrap" style="padding:0"><b>Chinese-2W LatAm — research note.</b> Directional analysis from public sources; decision-support, not investment advice.</div></footer></div></body></html>
