@@ -1,0 +1,116 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Comparables teardown — Rupyy, FinanZero &amp; Capital One Auto Navigator</title><style>
+  :root{
+    --navy:#0f2747;--slate:#33425b;--ink:#1a2233;--mute:#6b7689;--line:#e3e8ef;--bg:#f6f8fb;--card:#fff;
+    --accent:#1f6feb;--accent2:#0a8f6a;--warn:#c0651a;--bad:#b3261e;--good:#0a8f6a;--chip:#eef3fb;
+    --shadow:0 1px 3px rgba(16,32,64,.07),0 6px 20px rgba(16,32,64,.06);
+  }
+  *{box-sizing:border-box}html{scroll-behavior:smooth}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.55;font-size:15.5px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+  header.masthead{background:linear-gradient(135deg,#0f2747,#1d3a63);color:#fff;padding:44px 0 36px}
+  .kicker{text-transform:uppercase;letter-spacing:.16em;font-size:12px;color:#9fc0ee;font-weight:700;margin-bottom:10px}
+  header h1{margin:0 0 8px;font-size:29px;line-height:1.18;font-weight:750;letter-spacing:-.01em}
+  header .sub{color:#cdd9ea;font-size:15px;max-width:760px}
+  header .meta{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+  .pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);color:#eaf1fb;padding:4px 11px;border-radius:999px;font-size:12.5px;font-weight:600}
+  nav.toc{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav.toc .wrap{display:flex;gap:4px;flex-wrap:wrap;padding-top:9px;padding-bottom:9px}
+  nav.toc a{font-size:12.5px;font-weight:600;color:var(--slate);text-decoration:none;padding:5px 10px;border-radius:7px}
+  nav.toc a:hover{background:var(--chip);color:var(--navy)}
+  section{padding:32px 0 8px}
+  h2{font-size:13px;text-transform:uppercase;letter-spacing:.13em;color:var(--accent);font-weight:800;margin:0 0 4px}
+  h2 + .h{font-size:23px;font-weight:730;margin:0 0 16px;letter-spacing:-.01em;color:var(--navy)}
+  h3{font-size:16.5px;font-weight:700;color:var(--navy);margin:22px 0 8px}
+  p{margin:10px 0}.lead{font-size:16px;color:var(--slate)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:20px 22px;box-shadow:var(--shadow);margin:16px 0}
+  .rec{border-left:5px solid var(--warn);background:linear-gradient(180deg,#fff8f0,#fff)}
+  .rec .tag{display:inline-block;background:var(--warn);color:#fff;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:6px;margin-bottom:10px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:15px 16px;box-shadow:var(--shadow)}
+  .kpi .n{font-size:24px;font-weight:780;color:var(--navy);letter-spacing:-.01em}
+  .kpi .l{font-size:12.5px;color:var(--mute);font-weight:600;margin-top:2px}
+  .kpi .d{font-size:12px;color:var(--slate);margin-top:6px}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.8px;background:var(--card);border:1px solid var(--line);border-radius:11px;overflow:hidden}
+  th,td{padding:9px 11px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:#f0f4f9;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--slate);font-weight:800}
+  tr:last-child td{border-bottom:none}
+  td.num{font-variant-numeric:tabular-nums;font-weight:650}
+  .b-good{color:var(--good);font-weight:700}.b-warn{color:var(--warn);font-weight:700}.b-bad{color:var(--bad);font-weight:700}
+  .badge{display:inline-block;font-size:11px;font-weight:800;padding:2px 8px;border-radius:999px}
+  .badge.go{background:#e3f6ee;color:#0a7a59}.badge.hold{background:#fdeede;color:#b06316}.badge.no{background:#fbe6e3;color:#a31f17}
+  ul.tight{margin:8px 0;padding-left:20px}ul.tight li{margin:5px 0;font-size:14px}
+  .cap{font-size:12px;color:var(--mute);margin-top:6px}.verdict{font-weight:750;color:var(--navy)}.src{font-size:12px;color:var(--mute)}
+  /* sensitivity bars */
+  .bars{margin:10px 0 4px}
+  .barrow{display:grid;grid-template-columns:64px 1fr 150px;align-items:center;gap:10px;margin:6px 0}
+  .barrow .lab{font-size:13px;font-weight:650;color:var(--slate)}
+  .track{background:#eef2f7;border-radius:6px;height:18px;position:relative;overflow:hidden}
+  .fill{height:100%;border-radius:6px}
+  .barrow .val{font-size:12.5px;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
+  /* staircase */
+  .stair{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:16px 0;align-items:end}
+  .step{background:var(--card);border:1px solid var(--line);border-bottom:4px solid var(--accent);border-radius:11px 11px 0 0;padding:15px 16px;box-shadow:var(--shadow)}
+  .step:nth-child(1){margin-top:48px;border-bottom-color:#0a8f6a}
+  .step:nth-child(2){margin-top:24px;border-bottom-color:#1f6feb}
+  .step:nth-child(3){margin-top:0;border-bottom-color:#5b3fb0}
+  .step .sn{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+  .step h4{margin:3px 0 6px;font-size:15px;color:var(--navy)}.step p{font-size:12.6px;margin:6px 0 0;color:var(--slate)}
+  .flag{background:#fff8f0;border:1px solid #f0dcc4;border-left:4px solid var(--warn);border-radius:9px;padding:13px 16px;margin:12px 0;font-size:13.6px}
+  .flag b{color:var(--warn)}
+  code{background:#eef2f7;border-radius:5px;padding:1px 5px;font-size:12.5px}
+  footer{margin-top:28px;padding:22px 0 48px;border-top:1px solid var(--line);color:var(--mute);font-size:12.5px}
+  @media(max-width:760px){.grid3,.grid2,.stair{grid-template-columns:1fr}.step{margin-top:0!important}}
+  .ctl{margin:0 0 13px}
+  .ctl label{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;font-weight:600;color:var(--slate);margin-bottom:5px}
+  .ctl label b{color:var(--navy);font-variant-numeric:tabular-nums;font-size:14px}
+  .ctl input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:5px;border-radius:5px;background:#dde5ef;outline:none}
+  .ctl input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:17px;height:17px;border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid #fff;box-shadow:0 1px 4px rgba(16,32,64,.25)}
+  .ctl input[type=range]::-moz-range-thumb{width:17px;height:17px;border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid #fff}
+  #calcCard .kpi .n{transition:color .15s}
+  @media print{body{background:#fff;font-size:11.5px}nav.toc{display:none}.card,.kpi,table,.step{box-shadow:none}
+    #calc{display:none}
+    header.masthead{background:#0f2747!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    section{padding:14px 0 4px;break-inside:avoid}.fill,.step,.kpi{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+  .chain{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:12px 0}
+  .chain .c{background:var(--chip);border:1px solid #d7e3f6;color:var(--navy);font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:8px}
+  .chain .c.bad{background:#fbe6e3;border-color:#f0ccc6;color:#a31f17}
+  .chain .ar{color:var(--mute);font-weight:800}
+  .linkrow{display:flex;justify-content:space-between;gap:12px;padding:10px 2px;border-bottom:1px solid var(--line);font-size:13.6px}
+  .linkrow:last-child{border:none}
+  .linkrow a{color:var(--accent);font-weight:700;text-decoration:none}
+  .linkrow .what{color:var(--slate)}
+
+  .kpi .d a, table td a, .flag a, p.cap a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(31,111,235,.35)}
+  .kpi .d a:hover, table td a:hover, .flag a:hover, p.cap a:hover{border-bottom-color:var(--accent)}
+.backlink{font-size:13px;font-weight:600;color:var(--accent);text-decoration:none}.md h1{font-size:24px;font-weight:740;color:var(--navy);margin:6px 0 14px}.md h2{font-size:19px;text-transform:none;color:var(--navy);font-weight:730;margin:26px 0 8px;border-top:1px solid var(--line);padding-top:18px}.md h3{font-size:15.5px;color:var(--navy);font-weight:700;margin:18px 0 6px}.md p{margin:10px 0}.md ul,.md ol{margin:8px 0;padding-left:22px}.md li{margin:5px 0;font-size:14.2px}.md code{background:#eef2f7;border-radius:5px;padding:1px 5px;font-size:12.5px}.md a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(31,111,235,.3)}.md hr{border:none;border-top:1px solid var(--line);margin:20px 0}.md blockquote{border-left:3px solid var(--accent);background:var(--chip);margin:12px 0;padding:8px 14px;border-radius:0 8px 8px 0;color:var(--slate)}</style></head><body><header class="masthead"><div class="wrap"><div class="kicker">Research note · Chinese-2W LatAm</div><h1>Comparables teardown — Rupyy, FinanZero &amp; Capital One Auto Navigator</h1><div class="sub">3-agent deep teardown (the closest model samples for a Brazil moto-loan front-end)</div><div class="meta"><span class="pill">2026-06-07</span><span class="pill">5-agent research</span></div></div></header><div class="wrap"><p style="margin-top:20px"><a class="backlink" href="index.html">← Back to the decision memo</a></p><div class="md"><h1>Comparables Teardown — the 3 closest models to copy</h1>
+<p>No exact twin exists (that's the gap). The build is a <strong>composite of three</strong>: <strong>Rupyy</strong> (the engine + acquisition), <strong>FinanZero</strong> (the Brazilian license + structure), <strong>Capital One Auto Navigator</strong> (the prequal UX). Take-rate / CAC are mostly <em>not disclosed</em> by any of them — flagged.</p>
+<h2>At a glance</h2>
+<table><thead><tr><th></th><th><strong>Rupyy</strong> (CarDekho, IN)</th><th><strong>FinanZero</strong> (BR)</th><th><strong>Cap One Auto Navigator</strong> (US)</th></tr></thead><tbody><tr><td>Model</td><td>Multi-lender marketplace + thin own-NBFC</td><td><strong>Pure broker, zero balance sheet</strong></td><td><strong>Single-lender</strong> (Cap One's own book)</td></tr><tr><td>Panel</td><td><strong>37+ lenders</strong> (25+ for 2W)</td><td><strong>~50–60 FIs</strong></td><td>1 (Capital One)</td></tr><tr><td>Monetization</td><td>commission/disbursal (~1–2.5%, est.) + insurance attach</td><td>success fee per closed loan (~2–8% BR norm, est.)</td><td>own loan interest</td></tr><tr><td>Acquisition</td><td><strong>dealer point-of-sale QR</strong> (digiQode) — the cheap high-intent channel</td><td><strong>SEO</strong> (5th most-searched credit brand in BR) + media-for-equity TV</td><td>soft-pull prequal + inventory browse</td></tr><tr><td>Moto/purchase?</td><td>2W flow exists but car-skewed (91% used-car)</td><td><strong>CDC moto-purchase already in funnel</strong>, but thin</td><td>auto only</td></tr><tr><td>Scale</td><td><strong>$2B ARR</strong>, ~15% used-car-loan share</td><td>R$900M facilitated, 31M DB, 3M visits/mo</td><td>13,000+ dealers; ~95% prequal→sale (one dealer)</td></tr><tr><td>The one lesson</td><td><strong>win buyers at the dealer POS, not via ads</strong></td><td><strong>correspondente bancário = capital-light unlock</strong></td><td><strong>soft-pull → real personalized installment</strong></td></tr></tbody></table>
+<h2>Rupyy (CarDekho) — the engine + acquisition</h2>
+<p><strong>Model:</strong> multi-lender loan-origination platform (deep API integration to <strong>37+ banks/NBFCs</strong>; 25+ on the 2W flow) earning a <strong>distributor commission per disbursal</strong> — capital-light, FI carries risk. A <em>thin</em> own-NBFC sleeve (CarDekho Financial Services) fills gaps + dealer floor-plan; not the core.</p>
+<p><strong>Acquisition (the key finding):</strong> despite owning CarDekho/BikeDekho's huge organic audience, Rupyy's <em>dominant, cheapest</em> channel is the <strong>in-dealership QR code</strong> (digiQode/digiPartner) at the <em>moment of purchase</em> — video-KYC + e-NACH + e-sign → <strong>sanction at POS in minutes</strong>, disbursal ≤48h. ~<strong>14,000 distributors, 1,500 cities, 95%+ of pincodes</strong>. CAC ≈ the dealer-partner relationship, not ad spend.</p>
+<p><strong>Scale:</strong> <strong>~$2B ARR (FY24)</strong>, <strong>~15% used-car-loan market share</strong> (largest distributor), ~₹16,000 Cr disbursed FY25, new-car financing +97% YoY. Heavily car-skewed (used-car = 91% of FY23 revenue); 2W is small/newer. CarDekho committed ~$100M into Rupyy.</p>
+<p><strong>Copy:</strong> (1) lead with <strong>dealer-POS QR</strong>, not ads; (2) capital-light brokered + thin NBFC for gaps only; (3) one application → broad panel via a <em>real multi-lender LOS</em> (the moat is the integration, not a lead form); (4) <strong>win one vertical deeply</strong> (moto) before fanning out — Rupyy owned used-car first; (5) compress to <strong>instant</strong> (digital KYC + e-mandate + e-sign at POS → Brazil equivalents: Open Finance, Pix automático, gov.br/ICP sign).</p>
+<h2>FinanZero — the Brazilian license + structure</h2>
+<p><strong>Model:</strong> <strong>pure broker / marketplace, zero balance sheet, zero credit risk.</strong> One consumer application → shopped across <strong>~50–60 partner FIs</strong> → <strong>up to 10 pre-approved offers in ~5 min</strong>, money in 48h. <strong>Soft-pull</strong> (only ID + address + income up front). Free to consumer, 100% digital. Approval rate <strong>~10%</strong> → top-funnel volume is everything (<strong>92% of apps start on mobile</strong>).</p>
+<p><strong>Regulatory unlock:</strong> operates as a <strong>correspondente bancário</strong> (Bacen Res. 3.954/11) — the legal vehicle that lets a non-bank intermediate credit and earn commission while the FI underwrites/disburses/holds the loan. <strong>This is the capital-light license to replicate.</strong></p>
+<p><strong>Products:</strong> personal/unsecured (core), vehicle-collateral refi, consignado, <strong>and vehicle-PURCHASE CDC</strong> — FinanZero explicitly markets CDC for <em>acquiring motorcycles</em>. So <strong>moto-purchase is already a node in the funnel — just thin and consumer-pull (no dealer channel).</strong> That's the white space.</p>
+<p><strong>Acquisition:</strong> <strong>SEO/content is the moat</strong> — FinanZero is the <strong>5th most-searched credit brand in Brazil</strong> (~3M visits/mo, ~1.5M apps/mo in 2022). Plus a <strong>$4M media-for-equity TV deal (4Equity)</strong> → ~25% lower effective CAC. (Exact R$ CAC not disclosed.)</p>
+<p><strong>Scale/funding:</strong> ~R$900M facilitated (2022, cumulative), 31M database, ~52 staff; founded 2016 (Swedes/Webrock), ~$27–33M raised, ~$67.8M valuation (2021); VEF, Dunross, 4Equity. <em>(Juros Baixos = same model, ~20–40 partners, pivoted to embedded-finance/CaaS API.)</em></p>
+<p><strong>Port to moto-purchase:</strong> (1) the <strong>correspondente license is the unlock</strong>, not a balance sheet; (2) CDC-moto is proven but thin in their consumer-pull funnel → <strong>dealer point-of-sale integration is the white space</strong>; (3) SEO is durable but slow → <strong>out-niche on moto intent</strong> ("financiamento de moto sem entrada"), don't fight generic "empréstimo"; (4) one-app → multiple soft-pull offers in 5 min is the conversion mechanic (need ~30+ FIs to be credible); (5) <strong>media-for-equity</strong> to buy TV/brand without cash CAC.</p>
+<h2>Capital One Auto Navigator — the prequal UX</h2>
+<p><strong>Model:</strong> <strong>single-lender</strong> (Capital One's own book) <strong>soft-pull prequal + inventory-browse</strong> marketplace across 13,000+ dealers. <em>Not</em> a multi-lender aggregator — note clearly.</p>
+<p><strong>The soft-pull mechanic (the thing to copy):</strong> a <strong>soft credit pull, no score impact</strong>; buyer enters thin data (name, address, DOB, <strong>stated</strong> income, employment); within minutes sees a <strong>real personalized APR / term / monthly payment</strong>, and flexes down-payment/trade-in/term with the payment recomputing live. <strong>Conditional, non-binding</strong> — confirmed at the hard pull at the dealer; offers expire ~30 days.</p>
+<p><strong>Funnel:</strong> prequal <em>first</em> (soft) → <strong>browse inventory with "your" monthly payment on every VIN</strong> → configure per car → take prequal to dealer → hard pull + paperwork at the store. Financing is pulled to the <em>top</em> of the funnel; the dealer becomes fulfillment. One dealer reported <strong>~95% of Cap-One-prequalified buyers leave with a car.</strong></p>
+<p><strong>Why it works:</strong> removes the hard-pull-before-shopping fear; anchors on a <em>real personalized payment</em> (affordability, not sticker price); pre-sorted high-intent leads raise dealer close rates (which funds the free-to-consumer model).</p>
+<p><strong>Copy / adapt for Brazil moto:</strong> (1) <strong>soft-pull-first, browse-second</strong> sequencing (in BR, Serasa/Boa Vista <em>consultas</em> don't ding scores like US hard pulls — the "no impact" promise is <em>easier</em> to keep); (2) show a <strong>real personalized installment</strong>, not a generic calculator; (3) <strong>thin-file won't translate</strong> — sub-bancarizado moto buyers need <strong>alternative-data prequal</strong> (telco, CadÚnico, <strong>PIX cash-flow</strong>, device, prior installments) or the funnel-top is empty; (4) keep prequal conditional but make verification <strong>lightweight</strong> (Open-Finance PIX/payroll pull) to shrink the prequal→approval gap; (5) <strong>reconsider single-lender</strong> → a <strong>multi-lender cascading waterfall</strong> (prime bank → consignado → fintech → consórcio fallback) salvages declines a single book rejects — approval rate matters far more in thin-file Brazil than in the US.</p>
+<h2>Synthesis — the Brazil moto blueprint (composite)</h2>
+<blockquote><strong>FinanZero's license + Rupyy's dealer-POS engine + Capital One's prequal UX — multi-lender, moto-first, in Brazil.</strong></blockquote>
+<ul><li><strong>Legal/structure:</strong> capital-light <strong>correspondente bancário</strong> broker (FinanZero) — no balance sheet, commission per disbursal.</li><li><strong>Credit core:</strong> <strong>multi-lender cascading waterfall</strong> (Rupyy's deep-LOS panel; the Omni/PAN/BV/Santander/consórcio set) with <strong>alternative-data soft-pull prequal</strong> for thin-file moto buyers (Cap One UX + BR alt-data).</li><li><strong>Acquisition:</strong> <strong>dealer-POS QR at independent moto lojas</strong> (Rupyy's cheap high-intent channel — the white space FinanZero never took) + <strong>moto-niche SEO</strong> + media-for-equity for brand. <em>Not</em> Google CPC.</li><li><strong>UX:</strong> soft-pull → <strong>"your R$X/month" on every bike</strong> → instant digital KYC/e-sign → sanction at POS.</li><li><strong>Edge vs Galgo:</strong> capital-light <strong>multi-FI</strong> (higher approval via waterfall + capital efficiency) vs Galgo's single balance sheet; defensible in <strong>Galgo-free Brazil</strong>.</li><li><strong>The crux it still rides on:</strong> can the <strong>dealer-POS + moto-SEO</strong> acquisition deliver financeable buyers cheaply — the one number Phase-1/2 must measure.</li></ul>
+<h2>Caveats</h2>
+<p>Take-rates and R$ CAC are <strong>not publicly disclosed</strong> by Rupyy or FinanZero (industry-norm inferences flagged). FinanZero scale figures are 2022 (no 2024–25 update found). Capital One's soft-pull doctrine is US-bureau-specific; the Brazil translation (alt-data) is the unproven adaptation. The ~95% prequal→sale is one dealer's anecdote.</p>
+<h2>Sources (top)</h2>
+<p>Rupyy: Inc42 deep-dive + $100M, Entrackr FY24, BW Disrupt FY25, Autocar Pro $2B ARR, Free Press Journal launch. FinanZero: TechCrunch $7M, PRNewswire Series B, Contxto 4Equity, FinanZero CDC/refi blog, Finsiders (Juros Baixos), Crunchbase. Capital One: how-auto-navigator-works, /prequalify, prequalified-vs-preapproved, WardsAuto, Navigator dealer page, car-shoppers-report.</p></div><footer><div class="wrap" style="padding:0"><b>Chinese-2W LatAm — research note.</b> Directional analysis from public sources; decision-support, not investment advice.</div></footer></div></body></html>
