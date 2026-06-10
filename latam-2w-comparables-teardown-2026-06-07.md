@@ -39,7 +39,7 @@ No exact twin exists (that's the gap). The build is a **composite of three**: **
 
 **Model:** **pure broker / marketplace, zero balance sheet, zero credit risk.** One consumer application → shopped across **~50–60 partner FIs** → **up to 10 pre-approved offers in ~5 min**, money in 48h. **Soft-pull** (only ID + address + income up front). Free to consumer, 100% digital. Approval rate **~10%** → top-funnel volume is everything (**92% of apps start on mobile**).
 
-**Regulatory unlock:** operates as a **correspondente bancário** (Bacen Res. 3.954/11) — the legal vehicle that lets a non-bank intermediate credit and earn commission while the FI underwrites/disburses/holds the loan. **This is the capital-light license to replicate.**
+**Regulatory unlock:** operates as a **correspondente bancário** (CMN Res. 4.935/2021, which replaced Res. 3.954/11) — the legal vehicle that lets a non-bank intermediate credit and earn commission while the FI underwrites/disburses/holds the loan. **This is the capital-light license to replicate.**
 
 **Products:** personal/unsecured (core), vehicle-collateral refi, consignado, **and vehicle-PURCHASE CDC** — FinanZero explicitly markets CDC for *acquiring motorcycles*. So **moto-purchase is already a node in the funnel — just thin and consumer-pull (no dealer channel).** That's the white space.
 

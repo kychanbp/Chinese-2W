@@ -25,7 +25,7 @@ related:
 
 **Competitive structure:** the true multi-lender marketplaces (FinanZero 70+ FIs, Juros Baixos 40+) do moto-as-*collateral* refi only, **not purchase**. The moto-*purchase* platforms (Mobiauto→PAN, Webmotors→Santander, iCarros→Itaú, NaPista→BV, Banco Honda captive) are all **single-bank captive** — none compares multiple FIs for the same bike. **Closest integrator threat = Mottu** (owns demand+credit+sale+insurance, but only for captive delivery riders on its own fleet — ~1 strategic pivot from going broad). **Banco PAN** = ~35% moto-finance share but pure FI (owns credit, dealer-dependent for demand; owns Mobiauto). Secondary risk: June-2026 BNDES delivery-rider credit line.
 
-**Market:** ~47% of Honda moto sales financed; moto financing +10–18% in 2025 while cars stalled (motos carry the whole auto-credit market); used motos > new (116k vs 46k financed units) and underserved.
+**Market:** Honda's finance arm captured 47% of its moto sales — but **~32pp consórcio + ~15pp Banco Honda CDC** (true loan penetration ~15%); moto financing +10–18% in 2025 while cars stalled (motos carry the whole auto-credit market); **new motos dominate financing (B3 Nov 2025: 116k new vs 46k used)** — used is the *underserved minority* (~28% of contracts). *(Corrected 2026-06-10: earlier version inverted the new/used split and conflated consórcio with loans.)*
 
 **The crux (unchanged):** the gap is on the **demand side**, not the matching tech (PAN owns the dealer rails). Cheapest defensible acquisition = **NOT Google CPC** (bid up by banks + content farms) but **dealer-embed at independent moto lojas** (neutral multi-FI simulator; pay the lojista the same embedded commission) + **WhatsApp** + **used-moto long-tail SEO**.
 

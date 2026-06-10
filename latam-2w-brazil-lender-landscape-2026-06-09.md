@@ -52,16 +52,16 @@ The panel candidates for the multi-FI waterfall, their specialization, and produ
 **EV-moto financing in Brazil is structurally penalized — finance, not demand, is the binding constraint:**
 - **No captive bank** for imported Chinese EV (Honda/Yamaha captives are ICE-own-brand).
 - **Residual/collateral risk:** a Voltz EVS depreciates ~**35% in 2 years**, the **used-EV market is incipient**, **battery replacement ~R$5k** (a big share of a used bike's value), service concentrated in capitals → lenders demand **higher down payments, shorter tenure, lower LTV**, and many simply won't lend.
-- **Voltz collapse** (recuperação judicial, **R$335M debt**, China import lead times 10→180 days) directly hit lender collateral confidence in Chinese EV.
+- **Voltz collapse** (recuperação judicial **Nov 2023**, **R$335M debt**, China import lead times 10→180 days) directly hit lender collateral confidence in Chinese EV.
 - **Who DOES finance EV motos:** **Omni** (Watts/Voltz/Shineray — subprime), **Santander** (Voltz line ~0.99%/mo but **50% down, only 12×**), Eco Motors (dealer-tied, 60×), VurBee/Neon (48×, score ≥450), **Sicredi** green line, **BB Crédito Mobilidade**. A *much shorter* panel than ICE.
-- **The wildcard — government subsidy (Move Brasil, MP 1.360/2026, R$30bn BNDES):** the *car* track (**Move Aplicativos**) is live (11.5–12.6%/yr, up to **72 mo**, 6-mo grace, R$150k cap, electric/hybrid/ethanol). A **Move Motos** track for delivery riders was announced June 2026 — **terms pending**. If it lands with car-like terms, it collapses the EV cost gap and is **the line to plug into**.
+- **The wildcard — government subsidy (Move Brasil):** the **R$30bn BNDES car/taxi track is MP 1.362/2026** (Move Aplicativos: 11.5–12.6%/yr, up to **72 mo**, 6-mo grace, R$150k cap, electric/hybrid/ethanol); MP 1.360/2026 is the separate mototáxi/motofrete CTB-rules MP. The **Move Motos** track's terms published June 2026: **~R$4bn**, ~12.6%/yr, **~R$20k/CPF cap** (~200k riders), contracting from **19 Jun 2026** — a real line to plug into, but 7.5× smaller than the car headline. *(Corrected 2026-06-10 — earlier version conflated the MP numbers and implied the R$30bn applied to motos.)*
 
 **Strategic implication (honest):** the capital-light multi-FI aggregator thesis is **stronger for ICE than for EV.** ICE motos have a *deep, open* lender panel (Omni/PAN/BV/Santander/consórcio); EV motos have a *thin, penalized* one + residual risk + no captive. So **riding the China-EV wave makes the financing harder, not easier** — and pushes toward either (a) **waiting to plug into Move Motos** when its terms publish, or (b) a **capital-heavier residual-absorbing model** (Mottu-style fleet + buy-back/battery guarantee) — which diverges from the lean aggregator. **Recommendation: launch ICE-first (where the aggregator works), keep EV as an option gated on Move Motos.**
 
 ## Caveats
 
-Rates are teaser-vs-typical (banks 403 their pages; exact CET in-app only); negativado/used reality is higher. "Sem entrada" is approval-conditional. EV terms and the Move Motos track are early/pending.
+Rates are teaser-vs-typical (banks 403 their pages; exact CET in-app only); negativado/used reality is higher. "Sem entrada" is approval-conditional. EV terms are early; Move Motos terms published Jun 2026 (see above).
 
 ## Sources (top)
 
-PAN (bancopan blog), BV (bv.com.br, garagem360), Santander (querofinanciar, santander EV/Voltz page), Bradesco, Itaú; Omni (omni.com.br/produtos/financiamento-moto), C6, BMG, Daycoval; Banco Honda / Banco Yamaha; consórcio (Mycon/Servopa/Rodobens/ABAC via Motociclismo); EV (Eco Motors, Sicredi, BB Mobilidade); Move Brasil (Casa Civil MP 1.360/2026, Agência Brasil); Voltz collapse (NeoFeed).
+PAN (bancopan blog), BV (bv.com.br, garagem360), Santander (querofinanciar, santander EV/Voltz page), Bradesco, Itaú; Omni (omni.com.br/produtos/financiamento-moto), C6, BMG, Daycoval; Banco Honda / Banco Yamaha; consórcio (Mycon/Servopa/Rodobens/ABAC via Motociclismo); EV (Eco Motors, Sicredi, BB Mobilidade); Move Brasil (Casa Civil MP 1.362/2026 cars / Move Motos R$4bn line, Agência Brasil); Voltz collapse (NeoFeed).

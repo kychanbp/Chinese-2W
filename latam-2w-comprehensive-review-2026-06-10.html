@@ -1,0 +1,104 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Comprehensive re-evaluation — data, logic, claims &amp; conclusions of the Brazil moto-finance aggregator research</title><style>
+  :root{
+    --navy:#0f2747;--slate:#33425b;--ink:#1a2233;--mute:#6b7689;--line:#e3e8ef;--bg:#f6f8fb;--card:#fff;
+    --accent:#1f6feb;--accent2:#0a8f6a;--warn:#c0651a;--bad:#b3261e;--good:#0a8f6a;--chip:#eef3fb;
+    --shadow:0 1px 3px rgba(16,32,64,.07),0 6px 20px rgba(16,32,64,.06);
+  }
+  *{box-sizing:border-box}html{scroll-behavior:smooth}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.55;font-size:15.5px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+  header.masthead{background:linear-gradient(135deg,#0f2747,#1d3a63);color:#fff;padding:44px 0 36px}
+  .kicker{text-transform:uppercase;letter-spacing:.16em;font-size:12px;color:#9fc0ee;font-weight:700;margin-bottom:10px}
+  header h1{margin:0 0 8px;font-size:29px;line-height:1.18;font-weight:750;letter-spacing:-.01em}
+  header .sub{color:#cdd9ea;font-size:15px;max-width:760px}
+  header .meta{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+  .pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);color:#eaf1fb;padding:4px 11px;border-radius:999px;font-size:12.5px;font-weight:600}
+  nav.toc{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav.toc .wrap{display:flex;gap:4px;flex-wrap:wrap;padding-top:9px;padding-bottom:9px}
+  nav.toc a{font-size:12.5px;font-weight:600;color:var(--slate);text-decoration:none;padding:5px 10px;border-radius:7px}
+  nav.toc a:hover{background:var(--chip);color:var(--navy)}
+  section{padding:32px 0 8px}
+  h2{font-size:13px;text-transform:uppercase;letter-spacing:.13em;color:var(--accent);font-weight:800;margin:0 0 4px}
+  h2 + .h{font-size:23px;font-weight:730;margin:0 0 16px;letter-spacing:-.01em;color:var(--navy)}
+  h3{font-size:16.5px;font-weight:700;color:var(--navy);margin:22px 0 8px}
+  p{margin:10px 0}.lead{font-size:16px;color:var(--slate)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:20px 22px;box-shadow:var(--shadow);margin:16px 0}
+  .rec{border-left:5px solid var(--warn);background:linear-gradient(180deg,#fff8f0,#fff)}
+  .rec .tag{display:inline-block;background:var(--warn);color:#fff;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:6px;margin-bottom:10px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:15px 16px;box-shadow:var(--shadow)}
+  .kpi .n{font-size:24px;font-weight:780;color:var(--navy);letter-spacing:-.01em}
+  .kpi .l{font-size:12.5px;color:var(--mute);font-weight:600;margin-top:2px}
+  .kpi .d{font-size:12px;color:var(--slate);margin-top:6px}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.8px;background:var(--card);border:1px solid var(--line);border-radius:11px;overflow:hidden}
+  th,td{padding:9px 11px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:#f0f4f9;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--slate);font-weight:800}
+  tr:last-child td{border-bottom:none}
+  td.num{font-variant-numeric:tabular-nums;font-weight:650}
+  .b-good{color:var(--good);font-weight:700}.b-warn{color:var(--warn);font-weight:700}.b-bad{color:var(--bad);font-weight:700}
+  .badge{display:inline-block;font-size:11px;font-weight:800;padding:2px 8px;border-radius:999px}
+  .badge.go{background:#e3f6ee;color:#0a7a59}.badge.hold{background:#fdeede;color:#b06316}.badge.no{background:#fbe6e3;color:#a31f17}
+  ul.tight{margin:8px 0;padding-left:20px}ul.tight li{margin:5px 0;font-size:14px}
+  .cap{font-size:12px;color:var(--mute);margin-top:6px}.verdict{font-weight:750;color:var(--navy)}.src{font-size:12px;color:var(--mute)}
+  /* sensitivity bars */
+  .bars{margin:10px 0 4px}
+  .barrow{display:grid;grid-template-columns:64px 1fr 150px;align-items:center;gap:10px;margin:6px 0}
+  .barrow .lab{font-size:13px;font-weight:650;color:var(--slate)}
+  .track{background:#eef2f7;border-radius:6px;height:18px;position:relative;overflow:hidden}
+  .fill{height:100%;border-radius:6px}
+  .barrow .val{font-size:12.5px;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
+  /* staircase */
+  .stair{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:16px 0;align-items:end}
+  .step{background:var(--card);border:1px solid var(--line);border-bottom:4px solid var(--accent);border-radius:11px 11px 0 0;padding:15px 16px;box-shadow:var(--shadow)}
+  .step:nth-child(1){margin-top:48px;border-bottom-color:#0a8f6a}
+  .step:nth-child(2){margin-top:24px;border-bottom-color:#1f6feb}
+  .step:nth-child(3){margin-top:0;border-bottom-color:#5b3fb0}
+  .step .sn{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+  .step h4{margin:3px 0 6px;font-size:15px;color:var(--navy)}.step p{font-size:12.6px;margin:6px 0 0;color:var(--slate)}
+  .flag{background:#fff8f0;border:1px solid #f0dcc4;border-left:4px solid var(--warn);border-radius:9px;padding:13px 16px;margin:12px 0;font-size:13.6px}
+  .flag b{color:var(--warn)}
+  code{background:#eef2f7;border-radius:5px;padding:1px 5px;font-size:12.5px}
+  footer{margin-top:28px;padding:22px 0 48px;border-top:1px solid var(--line);color:var(--mute);font-size:12.5px}
+  @media(max-width:760px){.grid3,.grid2,.stair{grid-template-columns:1fr}.step{margin-top:0!important}}
+  .ctl{margin:0 0 13px}
+  .ctl label{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;font-weight:600;color:var(--slate);margin-bottom:5px}
+  .ctl label b{color:var(--navy);font-variant-numeric:tabular-nums;font-size:14px}
+  .ctl input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:5px;border-radius:5px;background:#dde5ef;outline:none}
+  .ctl input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:17px;height:17px;border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid #fff;box-shadow:0 1px 4px rgba(16,32,64,.25)}
+  .ctl input[type=range]::-moz-range-thumb{width:17px;height:17px;border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid #fff}
+  #calcCard .kpi .n{transition:color .15s}
+  @media print{body{background:#fff;font-size:11.5px}nav.toc{display:none}.card,.kpi,table,.step{box-shadow:none}
+    #calc{display:none}
+    header.masthead{background:#0f2747!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    section{padding:14px 0 4px;break-inside:avoid}.fill,.step,.kpi{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+  .chain{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:12px 0}
+  .chain .c{background:var(--chip);border:1px solid #d7e3f6;color:var(--navy);font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:8px}
+  .chain .c.bad{background:#fbe6e3;border-color:#f0ccc6;color:#a31f17}
+  .chain .ar{color:var(--mute);font-weight:800}
+  .linkrow{display:flex;justify-content:space-between;gap:12px;padding:10px 2px;border-bottom:1px solid var(--line);font-size:13.6px}
+  .linkrow:last-child{border:none}
+  .linkrow a{color:var(--accent);font-weight:700;text-decoration:none}
+  .linkrow .what{color:var(--slate)}
+
+  .kpi .d a, table td a, .flag a, p.cap a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(31,111,235,.35)}
+  .kpi .d a:hover, table td a:hover, .flag a:hover, p.cap a:hover{border-bottom-color:var(--accent)}
+.backlink{font-size:13px;font-weight:600;color:var(--accent);text-decoration:none}.md h1{font-size:24px;font-weight:740;color:var(--navy);margin:6px 0 14px}.md h2{font-size:19px;text-transform:none;color:var(--navy);font-weight:730;margin:26px 0 8px;border-top:1px solid var(--line);padding-top:18px}.md h3{font-size:15.5px;color:var(--navy);font-weight:700;margin:18px 0 6px}.md p{margin:10px 0}.md ul,.md ol{margin:8px 0;padding-left:22px}.md li{margin:5px 0;font-size:14.2px}.md code{background:#eef2f7;border-radius:5px;padding:1px 5px;font-size:12.5px}.md a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(31,111,235,.3)}.md hr{border:none;border-top:1px solid var(--line);margin:20px 0}.md blockquote{border-left:3px solid var(--accent);background:var(--chip);margin:12px 0;padding:8px 14px;border-radius:0 8px 8px 0;color:var(--slate)}</style></head><body><header class="masthead"><div class="wrap"><div class="kicker">Research note · Chinese-2W LatAm</div><h1>Comprehensive re-evaluation — data, logic, claims &amp; conclusions of the Brazil moto-finance aggregator research</h1><div class="sub">4 independent reviewers (24-figure fact-check w/ primary sources · adversarial logic audit · conclusions stress-test · information-value/gap audit)</div><div class="meta"><span class="pill">2026-06-10</span><span class="pill">5-agent research</span></div></div></header><div class="wrap"><p style="margin-top:20px"><a class="backlink" href="index.html">← Back to the decision memo</a></p><div class="md"><h1>Comprehensive Re-evaluation — 2026-06-10</h1>
+<p>Four independent reviewers re-audited the entire corpus (site + 10 reports + wiki): every load-bearing figure against primary sources, the logic of each claim, and whether the conclusions follow. <strong>Headline: the market-structure spine verifies cleanly, but three load-bearing figures were wrong in the thesis-flattering direction, the verdict overstated ("validated on paper" → "structure validated; economics unmodeled"), and the Phase-1 design needed a Gate-0 + desk-sprint redesign.</strong> All corrections applied to the site and wiki same-day.</p>
+<h2>1 · Fact-check (24 figures, primary-source verified)</h2>
+<h3>Wrong / misleading — fixed on the site</h3>
+<table><thead><tr><th>#</th><th>Figure</th><th>Verdict</th><th>Correction</th></tr></thead><tbody><tr><td>1</td><td>"~47% of Honda sales financed"</td><td><strong>MISLEADING</strong></td><td>Honda Serviços Financeiros = 47% of Honda's 2025 sales, but <strong>~32pp consórcio + ~15pp Banco Honda CDC</strong>. True loan penetration ~15% — the CDC pool the aggregator monetizes is ~3× smaller than the headline implied.</td></tr><tr><td>2</td><td>"Used motos lead financing volume (116k vs 46k)"</td><td><strong>WRONG — inverted</strong></td><td>B3/SNG Nov 2025: <strong>116k NEW vs 46k used</strong>. New out-finances used ~2.5:1; used is the <em>underserved minority</em> (~28% of contracts) — still Omni's white space, but the volume claim was backwards.</td></tr><tr><td>3</td><td>Move Motos = "R$30bn BNDES, terms pending"</td><td><strong>WRONG MP + STALE</strong></td><td>R$30bn = the <strong>car/taxi</strong> track (<strong>MP 1.362/2026</strong>; MP 1.360 is the mototáxi CTB rules). Move Motos terms now out: <strong>~R$4bn</strong>, ~12.6%/yr, ~R$20k/CPF, contracting from 19 Jun 2026. The EV gate is a R$4bn program, 7.5× smaller than implied.</td></tr><tr><td>4</td><td>Mexico "35% China tariff"</td><td><strong>WRONG (over-correction)</strong></td><td>Final DOF decree (Dec 2025, eff. Jan 2026): <strong>motorcycles 25%</strong>; 35% was the Sep-2025 <em>proposal</em>.</td></tr><tr><td>5</td><td>"China 2W exports $14.5B / 36.75M units"</td><td><strong>MISLEADING (mixed universes)</strong></td><td>$14.5B (+25.4%) = HS-8711 motorcycles ✓; <strong>36.75M units blends e-bikes</strong> (moto-only ≈ 11–13M). Decoupled on the page.</td></tr><tr><td>6</td><td>Galgo funding "$72–153M"</td><td><strong>WRONG range</strong></td><td><strong>~$83.8M total</strong> equity (PitchBook); $40.8M Series B (2023).</td></tr><tr><td>7</td><td>Correspondente rule "Res. 3.954/11"</td><td><strong>STALE</strong></td><td><strong>CMN Res. 4.935/2021</strong> (in force Feb 2022) — same mechanism + certification requirement.</td></tr></tbody></table>
+<h3>Verified correct (the spine holds)</h3>
+<p>Brazil 2,197,308 motos 2025 (+17.1%, Fenabrave) · Honda 66.8% · Italika ~65–70% MX · moto financing +10–18% 2025 vs cars stalled (B3) · consórcio 30.8% of sales (ABAC) · PAN ~33–35% (company-claimed) · <strong>Galgo MX/CO/CL/PE, no Brazil entity as of Jun 2026</strong> · Omni ~3.9% a.m. negativado · Voltz RJ Nov 2023, R$335M · Meta AI agent global 3 Jun 2026 · FinanZero ~10% approval (2021 vintage, flagged).</p>
+<h2>2 · Logic &amp; claims audit (adversarial) — top findings</h2>
+<ol><li><strong>KILL-RISK — the aggregator's P&amp;L was never modeled.</strong> Every quantitative model in the corpus prices the <em>abandoned lead-gen</em> version (verdict: −$0.10/lead). The live model's revenue ≈ <strong>R$180–240 (~$33–44) per funded ~R$12k loan</strong> (1.5–2% commission); at FinanZero-like ~10% approval, cost-per-funded-buyer plausibly exceeds it. "Validated on paper" rested on a P&amp;L that doesn't exist.</li><li><strong>KILL-RISK — "waterfall out-approves" is undercut by its own comparable.</strong> FinanZero runs the exact mechanic with 50–60 FIs at <strong>~10% approval</strong> — a panel mostly re-shops the same bureau-negative buyer to lenders with overlapping policies. Consórcio "approvals" deliver no bike (until contemplated) and shouldn't count.</li><li><strong>KILL-RISK — every "gap" has an adverse-selection explanation the corpus itself derived, then dropped:</strong> tiny tickets + same underwriting cost + worse collateral = negative ROI for incumbents with <em>lower</em> costs. MercadoLivre excluding motos and FinanZero keeping moto CDC thin despite 70+ FI partners are revealed-preference evidence the lane may be economically bad, not just open.</li><li><strong>Contradiction:</strong> lane report says FinanZero does moto-<em>collateral</em> refi only; teardown says it markets moto-<em>purchase</em> CDC. Load-bearing for "no one does this" — if FinanZero already runs multi-FI moto-purchase CDC, the white space shrinks to UX + dealer channel (copyable in a quarter). Resolve from the live product.</li><li><strong>The single-bank-loja premise is asserted, not evidenced</strong> — PAN runs a 20k-store lojista program; Omni's distribution <em>is</em> lojista partnerships; the dealer's cheapest counter is signing two more correspondente contracts itself. Make "ICP lojas are single-bank with material rejection piles" an R2 <em>measurement</em>.</li><li><strong>Unverified contractual question:</strong> will a lender book purchase-money CDC where the correspondente is a <em>non-selling third party</em> at someone else's POS? (Multi-FI brokering per se is settled — Creditas is simultaneously correspondente for Santander/Itaú/Porto/Bradesco.)</li><li><strong>Affordability, not approval, may be the bottleneck:</strong> Omni's negativado terms are ~3.9% a.m. (≈58%+/yr CET) with 20–50% down — approvals can die on the entrada. Track approved-but-can't-fund separately.</li><li><strong>"One empirical crux" was false framing</strong> — acquisition, thin-file prequal, lender onboarding, dealer cooperation, approved→funded conversion. Masthead now matches candor.</li><li><strong>"TikTok = owned-audience moat" had zero evidence</strong> (no CAC data anywhere in the corpus) — downgraded to unproven hypothesis; <strong>paid traffic is already ruled out by arithmetic</strong> (cost/funded must beat ~$40).</li><li><strong>Voltz miscast:</strong> an EV-hardware/balance-sheet failure, not evidence "integration failed in Brazil" — meanwhile Mottu, an integrated operator, is succeeding there.</li></ol>
+<h2>3 · Conclusions stress-test — verdict: SOUND-WITH-CHANGES</h2>
+<p>Direction (cheap kill-gated test, ICE-first, dealer-QR primary) follows from the evidence; the Phase-1 as written would have burned budget without a decidable answer:</p>
+<ul><li><strong>R1 "3 lenders live by wk 3" was fantasy</strong> — FBB-130 cert is days (~R$150), but per-bank credenciamento of a no-storefront broker is weeks–months (PAN has closed lojista intake before). Fast path: promotora/master-correspondente, or rent supply via Juros Baixos CaaS / FinanZero partnership.</li><li><strong>Several "field tests" are phone calls:</strong> commission % (CMN cap 6%; typical 1.2–1.8%), clawback terms, multi-FI permission, third-party-at-POS — all week-1 desk reads from the contracts.</li><li><strong>Kill-gates had regressed to measurements.</strong> Restored thresholds: n≥100 dealer-rejected applicants · panel approval ≥25% · approved→funded ≥50% · cost/funded &lt; commission · ≥20 funded loans, commission cash received.</li><li><strong>R2 was underpowered:</strong> 3–5 lojas ≈ 25–40 rejects in the window → expanded to 8–12 lojas, concierge/manual waterfall (build nothing).</li><li><strong>Missing Gate 0:</strong> a named PT-BR local operator + CNPJ path — every Phase-1 task is in Portuguese on the ground. No operator → no-go regardless of economics.</li><li><strong>Scale arithmetic:</strong> the rejected-buyer wedge ≈ R$500–750/loja/mo → a ~$500k/yr business needs <strong>150–300+ lojas</strong> or insurance attach / whole-flow capture (the Rupyy "2W too thin alone" lesson). The 90-day test reads unit economics only, not the scaling question.</li><li><strong>Honest envelope: ~120–130 days, $4–6k with a partner CNPJ ($8–15k without).</strong></li></ul>
+<h2>4 · Information-value gaps (next analyses, ranked)</h2>
+<ol><li><strong>Aggregator-native unit economics</strong> (the one-day analysis that should precede any spend): contribution/funded-loan = commission% × ticket − CAC/funded − ops; breakeven volume; commission%-×-CAC frontier.</li><li><strong>Origination-revenue TAM:</strong> ~2.2M units × ~32% financed × ~R$12k ≈ <strong>R$8–9B/yr</strong> Brazil moto-CDC origination; × commission% = revenue pool; SAM = challenger-ICE/thin-file/used slice (plausibly 5–15%).</li><li><strong>New competitive signal: TikTok itself applied to BACEN for IP + SCD (lending) licenses in Brazil</strong> — the acquisition channel's owner is becoming a lender. Profile the timeline.</li><li>Regulatory clock: CMN 4.935/2021 sequence, FEBRABAN cert, LGPD multi-FI consent design.</li><li>Per-borrower LTV (insurance attach, refi cadence) vs CAC — broker-thin vs compounding.</li></ol>
+<h2>5 · What was changed on the site (same-day)</h2>
+<p>Masthead/verdict recalibrated ("structure validated — model the P&amp;L, run the test") · 47% Honda claim decomposed · used/new financing inversion fixed · Move Motos gate corrected (R$4bn, MP 1.362 for cars) · Mexico tariff 25% · export units decoupled from e-bikes · alt-data prequal downgraded to phase-2 R&amp;D + entrada failure-mode flagged · Candor gained the P&amp;L-gap and adverse-selection bullets · Test gained Gate 0, Phase-0 desk sprint, realistic R1 timeline, numeric kill-gates, 8–12-loja R2, $4–6k/120-day envelope · evidence index gained this review.</p>
+<p><strong>Bottom line.</strong> The thesis survives the audit <em>as a structure</em> — Galgo-free Brazil, open correspondente supply, the composite blueprint all hold. It does not yet survive as a <em>business</em>: the P&amp;L is unmodeled, the approval-uplift edge is contradicted by the flagship comparable, and the white space has a credible adverse-selection explanation. The corrected sequence: model the aggregator P&amp;L (1 day, $0) → Gate 0 (local operator) → Phase-0 contract/phone sprint (2 wks, ~$200, can kill it) → only then the field test.</p></div><footer><div class="wrap" style="padding:0"><b>Chinese-2W LatAm — research note.</b> Directional analysis from public sources; decision-support, not investment advice.</div></footer></div></body></html>
