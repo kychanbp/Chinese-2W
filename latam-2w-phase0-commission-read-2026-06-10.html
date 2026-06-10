@@ -1,0 +1,108 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Phase-0 commission-table read — Omni/PAN/BV correspondente terms, industry norms, legal chassis</title><style>
+  :root{
+    --navy:#0f2747;--slate:#33425b;--ink:#1a2233;--mute:#6b7689;--line:#e3e8ef;--bg:#f6f8fb;--card:#fff;
+    --accent:#1f6feb;--accent2:#0a8f6a;--warn:#c0651a;--bad:#b3261e;--good:#0a8f6a;--chip:#eef3fb;
+    --shadow:0 1px 3px rgba(16,32,64,.07),0 6px 20px rgba(16,32,64,.06);
+  }
+  *{box-sizing:border-box}html{scroll-behavior:smooth}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.55;font-size:15.5px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+  header.masthead{background:linear-gradient(135deg,#0f2747,#1d3a63);color:#fff;padding:44px 0 36px}
+  .kicker{text-transform:uppercase;letter-spacing:.16em;font-size:12px;color:#9fc0ee;font-weight:700;margin-bottom:10px}
+  header h1{margin:0 0 8px;font-size:29px;line-height:1.18;font-weight:750;letter-spacing:-.01em}
+  header .sub{color:#cdd9ea;font-size:15px;max-width:760px}
+  header .meta{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+  .pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);color:#eaf1fb;padding:4px 11px;border-radius:999px;font-size:12.5px;font-weight:600}
+  nav.toc{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav.toc .wrap{display:flex;gap:4px;flex-wrap:wrap;padding-top:9px;padding-bottom:9px}
+  nav.toc a{font-size:12.5px;font-weight:600;color:var(--slate);text-decoration:none;padding:5px 10px;border-radius:7px}
+  nav.toc a:hover{background:var(--chip);color:var(--navy)}
+  section{padding:32px 0 8px}
+  h2{font-size:13px;text-transform:uppercase;letter-spacing:.13em;color:var(--accent);font-weight:800;margin:0 0 4px}
+  h2 + .h{font-size:23px;font-weight:730;margin:0 0 16px;letter-spacing:-.01em;color:var(--navy)}
+  h3{font-size:16.5px;font-weight:700;color:var(--navy);margin:22px 0 8px}
+  p{margin:10px 0}.lead{font-size:16px;color:var(--slate)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:20px 22px;box-shadow:var(--shadow);margin:16px 0}
+  .rec{border-left:5px solid var(--warn);background:linear-gradient(180deg,#fff8f0,#fff)}
+  .rec .tag{display:inline-block;background:var(--warn);color:#fff;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:6px;margin-bottom:10px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:15px 16px;box-shadow:var(--shadow)}
+  .kpi .n{font-size:24px;font-weight:780;color:var(--navy);letter-spacing:-.01em}
+  .kpi .l{font-size:12.5px;color:var(--mute);font-weight:600;margin-top:2px}
+  .kpi .d{font-size:12px;color:var(--slate);margin-top:6px}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.8px;background:var(--card);border:1px solid var(--line);border-radius:11px;overflow:hidden}
+  th,td{padding:9px 11px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:#f0f4f9;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--slate);font-weight:800}
+  tr:last-child td{border-bottom:none}
+  td.num{font-variant-numeric:tabular-nums;font-weight:650}
+  .b-good{color:var(--good);font-weight:700}.b-warn{color:var(--warn);font-weight:700}.b-bad{color:var(--bad);font-weight:700}
+  .badge{display:inline-block;font-size:11px;font-weight:800;padding:2px 8px;border-radius:999px}
+  .badge.go{background:#e3f6ee;color:#0a7a59}.badge.hold{background:#fdeede;color:#b06316}.badge.no{background:#fbe6e3;color:#a31f17}
+  ul.tight{margin:8px 0;padding-left:20px}ul.tight li{margin:5px 0;font-size:14px}
+  .cap{font-size:12px;color:var(--mute);margin-top:6px}.verdict{font-weight:750;color:var(--navy)}.src{font-size:12px;color:var(--mute)}
+  /* sensitivity bars */
+  .bars{margin:10px 0 4px}
+  .barrow{display:grid;grid-template-columns:64px 1fr 150px;align-items:center;gap:10px;margin:6px 0}
+  .barrow .lab{font-size:13px;font-weight:650;color:var(--slate)}
+  .track{background:#eef2f7;border-radius:6px;height:18px;position:relative;overflow:hidden}
+  .fill{height:100%;border-radius:6px}
+  .barrow .val{font-size:12.5px;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
+  /* staircase */
+  .stair{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:16px 0;align-items:end}
+  .step{background:var(--card);border:1px solid var(--line);border-bottom:4px solid var(--accent);border-radius:11px 11px 0 0;padding:15px 16px;box-shadow:var(--shadow)}
+  .step:nth-child(1){margin-top:48px;border-bottom-color:#0a8f6a}
+  .step:nth-child(2){margin-top:24px;border-bottom-color:#1f6feb}
+  .step:nth-child(3){margin-top:0;border-bottom-color:#5b3fb0}
+  .step .sn{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+  .step h4{margin:3px 0 6px;font-size:15px;color:var(--navy)}.step p{font-size:12.6px;margin:6px 0 0;color:var(--slate)}
+  .flag{background:#fff8f0;border:1px solid #f0dcc4;border-left:4px solid var(--warn);border-radius:9px;padding:13px 16px;margin:12px 0;font-size:13.6px}
+  .flag b{color:var(--warn)}
+  code{background:#eef2f7;border-radius:5px;padding:1px 5px;font-size:12.5px}
+  footer{margin-top:28px;padding:22px 0 48px;border-top:1px solid var(--line);color:var(--mute);font-size:12.5px}
+  @media(max-width:760px){.grid3,.grid2,.stair{grid-template-columns:1fr}.step{margin-top:0!important}}
+  .ctl{margin:0 0 13px}
+  .ctl label{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;font-weight:600;color:var(--slate);margin-bottom:5px}
+  .ctl label b{color:var(--navy);font-variant-numeric:tabular-nums;font-size:14px}
+  .ctl input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:5px;border-radius:5px;background:#dde5ef;outline:none}
+  .ctl input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:17px;height:17px;border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid #fff;box-shadow:0 1px 4px rgba(16,32,64,.25)}
+  .ctl input[type=range]::-moz-range-thumb{width:17px;height:17px;border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid #fff}
+  #calcCard .kpi .n{transition:color .15s}
+  @media print{body{background:#fff;font-size:11.5px}nav.toc{display:none}.card,.kpi,table,.step{box-shadow:none}
+    #calc{display:none}
+    header.masthead{background:#0f2747!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    section{padding:14px 0 4px;break-inside:avoid}.fill,.step,.kpi{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+  .chain{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:12px 0}
+  .chain .c{background:var(--chip);border:1px solid #d7e3f6;color:var(--navy);font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:8px}
+  .chain .c.bad{background:#fbe6e3;border-color:#f0ccc6;color:#a31f17}
+  .chain .ar{color:var(--mute);font-weight:800}
+  .linkrow{display:flex;justify-content:space-between;gap:12px;padding:10px 2px;border-bottom:1px solid var(--line);font-size:13.6px}
+  .linkrow:last-child{border:none}
+  .linkrow a{color:var(--accent);font-weight:700;text-decoration:none}
+  .linkrow .what{color:var(--slate)}
+
+  .kpi .d a, table td a, .flag a, p.cap a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(31,111,235,.35)}
+  .kpi .d a:hover, table td a:hover, .flag a:hover, p.cap a:hover{border-bottom-color:var(--accent)}
+.backlink{font-size:13px;font-weight:600;color:var(--accent);text-decoration:none}.md h1{font-size:24px;font-weight:740;color:var(--navy);margin:6px 0 14px}.md h2{font-size:19px;text-transform:none;color:var(--navy);font-weight:730;margin:26px 0 8px;border-top:1px solid var(--line);padding-top:18px}.md h3{font-size:15.5px;color:var(--navy);font-weight:700;margin:18px 0 6px}.md p{margin:10px 0}.md ul,.md ol{margin:8px 0;padding-left:22px}.md li{margin:5px 0;font-size:14.2px}.md code{background:#eef2f7;border-radius:5px;padding:1px 5px;font-size:12.5px}.md a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(31,111,235,.3)}.md hr{border:none;border-top:1px solid var(--line);margin:20px 0}.md blockquote{border-left:3px solid var(--accent);background:var(--chip);margin:12px 0;padding:8px 14px;border-radius:0 8px 8px 0;color:var(--slate)}</style></head><body><header class="masthead"><div class="wrap"><div class="kicker">Research note · Chinese-2W LatAm</div><h1>Phase-0 commission-table read — Omni/PAN/BV correspondente terms, industry norms, legal chassis</h1><div class="sub">4-agent web sweep (Omni program / PAN program / BV + promotora fast-path / CMN 4.935 + industry norms); PT-BR sources; OFFICIAL vs REPORTED vs INFERENCE tagged in source briefs</div><div class="meta"><span class="pill">2026-06-10</span><span class="pill">5-agent research</span></div></div></header><div class="wrap"><p style="margin-top:20px"><a class="backlink" href="index.html">← Back to the decision memo</a></p><div class="md"><h1>Phase-0 Commission Read — what the desk could get (2026-06-10)</h1>
+<p>The P&amp;L's existence condition was <strong>blended commission ≥~2.5–3%</strong>. The desk read says: <strong>plausible — IF you are the correspondente of record with your own retorno table (market range 2–6%, regulatory cap 6% upfront); implausible if you enter as an agent under a promotora (published sub-table comps 0.75–1.5%).</strong> The decisive variable is no longer "what does the market pay" but <strong>which role your CNPJ gets</strong>. Exact per-bank tables are confirmed contract-only; the outreach pack below is what extracts them — and it needs the Gate-0 PT-BR operator.</p>
+<h2>1 · Commission benchmark (the P&amp;L input)</h2>
+<table><thead><tr><th>Source</th><th>Number</th><th>Role it applies to</th></tr></thead><tbody><tr><td><strong>CMN Res. 4.935/2021 art. 15 IV</strong></td><td>upfront commission ≤ <strong>6%</strong> of financed value (≤3% portability); remainder pro-rata over the loan</td><td>regulatory ceiling (OFFICIAL)</td></tr><tr><td>Industry retorno practice</td><td><strong>2–6%</strong> of financed value, via "R-table" tiers (~1–1.5%/step)</td><td>loja/correspondente of record</td></tr><tr><td>Banco PAN (reported anchor)</td><td><strong>~1.5%</strong> of financed value</td><td>correspondente (single source, not moto-specific)</td></tr><tr><td>BV (illustrative, third-party guide)</td><td><strong>~6%</strong></td><td>correspondente</td></tr><tr><td>Dryve platform agent tiers</td><td><strong>0.75–1.5%</strong></td><td>agent under a platform — the cautionary comp</td></tr><tr><td>FEBRABAN consignado analogue</td><td>clawback if churned ≤360d / re-margined ≤90d</td><td>estorno norm reference</td></tr></tbody></table>
+<p><strong>The retorno system in one breath:</strong> banks hand each loja a menu of rate tables (R0→R10); the higher the client rate the originator closes at, the bigger the commission — top tables historically cost the borrower up to ~14% more over the loan. Legal, but must show in the CET.</p>
+<p><strong>Two strategic consequences:</strong></p>
+<ol><li><strong>Role determines viability.</strong> Correspondente-of-record at 2–6% clears the P&amp;L's ≥2.5–3% bar — Omni's subprime niche (high client rates) has the most retorno headroom. Promotora sub-tables (0.75–1.5%) sit <em>below</em> the bar: the promotora fast-path is an onboarding shortcut, not a place to stay.</li><li><strong>Retorno conflicts with the neutral-aggregator pitch.</strong> The mechanism pays the originator <em>more</em> for selling the buyer a <em>worse</em> rate — the exact opposite of "we shop your best rate." Mitigant: art. 14 IV <em>obliges</em> a multi-FI correspondente to show each FI's costs side-by-side — the comparison UX is literally a compliance requirement. The venture must price its trust positioning (lower R-tables, volume over margin) consciously.</li></ol>
+<h2>2 · The legal chassis (CMN Res. 4.935/2021) — all questions settled</h2>
+<ul><li><strong>Multi-FI: no exclusivity exists in law.</strong> Art. 14 IV explicitly regulates correspondents acting for multiple FIs (side-by-side cost disclosure required). Practice confirms: moto lojas publicly run 3–6 financeiras (Marello Motos/BH lists PAN+Bradesco+BV+Omni+Safra+Santander; Moto Clube Honda lists Honda/PAN/BV/Santander); Creditas is simultaneously correspondente of Santander/Itaú/Porto/Bradesco across 3,000+ lojas. Only FX cash work requires exclusivity.</li><li><strong>Third-party-at-POS: legal, three routes.</strong> (1) your CNPJ as direct correspondente; (2) <strong>substabelecimento</strong> — one level of sub-delegation, allowed if the master contract provides and the bank consents (art. 10); (3) contracted by the loja-correspondente. Requirements: the correspondent of record does the atendimento, each proposal carries a <strong>certified attendant's CPF</strong> (art. 15 II), so a third-party originator needs its own certified person on site.</li><li><strong>The loja cannot be cut out of the money flow:</strong> the bank releases funds <strong>to the selling store</strong> (art. 15 III) — the store issues the nota fiscal and anchors the alienação fiduciária. Strengthens the <em>enable</em> positioning; pure disintermediation was never on the table.</li><li><strong>Favorable quirk:</strong> banks may demand coobrigação (co-liability) only from correspondents financing goods <em>they themselves sell</em> (art. 14 IX) — a third-party broker cannot be made guarantor.</li><li><strong>Estorno:</strong> regulation only mandates that the pro-rata tail stops on early settlement; <strong>upfront clawback is purely contractual</strong> (cancellation/fraud → estorno is standard; windows per bank are contract-only).</li><li><strong>Certification:</strong> FBB-130 (veículos/CDC): ~R$107, 30 questions, ≥70%, valid 4 years, bookable in days–weeks. FBB-100 (completo): ~R$125, 3 years. Attaches to the <em>person</em> attending; ANEPS accepted.</li></ul>
+<h2>3 · Per-lender read</h2>
+<table><thead><tr><th></th><th><strong>Omni</strong> ⭐</th><th><strong>Banco PAN</strong></th><th><strong>BV</strong></th></tr></thead><tbody><tr><td>Channel</td><td><code>omni.com.br/seja-um-parceiro</code> (lojista form) + regional <strong>Agente</strong> = the real gatekeeper</td><td>No public form — <strong>named regional manager emails</strong> (on PAN's partner blog, updated Jun 2025); veículos 4002-1687</td><td><code>bv.com.br/institucional/parceiro</code> form; (11) 3003-1616; known slow callbacks (RA complaints)</td></tr><tr><td>Structure</td><td>B2B2C: 7,200+ lojistas, ~150 <strong>exclusive Agentes</strong> work the deals. The third-party-originator role <em>exists</em> — but it's the Agente (exclusivity required: "Dedicação exclusiva à Omni")</td><td>~20k lojas; store-centric; <strong>credenciamento was closed in 2022 (RA), now discretionary/regional</strong>. go!PAN partner app; Mobiauto (80% PAN) is its digital layer</td><td>Two tracks: <strong>Coban</strong> (full correspondente, open to non-store PJs) + <strong>Parceiro Indicação</strong> (referral, commission per closed deal — lightest entry)</td></tr><tr><td>Multi-FI at loja</td><td>Confirmed (Marello runs Omni + 5 others)</td><td>Confirmed (Honda/PAN/BV/Santander checkout)</td><td>Confirmed (Rivel: BV+Santander+Bradesco+PAN+Omni)</td></tr><tr><td>Third-party-at-POS</td><td>Via sub-credential under a regional Agente (substabelecimento) — or become the Agente (conflicts with multi-FI!)</td><td>Corban-without-store "possible on paper" (FBB-100/130) but no observed precedent in vehicles</td><td><strong>Coban track open to non-store PJs</strong> — the most promising direct route</td></tr><tr><td>Commission intel</td><td>None public; subprime rates = most retorno headroom (INFERENCE)</td><td>~1.5% reported anchor</td><td>~6% illustrative; nota-fiscal payment cycle; RA records approve-then-reverse at mesa + NF payment disputes</td></tr><tr><td>Watch-outs</td><td>Agente exclusivity vs your multi-FI design</td><td>Regional-manager appetite gates everything; weeks–months</td><td>Auto-approvals reversible before payout; partner-payment friction</td></tr></tbody></table>
+<p><strong>Promotora fast-path</strong> (multi-bank in one contract, days–weeks, lower %): Bevi, Solopromotora (both moto-covering), Dinamo (SP), Impacto (PR); platform variants Creditas lojista / Autoconf. Use to get live fast and learn — then graduate to direct codes for the economics.</p>
+<h2>4 · What this does to the P&amp;L</h2>
+<p>Re-run of the existence condition: at <strong>3% retorno</strong> on R$12k the funded loan pays <strong>R$324</strong> (vs R$184 at 1.7%) — wedge-only per-loan margin turns positive at ~16% panel approval (vs ~28%), and whole-flow at 31→~15 lojas per operator equivalent. At <strong>promotora sub-table 1%</strong>: R$108/loan — dead. <strong>The venture's first negotiation is therefore not with lojas but with the banks' regional managers — for a direct code and the table grid.</strong> The rate-linked retorno also adds an honest tension to model in R2: quoting buyers higher-R tables improves your economics but damages conversion and the trust pitch.</p>
+<h2>5 · Outreach pack (the contract-only extraction — needs the PT-BR operator)</h2>
+<p><strong>Channels, in order of expected yield:</strong></p>
+<ol><li><strong>BV Coban</strong> — parceiro form + follow the regional gerente de relacionamento; non-store PJ explicitly in scope.</li><li><strong>Omni regional Agente</strong> — find via <code>omni.com.br/encontre-um-agente</code> for the pilot city; ask for lojista credenciamento + substabelecimento terms.</li><li><strong>PAN regional manager</strong> — the named <code>@grupopan.com</code> regional emails; ask whether moto credenciamento is open in the pilot region at all.</li><li><strong>Bevi / Solopromotora</strong> — sub-credential quote as the speed benchmark.</li></ol>
+<p><strong>The seven questions (per lender, PT-BR):</strong></p>
+<ol><li>"Qual é a tabela de retorno para CDC de motos — percentuais por tabela (R0, R1, R2…), bônus por volume e prazo de pagamento da comissão?"</li><li>"Qual a regra de estorno — liquidação antecipada (janela e proporcionalidade), inadimplência nas primeiras parcelas, fraude?"</li><li>"Um CNPJ que não é a loja vendedora pode ser credenciado como correspondente e originar propostas dentro de lojas parceiras? Há substabelecimento (Res. 4.935 art. 10)?"</li><li>"Quais os requisitos de credenciamento — idade do CNPJ, CNAE, vistoria de ponto físico, produção mínima mensal para manter o código ativo?"</li><li>"A proposta pode ser preenchida digitalmente pelo próprio cliente (auto-atendimento) sob o nosso código, ou exige digitação por atendente certificado?" <em>(the R$26/app lever)</em></li><li>"Há alguma cláusula de exclusividade ou tabela preferencial condicionada a share de produção?"</li><li>"Certificação exigida (FBB-100/130/ANEPS) — por atendente ou por ponto? Quem arca?"</li></ol>
+<h2>6 · Status</h2>
+<p>Desk portion of Phase-0: <strong>done</strong> — regulation, multi-FI, third-party-at-POS, certification all settled; commission narrowed to "2–6% if direct, 0.75–1.5% if sub-credentialed." Remaining: the live outreach above (blocked on Gate 0 — the PT-BR operator), plus per-bank estorno windows and the digital-intake question. Source briefs (with URL citations and OFFICIAL/REPORTED/INFERENCE tags) preserved in the agent outputs feeding this report.</p></div><footer><div class="wrap" style="padding:0"><b>Chinese-2W LatAm — research note.</b> Directional analysis from public sources; decision-support, not investment advice.</div></footer></div></body></html>

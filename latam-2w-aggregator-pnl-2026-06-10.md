@@ -49,6 +49,20 @@ Lojas needed to cover one local operator (wedge + insurance attach): the **base 
 
 The model's costs are not lead acquisition (QR/organic TikTok ≈ R$0 marginal CAC). They are: **(1) processing labor** — a lead is not a loan; someone must collect docs, key the proposal into each lender's separate portal (the waterfall, manual in Phase-1), chase pendências, and shepherd the contract (~45 min ≈ R$26/application) — and you pay it on *every* applicant but collect on **~1 in 8** (25% approval × 50% funded → one funded loan carries ~R$208 of labor vs R$184 commission; this ratio, not CAC, is what kills the wedge); **(2) loja servicing** (R$100/mo — salespeople must keep pointing rejects at the QR; PAN/Omni reps court the same lojistas); **(3) the local operator** (R$11.5k/mo fixed); **(4) estorno** (10% clawback). If the QR points at the *lender's own* simulator the work disappears — but so does the revenue: you're paid only as the correspondente of record, and being in the money flow *is* the work. **Upside lever to check in Phase-0: if lenders accept digital self-serve intake under your correspondente code, R$26/app drops sharply and the wedge math improves.** (This labor problem is exactly why Rupyy's core product is portal automation.)
 
+## The automation variant (founder direction, 2026-06-10): replace the labor with AI agents/APIs
+
+Re-run with `ops_per_app` R$26 → **R$4** (WhatsApp doc-collection bot + OCR + automated portal filling):
+
+| Scenario | Wedge R$/loja/mo | Whole-flow R$/loja/mo | Lojas per operator (WF) |
+|---|---:|---:|---:|
+| Manual, 1.7% | −118 | +372 | 31 |
+| **AI-ops, 1.7%** | **+14** | **+702** | **16** |
+| Manual, 3.0% | −13 | +814 | 14 |
+| **AI-ops, 3.0%** | **+119** | **+1,144** | **10** |
+| AI-ops, 1.2% (promotora sub-table) | −27 | +532 | 22 |
+
+Automation makes the wedge ~breakeven at 1.7% and properly positive at 3% — and roughly doubles whole-flow contribution. **Caveats that keep this honest:** (1) CMN 4.935 art. 15 II still requires each proposal to carry a **certified human attendant's CPF** — fully unattended flows may not satisfy bank compliance, though art. 16 §6 explicitly contemplates digital platforms (with a named certified responsible), which is how FinanZero operates; (2) small corbans get **portals, not APIs** — RPA against bank portals can breach the correspondente contract and get the code cancelled, so the cleaner lever is the outreach pack's Q5 (client self-fill / digital intake under your code); (3) building the automation is product-before-validation — build thin (one lender, WhatsApp + one portal) only after R1 confirms a direct code; (4) automated thin-file intake without human checks raises fraud/straw-buyer exposure, and fraud = 100% commission clawback — though this is precisely the founder's professional domain (antifraud), arguably the strongest founder-fit element in the whole venture; (5) the R$100/mo loja servicing and the bank/loja BD remain human — "no labor" really means "no per-application labor."
+
 ## Honest caveats
 
 Reject volume (6/loja/mo) and ops cost (R$26/app) are estimates — bigger lojas or cheaper processing shift the frontier favorably; a softer entrada (funded <50%) shifts it against. Commission is THE uncertainty — both directions. The model excludes incorporation/cert one-offs and any paid CAC (paid traffic already ruled out; dealer-QR marginal CAC ≈ BD line). Code: `workbench/latam-2w-aggregator-pnl/model.py` (rerun with any parameter set).
