@@ -45,6 +45,10 @@ Lojas needed to cover one local operator (wedge + insurance attach): the **base 
 3. **Insurance attach is a rounding error at wedge volume** (+R$34/loja/mo) but meaningful at whole-flow volume (~R$284/loja/mo of S3's contribution).
 4. **The R2 kill-gate gains a number:** cost per funded loan must come in under R$184 at 1.7% — i.e., panel approval × funded-rate must beat ops ÷ R$184 ≈ 14% joint conversion on processed rejects.
 
+## Why there's a cost at all ("isn't it just commission?")
+
+The model's costs are not lead acquisition (QR/organic TikTok ≈ R$0 marginal CAC). They are: **(1) processing labor** — a lead is not a loan; someone must collect docs, key the proposal into each lender's separate portal (the waterfall, manual in Phase-1), chase pendências, and shepherd the contract (~45 min ≈ R$26/application) — and you pay it on *every* applicant but collect on **~1 in 8** (25% approval × 50% funded → one funded loan carries ~R$208 of labor vs R$184 commission; this ratio, not CAC, is what kills the wedge); **(2) loja servicing** (R$100/mo — salespeople must keep pointing rejects at the QR; PAN/Omni reps court the same lojistas); **(3) the local operator** (R$11.5k/mo fixed); **(4) estorno** (10% clawback). If the QR points at the *lender's own* simulator the work disappears — but so does the revenue: you're paid only as the correspondente of record, and being in the money flow *is* the work. **Upside lever to check in Phase-0: if lenders accept digital self-serve intake under your correspondente code, R$26/app drops sharply and the wedge math improves.** (This labor problem is exactly why Rupyy's core product is portal automation.)
+
 ## Honest caveats
 
 Reject volume (6/loja/mo) and ops cost (R$26/app) are estimates — bigger lojas or cheaper processing shift the frontier favorably; a softer entrada (funded <50%) shifts it against. Commission is THE uncertainty — both directions. The model excludes incorporation/cert one-offs and any paid CAC (paid traffic already ruled out; dealer-QR marginal CAC ≈ BD line). Code: `workbench/latam-2w-aggregator-pnl/model.py` (rerun with any parameter set).
