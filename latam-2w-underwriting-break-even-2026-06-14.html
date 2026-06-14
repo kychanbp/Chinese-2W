@@ -1,0 +1,125 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Should a commission-only moto-loan correspondente run its own underwriting? (break-even with grounded BR data costs)</title><style>
+  :root{
+    --navy:#0f2747;--slate:#33425b;--ink:#1a2233;--mute:#6b7689;--line:#e3e8ef;--bg:#f6f8fb;--card:#fff;
+    --accent:#1f6feb;--accent2:#0a8f6a;--warn:#c0651a;--bad:#b3261e;--good:#0a8f6a;--chip:#eef3fb;
+    --shadow:0 1px 3px rgba(16,32,64,.07),0 6px 20px rgba(16,32,64,.06);
+  }
+  *{box-sizing:border-box}html{scroll-behavior:smooth}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.55;font-size:15.5px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+  header.masthead{background:linear-gradient(135deg,#0f2747,#1d3a63);color:#fff;padding:44px 0 36px}
+  .kicker{text-transform:uppercase;letter-spacing:.16em;font-size:12px;color:#9fc0ee;font-weight:700;margin-bottom:10px}
+  header h1{margin:0 0 8px;font-size:29px;line-height:1.18;font-weight:750;letter-spacing:-.01em}
+  header .sub{color:#cdd9ea;font-size:15px;max-width:760px}
+  header .meta{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+  .pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);color:#eaf1fb;padding:4px 11px;border-radius:999px;font-size:12.5px;font-weight:600}
+  nav.toc{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav.toc .wrap{display:flex;gap:4px;flex-wrap:wrap;padding-top:9px;padding-bottom:9px}
+  nav.toc a{font-size:12.5px;font-weight:600;color:var(--slate);text-decoration:none;padding:5px 10px;border-radius:7px}
+  nav.toc a:hover{background:var(--chip);color:var(--navy)}
+  section{padding:32px 0 8px}
+  h2{font-size:13px;text-transform:uppercase;letter-spacing:.13em;color:var(--accent);font-weight:800;margin:0 0 4px}
+  h2 + .h{font-size:23px;font-weight:730;margin:0 0 16px;letter-spacing:-.01em;color:var(--navy)}
+  h3{font-size:16.5px;font-weight:700;color:var(--navy);margin:22px 0 8px}
+  p{margin:10px 0}.lead{font-size:16px;color:var(--slate)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:20px 22px;box-shadow:var(--shadow);margin:16px 0}
+  .rec{border-left:5px solid var(--warn);background:linear-gradient(180deg,#fff8f0,#fff)}
+  .rec .tag{display:inline-block;background:var(--warn);color:#fff;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:6px;margin-bottom:10px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:15px 16px;box-shadow:var(--shadow)}
+  .kpi .n{font-size:24px;font-weight:780;color:var(--navy);letter-spacing:-.01em}
+  .kpi .l{font-size:12.5px;color:var(--mute);font-weight:600;margin-top:2px}
+  .kpi .d{font-size:12px;color:var(--slate);margin-top:6px}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.8px;background:var(--card);border:1px solid var(--line);border-radius:11px;overflow:hidden}
+  th,td{padding:9px 11px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:#f0f4f9;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--slate);font-weight:800}
+  tr:last-child td{border-bottom:none}
+  td.num{font-variant-numeric:tabular-nums;font-weight:650}
+  .b-good{color:var(--good);font-weight:700}.b-warn{color:var(--warn);font-weight:700}.b-bad{color:var(--bad);font-weight:700}
+  .badge{display:inline-block;font-size:11px;font-weight:800;padding:2px 8px;border-radius:999px}
+  .badge.go{background:#e3f6ee;color:#0a7a59}.badge.hold{background:#fdeede;color:#b06316}.badge.no{background:#fbe6e3;color:#a31f17}
+  ul.tight{margin:8px 0;padding-left:20px}ul.tight li{margin:5px 0;font-size:14px}
+  .cap{font-size:12px;color:var(--mute);margin-top:6px}.verdict{font-weight:750;color:var(--navy)}.src{font-size:12px;color:var(--mute)}
+  /* sensitivity bars */
+  .bars{margin:10px 0 4px}
+  .barrow{display:grid;grid-template-columns:64px 1fr 150px;align-items:center;gap:10px;margin:6px 0}
+  .barrow .lab{font-size:13px;font-weight:650;color:var(--slate)}
+  .track{background:#eef2f7;border-radius:6px;height:18px;position:relative;overflow:hidden}
+  .fill{height:100%;border-radius:6px}
+  .barrow .val{font-size:12.5px;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
+  /* staircase */
+  .stair{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:16px 0;align-items:end}
+  .step{background:var(--card);border:1px solid var(--line);border-bottom:4px solid var(--accent);border-radius:11px 11px 0 0;padding:15px 16px;box-shadow:var(--shadow)}
+  .step:nth-child(1){margin-top:48px;border-bottom-color:#0a8f6a}
+  .step:nth-child(2){margin-top:24px;border-bottom-color:#1f6feb}
+  .step:nth-child(3){margin-top:0;border-bottom-color:#5b3fb0}
+  .step .sn{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+  .step h4{margin:3px 0 6px;font-size:15px;color:var(--navy)}.step p{font-size:12.6px;margin:6px 0 0;color:var(--slate)}
+  .flag{background:#fff8f0;border:1px solid #f0dcc4;border-left:4px solid var(--warn);border-radius:9px;padding:13px 16px;margin:12px 0;font-size:13.6px}
+  .flag b{color:var(--warn)}
+  code{background:#eef2f7;border-radius:5px;padding:1px 5px;font-size:12.5px}
+  footer{margin-top:28px;padding:22px 0 48px;border-top:1px solid var(--line);color:var(--mute);font-size:12.5px}
+  @media(max-width:760px){.grid3,.grid2,.stair{grid-template-columns:1fr}.step{margin-top:0!important}}
+  .ctl{margin:0 0 13px}
+  .ctl label{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;font-weight:600;color:var(--slate);margin-bottom:5px}
+  .ctl label b{color:var(--navy);font-variant-numeric:tabular-nums;font-size:14px}
+  .ctl input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:5px;border-radius:5px;background:#dde5ef;outline:none}
+  .ctl input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:17px;height:17px;border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid #fff;box-shadow:0 1px 4px rgba(16,32,64,.25)}
+  .ctl input[type=range]::-moz-range-thumb{width:17px;height:17px;border-radius:50%;background:var(--accent);cursor:pointer;border:2px solid #fff}
+  #calcCard .kpi .n{transition:color .15s}
+  @media print{body{background:#fff;font-size:11.5px}nav.toc{display:none}.card,.kpi,table,.step{box-shadow:none}
+    #calc{display:none}
+    header.masthead{background:#0f2747!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    section{padding:14px 0 4px;break-inside:avoid}.fill,.step,.kpi{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+  .chain{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:12px 0}
+  .chain .c{background:var(--chip);border:1px solid #d7e3f6;color:var(--navy);font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:8px}
+  .chain .c.bad{background:#fbe6e3;border-color:#f0ccc6;color:#a31f17}
+  .chain .ar{color:var(--mute);font-weight:800}
+  .linkrow{display:flex;justify-content:space-between;gap:12px;padding:10px 2px;border-bottom:1px solid var(--line);font-size:13.6px}
+  .linkrow:last-child{border:none}
+  .linkrow a{color:var(--accent);font-weight:700;text-decoration:none}
+  .linkrow .what{color:var(--slate)}
+
+  .kpi .d a, table td a, .flag a, p.cap a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(31,111,235,.35)}
+  .kpi .d a:hover, table td a:hover, .flag a:hover, p.cap a:hover{border-bottom-color:var(--accent)}
+.backlink{font-size:13px;font-weight:600;color:var(--accent);text-decoration:none}.md h1{font-size:24px;font-weight:740;color:var(--navy);margin:6px 0 14px}.md h2{font-size:19px;text-transform:none;color:var(--navy);font-weight:730;margin:26px 0 8px;border-top:1px solid var(--line);padding-top:18px}.md h3{font-size:15.5px;color:var(--navy);font-weight:700;margin:18px 0 6px}.md p{margin:10px 0}.md ul,.md ol{margin:8px 0;padding-left:22px}.md li{margin:5px 0;font-size:14.2px}.md code{background:#eef2f7;border-radius:5px;padding:1px 5px;font-size:12.5px}.md a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(31,111,235,.3)}.md hr{border:none;border-top:1px solid var(--line);margin:20px 0}.md blockquote{border-left:3px solid var(--accent);background:var(--chip);margin:12px 0;padding:8px 14px;border-radius:0 8px 8px 0;color:var(--slate)}</style></head><body><header class="masthead"><div class="wrap"><div class="kicker">Research note · Chinese-2W LatAm</div><h1>Should a commission-only moto-loan correspondente run its own underwriting? (break-even with grounded BR data costs)</h1><div class="sub">6-agent workflow: ground real BR credit-data/anti-fraud costs -&gt; model 4 underwriting-depth strategies (free-ride / rules / fraud+FPD / full-bureau) -&gt; 2 adversarial checks -&gt; synthesis</div><div class="meta"><span class="pill">2026-06-14</span><span class="pill">5-agent research</span></div></div></header><div class="wrap"><p style="margin-top:20px"><a class="backlink" href="index.html">← Back to the decision memo</a></p><div class="md"><h1>Should a Commission-Only Moto-Loan Correspondente Run Its Own Underwriting?</h1>
+<h2>1. Direct verdict</h2>
+<p><strong>Yes — but go shallow on the data pull and deep on the engine. Run your own underwriting; do not run your own bureau.</strong></p>
+<p>The naive framing ("the FI underwrites, so free-ride") and the maximalist framing ("the risk engine is the moat, so underwrite everything") are both wrong because they conflate two different things:</p>
+<table><thead><tr><th></th><th><strong>The PULL</strong> (data acquisition)</th><th><strong>The ENGINE</strong> (model + decision logic)</th></tr></thead><tbody><tr><td>Marginal cost</td><td>High, per-applicant, <strong>multiplied by the funnel (×3–8)</strong></td><td>~Zero once built; <strong>falls</strong> per-applicant as volume rises</td></tr><tr><td>Who already pays</td><td><strong>The FI does</strong>, and holds the risk</td><td><strong>No one does it for you</strong></td></tr><tr><td>Duplicating it is</td><td>Value-destroying (38–66% commission haircut)</td><td>Impossible — it <em>is</em> the asset</td></tr></tbody></table>
+<p>The correct answer: <strong>free-ride on the FI for the expensive full bureau pull and the binding credit decision; own a single cheap score-bearing prequal that does double duty (routing + FPD/fraud screen), and run a maximally deep engine on top of that cheap data.</strong> Depth ≠ data spend. You can run a world-class risk engine on R$4–8 of data per applicant.</p>
+<hr>
+<h2>2. Recommended depth: a hybrid (kill S1, kill S3) — the break-even numbers</h2>
+<p>Four candidate strategies, costed per applicant then multiplied by the funnel to get <strong>cost per funded loan</strong> (you pay screening on <em>every</em> applicant, earn commission on <em>only</em> funded ones — this multiplier is the whole game):</p>
+<p>$$\text{Cost per funded loan} = \text{Cost per applicant} \times (\text{applicants per funded loan, } 3\text{–}8)$$</p>
+<table><thead><tr><th>Strategy</th><th>What it pulls / applicant</th><th>Cost/app (data + R$4 ops)</th><th>Cost/funded @5:1</th><th>% of R$184 comm.</th></tr></thead><tbody><tr><td><strong>S0</strong> Free-ride</td><td>nothing</td><td>~R$4 (intake ops only)</td><td>R$20</td><td>11%</td></tr><tr><td><strong>S1</strong> Rules-only "routing", no bureau</td><td>CPF validation R$0.29</td><td>~R$4.3</td><td>R$22</td><td>12%</td></tr><tr><td><strong>S2</strong> Score-bearing prequal (routing + FPD) + gated biometrics</td><td>CPF R$0.29 + device/OCR R$0.16 + <strong>score-only R$2–5</strong> + face-match R$1–4 on riskiest ~20% (blended R$0.50)</td><td>~R$6.5</td><td>R$33</td><td>18%</td></tr><tr><td><strong>S3</strong> Full CONCENTRE bureau on everyone</td><td>CPF + full report R$12–34</td><td>~R$24</td><td>R$122</td><td><strong>66%</strong></td></tr></tbody></table>
+<p><strong>S3 is eliminated.</strong> At the central 5:1 funnel it burns 38–66% of commission; at the worst 8:1 funnel its ~R$194 cost <em>exceeds</em> the R$184 commission outright. It duplicates the exact pull the FI already pays for and holds the risk on. Break-even for S3 would require a funding rate above ~75% (almost no wasted pulls) — moto funnels run 3–8:1, so <strong>S3 never pays.</strong> (Caveat: if the FI reimburses/shares the consulta cost, R$122 is an upper bound — but it still loses.)</p>
+<p><strong>S1 is also eliminated — it's a phantom.</strong> S1's whole premise is "route without a bureau," but <strong>you cannot rank N lenders by expected approval without a score.</strong> This is the hidden reason real aggregators <em>do</em> pull at prequal: FinanZero returns "up to 10 pre-approved offers in 5 minutes," which is impossible without a score-bearing pull. S1 therefore pays ops + CPF cost while delivering almost none of the routing benefit it's credited with. Delete it.</p>
+<p><strong>The real fork is S2 vs S0</strong>, and S2 wins — but the reason matters, because on <em>expected-value clawback alone, S0 actually beats S2:</em></p>
+<ul><li>Clean relative accounting: S0 net = R$184 (baseline, but fully exposed). S2 net = 184 − 33 (cost) + 6.6 (clawback avoided) + 15 (routing/table) = <strong>~R$173.</strong> On EV clawback alone S2 <em>loses</em> by ~R$11. The original model hid this by penalizing S0 on an absolute basis (−R$11) while crediting S2 on a relative basis (+R$6.6) — inconsistent accounting.</li></ul>
+<p>So S2's case does <strong>not</strong> rest on expected clawback. It rests on three things the EV table understates:</p>
+<ol><li><strong>Routing requires the score S2 buys anyway — one pull, two benefits.</strong> The R$2–5 score-only pull simultaneously ranks lenders <em>and</em> flags FPD. Break-even on routing: a funding-rate lift of <strong>≥~12% relative (+2.4pp absolute, e.g. 20%→22.4%)</strong> recovers S2's full cost. Achievable in a multi-lender panel. And a single <strong>+0.3pp table improvement</strong> (1.7%→2.0% on a R$12k ticket) = <strong>+R$36/funded</strong>, which alone dwarfs S2's entire R$33 cost.</li><li><strong>Fraud carries "100% commission + liability," not just commission.</strong> The givens specify indemnity exposure beyond the reversed commission. The avoided loss per caught fraud is <em>commission + liability</em> (potentially multiples of R$184), so the fraud gate is justified at a <strong>lower</strong> bad-rate threshold than the R$184-capped EV math implies. This is tail-risk insurance, not EV.</li><li><strong>Gating, not blanket.</strong> Blanket biometrics on 100% of applicants needs a ~16% combined FPD+fraud rate to pay. Risk-gated to the worst ~20%, break-even drops to <strong>~3%</strong> combined FPD+fraud — which moto/autônomo segments routinely exceed. So gate, never blanket.</li></ol>
+<p><strong>Recommended strategy: S2-hybrid</strong> — one cheap score-bearing prequal pull per applicant (routing + FPD), plus a risk-gated identity/biometric check on the high-risk slice only. Net ≈ R$173–183/funded vs S0's R$173-but-exposed and S3's R$88.</p>
+<hr>
+<h2>3. Data-spend tiering rule</h2>
+<p>The discriminating test is <strong>not "is it cheap"</strong> — it's <strong>"who owns the resulting signal."</strong></p>
+<blockquote>**Free-ride on the FI for any signal whose value is fully captured by the FI's own risk decision. Own — and go arbitrarily deep on — any signal whose value accrues to <em>you</em> (clawback) or is <em>not in the FI's possession</em> (thin-file moto lift, routing, cash-flow).**</blockquote>
+<table><thead><tr><th>Tier</th><th>Signal</th><th>Spend ceiling</th><th>Why</th></tr></thead><tbody><tr><td><strong>Tier 0 — Free-ride</strong></td><td>Full bureau report (CONCENTRE, R$12–34); the binding credit decision; the balance sheet</td><td><strong>R$0 — never buy</strong></td><td>FI already pays and holds the risk. Duplicating = 38–66% haircut for zero marginal protection.</td></tr><tr><td><strong>Tier 1 — Cheap, always</strong></td><td>CPF/situação cadastral (R$0.20–0.51); device fingerprint/OCR (R$0.16); <strong>score-only / restritivos (R$2–5)</strong></td><td><strong>Hard ceiling ~R$4–8/applicant</strong></td><td>The funnel multiplier (×3–8) means per-applicant pull is the one thing that <em>must</em> stay cheap. The score does double duty: route + FPD.</td></tr><tr><td><strong>Tier 2 — Risk-gated</strong></td><td>Face-match / liveness (Unico/idwall/ClearSale, R$1–4); deeper alt-data</td><td><strong>Only on riskiest ~20%</strong> (blended ~R$0.50/app)</td><td>Blanket needs 16% bad rate to pay; gated needs only ~3%. Pull conditionally, triggered by Tier-1 flags.</td></tr><tr><td><strong>Tier 3 — Consented conversion step</strong></td><td>Open Finance cash-flow / PIX</td><td><strong>~R$0 rail</strong></td><td>The thin-file moto edge. Not a silent pull — a conversion UX step. This is where you out-underwrite the bureau.</td></tr></tbody></table>
+<p>Pull-order discipline also minimizes the <em>consulta-clustering</em> score damage: in Brazil the customer's own score check is harmless, but multiple <em>company</em> credit consultas in a short window signal "busca intensa por crédito" (~12% of score weight). Routing to the single best-fit lender <em>first</em> — instead of fanning the CPF to all N lenders — protects the customer's score and lifts downstream approval. That's the real routing mechanism.</p>
+<hr>
+<h2>4. Where underwriting flips from cost to moat/revenue</h2>
+<p>Inside the current deal (commission-only, FI holds risk), underwriting is a cost center — which is why the data pull must stay shallow. **The moat lives in the engine, and its payoff shows up in the <em>next</em> contract, not this quarter's commission line.<strong> All three payoffs require the engine to be </strong>demonstrably accretive over the FI's own screen** — a higher bar than "cheap enough not to lose money."</p>
+<table><thead><tr><th>Flip point</th><th>Mechanism</th><th>What it requires</th></tr></thead><tbody><tr><td><strong>Better tables (ratchet)</strong></td><td>A proven low-FPD book is <em>evidence</em> you bring to the FI to renegotiate the upfront % upward over time. +0.3pp = +R$36/funded; repeated, it compounds.</td><td>A logged FPD track record showing your screen is accretive.</td></tr><tr><td><strong>FLDG / spread participation (the regime change)</strong></td><td>Move from commission-only to <strong>risk-sharing</strong> (FLDG, partial spread, co-lending) — a categorically larger, more durable P&amp;L than a 1.7–3% commission. You cannot ask for FLDG terms without an engine that <em>proves your screen adds predictive power over the FI's.</em></td><td>Engine demonstrably accretive on the segment. <strong>The engine is the entry ticket to a different P&amp;L.</strong></td></tr><tr><td><strong>Screening-as-a-service</strong></td><td>Once the engine is good, your calibrated fraud/FPD score on the thin-file moto-autônomo segment (which bureaus serve poorly) becomes <strong>sellable to other FIs and correspondentes.</strong> Increasing returns: more volume → better model → more saleable → more volume. The routing log <em>is</em> the training set.</td><td>Proprietary data exhaust + proven lift.</td></tr></tbody></table>
+<p><strong>Sequencing:</strong> (1) <em>Now</em> — shallow pull, deep fraud/FPD + routing engine, accumulating a proprietary accretive track record on the thin-file segment; you underwrite not to <em>decide</em> (the FI decides) but to <em>prove and to protect your clawback.</em> (2) <em>Next</em> — present "my screen drops FPD by X over your panel" to renegotiate tables, then claim an FLDG seat. (3) <em>Later</em> — sell the screen; consider principal/co-lending only if it justifies leaving capital-light. The founder's antifraud/credit-risk edge + R$4/app AI-ops is exactly the team to build the deepest engine on the cheapest data.</p>
+<hr>
+<h2>5. The single number to track</h2>
+<p>**Incremental FPD lift of your screen over the FI's own screen — i.e., the percentage-point reduction in first-payment-default (and fraud) rate on the loans <em>you</em> pre-approved versus a no-own-screen baseline, on the moto/autônomo segment.**</p>
+<p>$$\Delta\text{FPD} = \text{FPD}_{\text{FI screen alone}} - \text{FPD}_{\text{FI screen} + \text{your screen}}$$</p>
+<p>Why this one number governs everything:</p>
+<ul><li><strong>It is the break-even gate today.</strong> Every point of FPD/fraud you remove is up to 100% of commission (+ liability) saved on a clawback you'd otherwise eat blind. Your screen pays for itself the moment ΔFPD × (commission + liability) per funded loan exceeds your screening cost (~R$33/funded for S2-hybrid). At commission R$184 and gated cost R$33, you need to avoid roughly <strong>one clawback per ~6 funded loans of marginal effect</strong> — a low bar on thin-file moto.</li><li><strong>It is the moat metric tomorrow.</strong> ΔFPD &gt; 0 and durable is the <em>exact</em> evidence that converts a commission into better tables, then into an FLDG/spread seat, then into a sellable score. If ΔFPD ≈ 0, your screen is not accretive — you're paying the rent but building no moat, and you should fall back toward free-riding.</li></ul>
+<p>Track ΔFPD per cohort, per segment, per lender. It is simultaneously the answer to "is my underwriting paying <em>this quarter</em>?" and "is my underwriting becoming the <em>moat</em>?" — which is precisely why it's the one number to watch.</p>
+<hr>
+<p><em>Sources (inline): commission/funnel/clawback figures and R$4/app ops target — vault corpus (given). Brazilian cost anchors — CPF/situação cadastral R$0.20–0.51 (Receita/BigDataCorp); device/OCR R$0.16 (BigDataCorp); Serasa Score e Atributos API R$2–5 (serasaexperian.com.br/solucoes/score-e-atributos-api); full third-party report ~R$35 retail / R$12–34 B2B (serasa.com.br/consultar-meu-cpf); face-match/liveness R$1–4 (Unico/idwall/ClearSale, quote-gated). Routing/free-ride structure — correspondente submits proposal, FI makes binding decision (vivareal.com.br); FinanZero multi-lender routing, "up to 10 pre-approved offers in 5 min," lead-commission model (exame.com). Soft-pull mechanic — company credit consultas register and signal "busca intensa por crédito" (~12% score weight); consumer's own check is harmless (serasa.com.br/score/blog).</em></p></div><footer><div class="wrap" style="padding:0"><b>Chinese-2W LatAm — research note.</b> Directional analysis from public sources; decision-support, not investment advice.</div></footer></div></body></html>
