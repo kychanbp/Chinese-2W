@@ -77,3 +77,18 @@ Re-run of the existence condition: at **3% retorno** on R$12k the funded loan pa
 ## 6 · Status
 
 Desk portion of Phase-0: **done** — regulation, multi-FI, third-party-at-POS, certification all settled; commission narrowed to "2–6% if direct, 0.75–1.5% if sub-credentialed." Remaining: the live outreach above (blocked on Gate 0 — the PT-BR operator), plus per-bank estorno windows and the digital-intake question. Source briefs (with URL citations and OFFICIAL/REPORTED/INFERENCE tags) preserved in the agent outputs feeding this report.
+
+
+---
+
+## Moral hazard — why lenders bear the risk on a broker's funnel (added 2026-06-14)
+
+Sharp founder question: "if I'm paid per disbursal and bear no default risk, why do lenders trust my decision?" Resolution corrects an imprecision — **the correspondente does NOT make the binding credit decision.** You originate (collect docs, submit the proposal); the FI underwrites every deal with its own mesa de crédito, scorecard, and bureau pull (Serasa/Quod/Boa Vista) and can decline anything. The lender bears default risk on loans IT approved with ITS models — not on a decision you handed it. You cannot approve a bad borrower, only submit one.
+
+The real moral hazard is at **origination** (which applicants you submit, doc integrity, fraud/laranja/dealer collusion). Lenders contain it — and give the broker genuine skin in the game — via four mechanisms:
+1. **Estorno/clawback** — commission reversed on first-payment default, early settlement, or fraud (100% + liability). A bad loan costs you the commission. The primary alignment.
+2. **Performance monitoring + descredenciamento** — the FI tracks your code's default/FPD rate; a dirty book → worse tables, tighter approval, or de-credentialing.
+3. **Fraud liability** — straw-buyer/forgery is on the originator (100% clawback + legal).
+4. **The FI's own bureau gate** — junk submissions get declined, costing you effort for zero commission and tanking your watched approval rate.
+
+So a clean book is the only profitable book → the broker IS incentivized to lower default risk. **Founder-edge reframe:** most correspondentes are bad at fraud/credit pre-screening (hence Brazil laranja rings + Watu losses); a correspondente differentiated on superior fraud screening + pre-qualification (the antifraud day-job, built into the AI-ops engine) delivers a cleaner book than competitors → better tables, higher approval, defensible relationship. The apparent bug (no risk-share) is the moat (you voluntarily deliver quality and are better at it). **Deeper-trust option:** delegated decision authority exists but requires first-loss skin (FLDG ~5%) — capital-heavier, reopens the balance-sheet question; the plain correspondente model avoids it (lender keeps decision + risk; broker keeps origination + clawback exposure).
